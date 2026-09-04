@@ -1,0 +1,191 @@
+<title>康軒六年級國語影音庫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F7F4; --surface:#FFFFFF; --sunk:#F0F2ED;
+  --line:#DEE3D9; --line-soft:#EAEEE6;
+  --ink:#1A1E1B; --ink2:#585F59; --ink3:#868D85;
+  --core:#B3332A; --core-bg:#FAEDEB; --core-line:#EBC9C4;
+  --ext:#356B51;  --ext-bg:#E9F1EB;  --ext-line:#C4DCCC;
+  --shadow:0 1px 2px rgba(26,30,27,.05), 0 4px 14px rgba(26,30,27,.045);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1A1E1B; --sunk:#171B18;
+  --line:#2B312C; --line-soft:#232823;
+  --ink:#E7EBE5; --ink2:#A2ABA3; --ink3:#79837B;
+  --core:#E9776A; --core-bg:#2C1D1B; --core-line:#4A2B27;
+  --ext:#79BE99;  --ext-bg:#182620;  --ext-line:#2A4436;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1A1E1B; --sunk:#171B18;
+  --line:#2B312C; --line-soft:#232823;
+  --ink:#E7EBE5; --ink2:#A2ABA3; --ink3:#79837B;
+  --core:#E9776A; --core-bg:#2C1D1B; --core-line:#4A2B27;
+  --ext:#79BE99;  --ext-bg:#182620;  --ext-line:#2A4436;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:"IBM Plex Mono","SFMono-Regular",Menlo,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px 96px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--core);outline-offset:2px;border-radius:3px}
+
+/* ---------- header ---------- */
+header.top{padding:52px 0 26px}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:14px;
+}
+h1{
+  font-family:"Noto Serif TC",Georgia,serif;font-weight:700;
+  font-size:clamp(30px,5.4vw,44px);line-height:1.2;margin:0 0 12px;
+  letter-spacing:.01em;text-wrap:balance;
+}
+.lede{margin:0;max-width:60ch;color:var(--ink2);font-size:15.5px}
+.statline{
+  display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--line);font-size:13px;color:var(--ink2);
+}
+.statline b{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ---------- toolbar ---------- */
+.toolbar{
+  position:sticky;top:0;z-index:20;background:var(--bg);
+  padding:12px 0 12px;margin-bottom:22px;border-bottom:1px solid var(--line);
+}
+.toolrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toolrow + .toolrow{margin-top:10px}
+.seg{display:inline-flex;background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:2px;gap:2px}
+.seg button{
+  font:inherit;font-size:13.5px;font-weight:500;border:0;background:transparent;color:var(--ink2);
+  padding:6px 15px;border-radius:6px;cursor:pointer;
+}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:700}
+.search{
+  flex:1 1 210px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line);border-radius:8px;padding:0 12px;
+}
+.search input{
+  flex:1;min-width:0;font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink);
+  padding:8px 0;outline:none;
+}
+.search svg{flex:none;color:var(--ink3)}
+.chip{
+  font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  padding:5px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;
+}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:500}
+.chip.core[aria-pressed="true"]{background:var(--core);border-color:var(--core);color:#fff}
+.chip.ext[aria-pressed="true"]{background:var(--ext);border-color:var(--ext);color:#fff}
+.spacer{flex:1}
+.count{font-size:12.5px;color:var(--ink3)}
+
+/* ---------- lesson card ---------- */
+.lesson{
+  display:grid;grid-template-columns:78px 1fr;gap:0 22px;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px 20px;margin-bottom:14px;box-shadow:var(--shadow);
+  scroll-margin-top:150px;
+}
+.rail{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:2px}
+.no{
+  font-family:"IBM Plex Mono",monospace;font-size:30px;font-weight:600;line-height:1;
+  color:var(--core);letter-spacing:-.02em;
+}
+.no small{display:block;font-size:10px;letter-spacing:.14em;color:var(--ink3);font-weight:400;margin-top:5px}
+.genre{
+  font-size:11.5px;color:var(--ink2);background:var(--sunk);border:1px solid var(--line-soft);
+  padding:2px 8px;border-radius:5px;white-space:nowrap;
+}
+h2{font-family:"Noto Serif TC",Georgia,serif;font-size:22px;font-weight:700;margin:0 0 4px;line-height:1.35}
+.lnote{margin:0 0 12px;font-size:13px;color:var(--ink2);max-width:62ch}
+.words{margin:0 0 16px;font-size:13px}
+.words summary{cursor:pointer;color:var(--ink2);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.words summary::-webkit-details-marker{display:none}
+.words summary::before{content:"▸";color:var(--ink3);font-size:11px;transition:transform .15s}
+.words[open] summary::before{transform:rotate(90deg)}
+.wordgrid{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.wordgrid span{
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1;padding:6px 7px;
+  background:var(--sunk);border:1px solid var(--line-soft);border-radius:5px;
+}
+
+/* ---------- video groups ---------- */
+.group + .group{margin-top:16px}
+.ghead{
+  display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:11.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace;
+}
+.ghead::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.ghead.core{color:var(--core)} .ghead.ext{color:var(--ext)}
+.ghead b{font-weight:400;color:var(--ink3);letter-spacing:0}
+ul.vids{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+li.v{display:flex;align-items:flex-start;gap:6px;border-radius:8px}
+li.v:hover{background:var(--sunk)}
+a.vmain{
+  flex:1;min-width:0;display:block;text-decoration:none;padding:8px 8px 8px 10px;border-radius:8px;
+  border-left:3px solid transparent;
+}
+li.v.core a.vmain{border-left-color:var(--core-line)}
+li.v.ext  a.vmain{border-left-color:var(--ext-line)}
+.vt{display:block;font-size:14px;font-weight:500;line-height:1.45;color:var(--ink)}
+a.vmain:hover .vt{text-decoration:underline;text-underline-offset:2px}
+.vmeta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:3px;font-size:12px;color:var(--ink3)}
+.cat{padding:1px 7px;border-radius:4px;font-size:11px;font-weight:500;border:1px solid}
+.cat.core{color:var(--core);background:var(--core-bg);border-color:var(--core-line)}
+.cat.ext{color:var(--ext);background:var(--ext-bg);border-color:var(--ext-line)}
+.dur{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.vn{display:block;margin-top:3px;font-size:12.5px;color:var(--ink2);max-width:64ch}
+.star{
+  flex:none;font:inherit;font-size:15px;line-height:1;background:transparent;border:0;cursor:pointer;
+  color:var(--line);padding:9px 8px;border-radius:6px;
+}
+.star:hover{color:var(--ink3)}
+.star[aria-pressed="true"]{color:#D99A1E}
+
+.lesslinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.lesslinks a{
+  font-size:12px;color:var(--ink2);text-decoration:none;border:1px solid var(--line);
+  background:var(--surface);padding:4px 10px;border-radius:6px;
+}
+.lesslinks a:hover{border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- general section / footer ---------- */
+.sechead{margin:38px 0 14px;display:flex;align-items:baseline;gap:12px}
+.sechead h2{font-size:19px;margin:0}
+.sechead p{margin:0;font-size:13px;color:var(--ink3)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 24px;box-shadow:var(--shadow)}
+.empty{text-align:center;padding:60px 20px;color:var(--ink3);font-size:14px}
+footer.src{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3)}
+footer.src p{margin:0 0 7px;max-width:70ch}
+footer.src a{color:var(--ink2)}
+.themebtn{
+  font:inherit;font-size:12.5px;background:var(--surface);border:1px solid var(--line);color:var(--ink2);
+  padding:5px 11px;border-radius:999px;cursor:pointer;
+}
+
+@media (max-width:680px){
+  .wrap{padding:0 14px 72px}
+  header.top{padding:34px 0 20px}
+  .lesson{grid-template-columns:1fr;padding:18px 16px 16px;gap:0}
+  .rail{flex-direction:row;align-items:center;gap:10px;margin-bottom:8px}
+  .no{font-size:21px;display:flex;align-items:baseline;gap:7px}
+  .no small{display:inline;margin:0}
+  .vn{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .toolbar,.star,.themebtn{display:none!important}
+  body{background:#fff;color:#000;font-size:11px}
+  .lesson{break-inside:avoid;box-shadow:none;border-color:#bbb;margin-bottom:8px}
+  a.vmain::after{content:" — youtu.be/" attr(data-id);font-size:9px;color:#555}
+}
+</style>

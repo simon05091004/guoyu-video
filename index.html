@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="康軒版國小六年級國語每一課的 YouTube 補充影片索引，含課文朗讀、導讀、語詞修辭與延伸主題。">
+<title>康軒六年級國語影音庫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F7F4; --surface:#FFFFFF; --sunk:#F0F2ED;
+  --line:#DEE3D9; --line-soft:#EAEEE6;
+  --ink:#1A1E1B; --ink2:#585F59; --ink3:#868D85;
+  --core:#B3332A; --core-bg:#FAEDEB; --core-line:#EBC9C4;
+  --ext:#356B51;  --ext-bg:#E9F1EB;  --ext-line:#C4DCCC;
+  --shadow:0 1px 2px rgba(26,30,27,.05), 0 4px 14px rgba(26,30,27,.045);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#121513; --surface:#1A1E1B; --sunk:#171B18;
+  --line:#2B312C; --line-soft:#232823;
+  --ink:#E7EBE5; --ink2:#A2ABA3; --ink3:#79837B;
+  --core:#E9776A; --core-bg:#2C1D1B; --core-line:#4A2B27;
+  --ext:#79BE99;  --ext-bg:#182620;  --ext-line:#2A4436;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+}}
+:root[data-theme="dark"]{
+  --bg:#121513; --surface:#1A1E1B; --sunk:#171B18;
+  --line:#2B312C; --line-soft:#232823;
+  --ink:#E7EBE5; --ink2:#A2ABA3; --ink3:#79837B;
+  --core:#E9776A; --core-bg:#2C1D1B; --core-line:#4A2B27;
+  --ext:#79BE99;  --ext-bg:#182620;  --ext-line:#2A4436;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:"IBM Plex Mono","SFMono-Regular",Menlo,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px 96px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--core);outline-offset:2px;border-radius:3px}
+
+/* ---------- header ---------- */
+header.top{padding:52px 0 26px}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:14px;
+}
+h1{
+  font-family:"Noto Serif TC",Georgia,serif;font-weight:700;
+  font-size:clamp(30px,5.4vw,44px);line-height:1.2;margin:0 0 12px;
+  letter-spacing:.01em;text-wrap:balance;
+}
+.lede{margin:0;max-width:60ch;color:var(--ink2);font-size:15.5px}
+.statline{
+  display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;padding-top:18px;
+  border-top:1px solid var(--line);font-size:13px;color:var(--ink2);
+}
+.statline b{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ---------- toolbar ---------- */
+.toolbar{
+  position:sticky;top:0;z-index:20;background:var(--bg);
+  padding:12px 0 12px;margin-bottom:22px;border-bottom:1px solid var(--line);
+}
+.toolrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.toolrow + .toolrow{margin-top:10px}
+.seg{display:inline-flex;background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:2px;gap:2px}
+.seg button{
+  font:inherit;font-size:13.5px;font-weight:500;border:0;background:transparent;color:var(--ink2);
+  padding:6px 15px;border-radius:6px;cursor:pointer;
+}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:700}
+.search{
+  flex:1 1 210px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line);border-radius:8px;padding:0 12px;
+}
+.search input{
+  flex:1;min-width:0;font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink);
+  padding:8px 0;outline:none;
+}
+.search svg{flex:none;color:var(--ink3)}
+.chip{
+  font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);
+  padding:5px 11px;border-radius:999px;cursor:pointer;white-space:nowrap;
+}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:500}
+.chip.core[aria-pressed="true"]{background:var(--core);border-color:var(--core);color:#fff}
+.chip.ext[aria-pressed="true"]{background:var(--ext);border-color:var(--ext);color:#fff}
+.spacer{flex:1}
+.count{font-size:12.5px;color:var(--ink3)}
+
+/* ---------- lesson card ---------- */
+.lesson{
+  display:grid;grid-template-columns:78px 1fr;gap:0 22px;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px 20px;margin-bottom:14px;box-shadow:var(--shadow);
+  scroll-margin-top:150px;
+}
+.rail{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:2px}
+.no{
+  font-family:"IBM Plex Mono",monospace;font-size:30px;font-weight:600;line-height:1;
+  color:var(--core);letter-spacing:-.02em;
+}
+.no small{display:block;font-size:10px;letter-spacing:.14em;color:var(--ink3);font-weight:400;margin-top:5px}
+.genre{
+  font-size:11.5px;color:var(--ink2);background:var(--sunk);border:1px solid var(--line-soft);
+  padding:2px 8px;border-radius:5px;white-space:nowrap;
+}
+h2{font-family:"Noto Serif TC",Georgia,serif;font-size:22px;font-weight:700;margin:0 0 4px;line-height:1.35}
+.lnote{margin:0 0 12px;font-size:13px;color:var(--ink2);max-width:62ch}
+.words{margin:0 0 16px;font-size:13px}
+.words summary{cursor:pointer;color:var(--ink2);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.words summary::-webkit-details-marker{display:none}
+.words summary::before{content:"▸";color:var(--ink3);font-size:11px;transition:transform .15s}
+.words[open] summary::before{transform:rotate(90deg)}
+.wordgrid{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.wordgrid span{
+  font-family:"Noto Serif TC",serif;font-size:16px;line-height:1;padding:6px 7px;
+  background:var(--sunk);border:1px solid var(--line-soft);border-radius:5px;
+}
+
+/* ---------- video groups ---------- */
+.group + .group{margin-top:16px}
+.ghead{
+  display:flex;align-items:center;gap:9px;margin:0 0 8px;font-size:11.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace;
+}
+.ghead::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.ghead.core{color:var(--core)} .ghead.ext{color:var(--ext)}
+.ghead b{font-weight:400;color:var(--ink3);letter-spacing:0}
+ul.vids{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+li.v{display:flex;align-items:flex-start;gap:6px;border-radius:8px}
+li.v:hover{background:var(--sunk)}
+a.vmain{
+  flex:1;min-width:0;display:block;text-decoration:none;padding:8px 8px 8px 10px;border-radius:8px;
+  border-left:3px solid transparent;
+}
+li.v.core a.vmain{border-left-color:var(--core-line)}
+li.v.ext  a.vmain{border-left-color:var(--ext-line)}
+.vt{display:block;font-size:14px;font-weight:500;line-height:1.45;color:var(--ink)}
+a.vmain:hover .vt{text-decoration:underline;text-underline-offset:2px}
+.vmeta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:3px;font-size:12px;color:var(--ink3)}
+.cat{padding:1px 7px;border-radius:4px;font-size:11px;font-weight:500;border:1px solid}
+.cat.core{color:var(--core);background:var(--core-bg);border-color:var(--core-line)}
+.cat.ext{color:var(--ext);background:var(--ext-bg);border-color:var(--ext-line)}
+.dur{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.vn{display:block;margin-top:3px;font-size:12.5px;color:var(--ink2);max-width:64ch}
+.star{
+  flex:none;font:inherit;font-size:15px;line-height:1;background:transparent;border:0;cursor:pointer;
+  color:var(--line);padding:9px 8px;border-radius:6px;
+}
+.star:hover{color:var(--ink3)}
+.star[aria-pressed="true"]{color:#D99A1E}
+
+.lesslinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.lesslinks a{
+  font-size:12px;color:var(--ink2);text-decoration:none;border:1px solid var(--line);
+  background:var(--surface);padding:4px 10px;border-radius:6px;
+}
+.lesslinks a:hover{border-color:var(--ink3);color:var(--ink)}
+
+/* ---------- general section / footer ---------- */
+.sechead{margin:38px 0 14px;display:flex;align-items:baseline;gap:12px}
+.sechead h2{font-size:19px;margin:0}
+.sechead p{margin:0;font-size:13px;color:var(--ink3)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 24px;box-shadow:var(--shadow)}
+.empty{text-align:center;padding:60px 20px;color:var(--ink3);font-size:14px}
+footer.src{margin-top:38px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink3)}
+footer.src p{margin:0 0 7px;max-width:70ch}
+footer.src a{color:var(--ink2)}
+.themebtn{
+  font:inherit;font-size:12.5px;background:var(--surface);border:1px solid var(--line);color:var(--ink2);
+  padding:5px 11px;border-radius:999px;cursor:pointer;
+}
+
+@media (max-width:680px){
+  .wrap{padding:0 14px 72px}
+  header.top{padding:34px 0 20px}
+  .lesson{grid-template-columns:1fr;padding:18px 16px 16px;gap:0}
+  .rail{flex-direction:row;align-items:center;gap:10px;margin-bottom:8px}
+  .no{font-size:21px;display:flex;align-items:baseline;gap:7px}
+  .no small{display:inline;margin:0}
+  .vn{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .toolbar,.star,.themebtn{display:none!important}
+  body{background:#fff;color:#000;font-size:11px}
+  .lesson{break-inside:avoid;box-shadow:none;border-color:#bbb;margin-bottom:8px}
+  a.vmain::after{content:" — youtu.be/" attr(data-id);font-size:9px;color:#555}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">115 學年度 · 康軒版 · 第十一冊／第十二冊</div>
+  <h1>康軒六年級國語影音庫</h1>
+  <p class="lede">六年級國語每一課的 YouTube 補充影片索引。分成「課本直搭」——照著康軒課次拍的朗讀、導讀、語詞修辭；以及「延伸補充」——課文背後的地方、人物、成語與文體。挑好就開，不用再自己大海撈針。</p>
+  <div class="statline">
+    <span><b id="s-lesson">21</b> 課</span>
+    <span><b id="s-video">139</b> 支影片</span>
+    <span><b>2026-09-02</b> 逐支檢查可播放</span>
+    <span><button class="themebtn" id="themebtn" type="button">切換深／淺色</button></span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolrow">
+    <div class="seg" id="semseg" role="group" aria-label="學期">
+      <button type="button" data-sem="六上" aria-pressed="true">六上</button>
+      <button type="button" data-sem="六下" aria-pressed="false">六下</button>
+      <button type="button" data-sem="all" aria-pressed="false">全部</button>
+    </div>
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="搜課名、生字、影片標題或頻道…" aria-label="搜尋">
+    </label>
+  </div>
+  <div class="toolrow">
+    <button class="chip core" type="button" data-cat="read" aria-pressed="false">課文朗讀</button>
+    <button class="chip core" type="button" data-cat="guide" aria-pressed="false">課文導讀</button>
+    <button class="chip core" type="button" data-cat="lang" aria-pressed="false">語詞修辭</button>
+    <button class="chip core" type="button" data-cat="class" aria-pressed="false">完整課堂</button>
+    <button class="chip ext" type="button" data-cat="ext" aria-pressed="false">延伸主題</button>
+    <button class="chip ext" type="button" data-cat="author" aria-pressed="false">作者背景</button>
+    <button class="chip ext" type="button" data-cat="genre" aria-pressed="false">文體寫作</button>
+    <button class="chip" type="button" id="shortonly" aria-pressed="false">5 分鐘內</button>
+    <button class="chip" type="button" id="staronly" aria-pressed="false">★ 我的收藏</button>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main id="list"></main>
+
+<div class="sechead">
+  <h2>不分課通用</h2>
+  <p>文體、修辭與教師研習，任何一課都用得上</p>
+</div>
+<div class="panel" id="general"></div>
+
+<footer class="src">
+  <p><b>課次與生字</b>來自教育部<a href="https://pedia.cloud.edu.tw/Bookmark/Textword?category=%E5%9C%8B%E8%AA%9E&amp;year=115_1&amp;degree=6&amp;press=%E5%BA%B7%E8%BB%92%E7%89%88" target="_blank" rel="noopener">教育百科・生字詞彙表</a>（六上取 115 學年度上學期，六下取最新的 114 學年度下學期；六下課次自 113 學年度改版後為 9 課）。</p>
+  <p><b>文體標記</b>是依課名、生字與課文特徵判讀的，實際請以康軒教師手冊為準。六上第十二課〈橘子〉是 115 學年度新換的課文，尚無版本專屬影片，先放同篇作品的延伸資源。</p>
+  <p><b>影片</b>全部是他人上傳的公開內容，可能隨時被下架或改為私人。每張課卡下方都留了「在 YouTube 搜這一課」，找不到時可直接重搜最新的。播放前請自行確認內容合適。</p>
+</footer>
+</div>
+
+<script>
+const DATA = {
+ "sem": {
+  "六上": [
+   {
+    "no": 1,
+    "name": "跑道",
+    "genre": "記敘文",
+    "words": [
+     "軸",
+     "奪",
+     "屈",
+     "偏",
+     "搬",
+     "芥",
+     "蒂",
+     "抑",
+     "拒",
+     "尷",
+     "尬",
+     "悔",
+     "拱",
+     "距",
+     "默",
+     "鬥",
+     "扭",
+     "猛",
+     "愣"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "ci03JKMmE6E",
+      "t": "康軒六上L1跑道",
+      "ch": "詹凱翔",
+      "d": "4:22",
+      "c": "read",
+      "n": "逐段朗讀，可直接當課文首讀"
+     },
+     {
+      "id": "sTqjrpLYb54",
+      "t": "113學年度康軒六上L1 跑道 易讀版",
+      "ch": "詹凱翔",
+      "d": "1:22",
+      "c": "read",
+      "n": "易讀版，資源班／差異化教學適用"
+     },
+     {
+      "id": "3as4FY4-tdQ",
+      "t": "113學年度康軒六上L1 跑道 簡化版課文",
+      "ch": "詹凱翔",
+      "d": "1:12",
+      "c": "read",
+      "n": "簡化版課文，1 分鐘掌握大意"
+     },
+     {
+      "id": "icwklFqGc2c",
+      "t": "113學年度康軒六上L1跑道_課文導讀(課文欣賞、寫作特色)",
+      "ch": "詹凱翔",
+      "d": "2:03",
+      "c": "guide",
+      "n": "課文欣賞與寫作特色，適合內容深究前"
+     },
+     {
+      "id": "P3I6aa0fV-U",
+      "t": "康軒六上L1跑道-語詞解釋及例句",
+      "ch": "詹凱翔",
+      "d": "4:02",
+      "c": "lang",
+      "n": "語詞解釋與例句"
+     },
+     {
+      "id": "ImazL4SVrvA",
+      "t": "國小國語 康軒 六年級 第二課 跑道-1 博愛國小 邱怜惠",
+      "ch": "臺北酷課雲",
+      "d": "15:58",
+      "c": "class",
+      "n": "酷課雲完整課堂（舊版課次，內容深究可參考）"
+     },
+     {
+      "id": "tSrM3xy5F10",
+      "t": "一場逆轉勝的大隊接力賽",
+      "ch": "TONY CHANG",
+      "d": "3:57",
+      "c": "ext",
+      "n": "引起動機：大隊接力逆轉勝，對照課文的競爭與友誼"
+     }
+    ],
+    "pedia": "0103061150101"
+   },
+   {
+    "no": 2,
+    "name": "朱子治家格言選",
+    "genre": "古典格言",
+    "words": [
+     "粥",
+     "縷",
+     "碗",
+     "綢",
+     "繆",
+     "毋",
+     "掘",
+     "纏",
+     "縛",
+     "瓦",
+     "缶",
+     "蔬",
+     "饈",
+     "腹",
+     "陶",
+     "施",
+     "惠",
+     "勿",
+     "預",
+     "悲"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "oVDJRJ1PmPQ",
+      "t": "113學年度康軒六上L2朱子治家格言選-一粥一飯",
+      "ch": "詹凱翔",
+      "d": "0:29",
+      "c": "read",
+      "n": "一粥一飯"
+     },
+     {
+      "id": "nhQnp1ju6OE",
+      "t": "113學年度康軒六上L2 朱子治家格言選-未雨綢繆",
+      "ch": "詹凱翔",
+      "d": "0:17",
+      "c": "read",
+      "n": "未雨綢繆"
+     },
+     {
+      "id": "uNOL6fjOOfc",
+      "t": "113學年度康軒六上L2 朱子治家格言選-人有喜慶",
+      "ch": "詹凱翔",
+      "d": "0:28",
+      "c": "read",
+      "n": "人有喜慶"
+     },
+     {
+      "id": "qWd5qrsptUs",
+      "t": "康軒六上L4朱子治家格言選-器具質而潔",
+      "ch": "詹凱翔",
+      "d": "0:30",
+      "c": "read",
+      "n": "器具質而潔"
+     },
+     {
+      "id": "xv8NIi_sHpw",
+      "t": "113學年度康軒六上L2朱子治家格言選 一粥一飯 易讀版課文",
+      "ch": "詹凱翔",
+      "d": "0:27",
+      "c": "read",
+      "n": "一粥一飯・易讀版"
+     },
+     {
+      "id": "S9Z6mtsasi8",
+      "t": "113學年度康軒六上L2朱子治家格言選 器具質而潔 易讀版",
+      "ch": "詹凱翔",
+      "d": "0:22",
+      "c": "read",
+      "n": "器具質而潔・易讀版"
+     },
+     {
+      "id": "PfoieDZH5-A",
+      "t": "113學年度康軒六上L2朱子治家格言選_課文導讀(課文欣賞、寫作特色)",
+      "ch": "詹凱翔",
+      "d": "2:51",
+      "c": "guide",
+      "n": "課文導讀、寫作特色"
+     },
+     {
+      "id": "B_B_zkwrtVI",
+      "t": "113學年度康軒六上L2 朱子治家格言選-作品介紹",
+      "ch": "詹凱翔",
+      "d": "0:38",
+      "c": "author",
+      "n": "《朱子治家格言》作品與朱柏廬其人"
+     },
+     {
+      "id": "uKMDZMrmYYI",
+      "t": "07國小國語 六年級 第四課朱子治家格言選1 李瓊宜 博愛國小",
+      "ch": "臺北酷課雲",
+      "d": "18:14",
+      "c": "class",
+      "n": "酷課雲完整課堂"
+     },
+     {
+      "id": "Y-UYWOxXllM",
+      "t": "《朱子治家格言》朗讀版。是明末清初朱柏廬所著。是一部淺顯易懂，樸實無華，很接地氣的家訓，深得後人的喜愛，許多家庭都將",
+      "ch": "玲瓏愛讀經-ling long love reading",
+      "d": "4:32",
+      "c": "ext",
+      "n": "全文朗讀版，可播放課本未選錄的段落"
+     }
+    ],
+    "pedia": "0103061150102"
+   },
+   {
+    "no": 3,
+    "name": "談遇見更好的自己",
+    "genre": "議論文",
+    "words": [
+     "卓",
+     "培",
+     "裁",
+     "瑣",
+     "仲",
+     "耕",
+     "賺",
+     "異",
+     "惋",
+     "欠",
+     "砥",
+     "礪",
+     "驕",
+     "傲",
+     "耘",
+     "隔",
+     "茁"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "MsqhVJwU35o",
+      "t": "113學年度康軒六上L3 談遇見更好的自己",
+      "ch": "詹凱翔",
+      "d": "3:33",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "UFNaFUYw5rM",
+      "t": "113學年度康軒六上L3 談遇見更好的自己 簡化版課文",
+      "ch": "詹凱翔",
+      "d": "1:16",
+      "c": "read",
+      "n": "簡化版課文"
+     },
+     {
+      "id": "-Kr2ReaFNks",
+      "t": "113學年度康軒六上L3談遇見更好的自己_課文導讀(課文欣賞、寫作特色)",
+      "ch": "詹凱翔",
+      "d": "2:40",
+      "c": "guide",
+      "n": "課文導讀、寫作特色"
+     },
+     {
+      "id": "T9mgEuoSf2U",
+      "t": "113學年度康軒六上L3談遇見更好的自己修辭教學 設問",
+      "ch": "詹凱翔",
+      "d": "1:27",
+      "c": "lang",
+      "n": "設問修辭教學（本課重點修辭）"
+     },
+     {
+      "id": "XA4aBpMlCfU",
+      "t": "國小國語6上統整2認識議論文翰林出版",
+      "ch": "翰林教學小幫手",
+      "d": "6:05",
+      "c": "genre",
+      "n": "認識議論文（他版統整單元，概念通用）"
+     },
+     {
+      "id": "-eQF-PfOYYQ",
+      "t": "小五國語｜文本｜ 議論文概說",
+      "ch": "臺北酷課雲",
+      "d": "11:36",
+      "c": "genre",
+      "n": "議論文概說，酷課雲"
+     },
+     {
+      "id": "W2nPiDvHsRc",
+      "t": "【成長型思維 vs 固定型思維】思維怎麽決定一個人的成功？| 思維能改變人生嗎？",
+      "ch": "Sprouts 中文",
+      "d": "6:04",
+      "c": "ext",
+      "n": "成長型 vs 固定型思維，扣合「遇見更好的自己」"
+     }
+    ],
+    "pedia": "0103061150103"
+   },
+   {
+    "no": 4,
+    "name": "臺灣美食詩選",
+    "genre": "現代詩",
+    "words": [
+     "鼎",
+     "颳",
+     "廚",
+     "淋",
+     "晒",
+     "筍",
+     "丁",
+     "醃",
+     "攪",
+     "炸",
+     "瑩",
+     "饗",
+     "宴",
+     "彰",
+     "煮",
+     "豬"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "zivm29RpwoY",
+      "t": "113學年度康軒六上L4 台灣美食詩選 肉圓",
+      "ch": "詹凱翔",
+      "d": "0:57",
+      "c": "read",
+      "n": "〈肉圓〉"
+     },
+     {
+      "id": "eGHAZoyHBjI",
+      "t": "113學年度康軒六上L4 台灣美食詩選 鼎邊趖",
+      "ch": "詹凱翔",
+      "d": "0:48",
+      "c": "read",
+      "n": "〈鼎邊趖〉"
+     },
+     {
+      "id": "NfbShTKScGg",
+      "t": "113學年度康軒六上L4臺灣美食詩選_課文導讀課文欣賞、寫作特色",
+      "ch": "詹凱翔",
+      "d": "2:40",
+      "c": "guide",
+      "n": "詩選導讀與寫作特色"
+     },
+     {
+      "id": "uTLGJKqZ7pk",
+      "t": "揭彰化北斗肉圓身世! 一場\"戊戌大水災\"田園盡毀 肉圓解決迫在眉間的飢荒問題成\"救命禮物\"?!｜呂捷 張齡予主持｜【",
+      "ch": "話時代人物",
+      "d": "7:14",
+      "c": "ext",
+      "n": "北斗肉圓的身世（呂捷），寫作素材"
+     },
+     {
+      "id": "DOCqfJAKgo0",
+      "t": "鄭成功發明蚵仔煎？！  oyster omelette",
+      "ch": "芋圓豆花",
+      "d": "0:49",
+      "c": "ext",
+      "n": "鄭成功發明蚵仔煎？49 秒暖身"
+     },
+     {
+      "id": "8dYYXwixY5Y",
+      "t": "【台灣演義】台灣小吃 2023.06.25 | Taiwan History",
+      "ch": "民視讚夯 Formosa TV Thumbs Up",
+      "d": "49:05",
+      "c": "ext",
+      "n": "台灣演義・台灣小吃（49 分，建議節選）"
+     }
+    ],
+    "pedia": "0103061150104"
+   },
+   {
+    "no": 5,
+    "name": "最好的味覺禮物",
+    "genre": "記敘文",
+    "words": [
+     "削",
+     "沫",
+     "茶",
+     "嗅",
+     "按",
+     "碎",
+     "舍",
+     "熬",
+     "砂",
+     "混",
+     "焦",
+     "舀",
+     "勺",
+     "熄",
+     "騰",
+     "啜",
+     "淌",
+     "沛",
+     "舔"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "uH9Id_ENb00",
+      "t": "113學年度康軒六上L5 最好的味覺禮物",
+      "ch": "詹凱翔",
+      "d": "3:51",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "YCMeNZPCd9A",
+      "t": "113學年度康軒六上L5最好的味覺禮物_課文導讀課文欣賞、寫作特色",
+      "ch": "詹凱翔",
+      "d": "2:54",
+      "c": "guide",
+      "n": "課文導讀、寫作特色"
+     },
+     {
+      "id": "0CCIEwH_04M",
+      "t": "113學年度康軒六上L5 最好的味覺禮物-作者與作品簡介",
+      "ch": "詹凱翔",
+      "d": "0:32",
+      "c": "author",
+      "n": "作者與作品簡介"
+     },
+     {
+      "id": "dsuvWFTWI_A",
+      "t": "113學年度康軒六上L5 最好的味覺禮物 語詞解釋及例句",
+      "ch": "詹凱翔",
+      "d": "4:06",
+      "c": "lang",
+      "n": "語詞解釋及例句"
+     },
+     {
+      "id": "zcme9SdkXkw",
+      "t": "【教育實習】最好的味覺禮物 3 摹寫教學 國語課教學演示（康軒六上第十二課）",
+      "ch": "王邦宇（Vincent）",
+      "d": "8:13",
+      "c": "lang",
+      "n": "摹寫教學演示（本課核心修辭）"
+     },
+     {
+      "id": "AhwdxjJrGLA",
+      "t": "康軒國文   摹寫修辭",
+      "ch": "林暉恩",
+      "d": "3:40",
+      "c": "lang",
+      "n": "摹寫修辭速講"
+     },
+     {
+      "id": "WJPGMnGGSsw",
+      "t": "小四國語｜文本｜記敘文：視覺摹寫-也可以這樣捕捉美景",
+      "ch": "臺北酷課雲",
+      "d": "10:54",
+      "c": "genre",
+      "n": "視覺摹寫寫作示範，酷課雲"
+     }
+    ],
+    "pedia": "0103061150105"
+   },
+   {
+    "no": 6,
+    "name": "珍珠奶茶",
+    "genre": "說明文",
+    "words": [
+     "靡",
+     "嫁",
+     "贊",
+     "干",
+     "烹",
+     "薯",
+     "末",
+     "添",
+     "擴",
+     "袂",
+     "稠",
+     "衡",
+     "徜",
+     "徉",
+     "撫",
+     "薩",
+     "乳"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "lTI6C9K6eos",
+      "t": "113學年度康軒六上L6珍珠奶茶_課文",
+      "ch": "詹凱翔",
+      "d": "3:05",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "gPqiU3mLUXw",
+      "t": "113學年度康軒六上L6 珍珠奶茶",
+      "ch": "詹凱翔",
+      "d": "3:08",
+      "c": "read",
+      "n": "課文朗讀（另一版本）"
+     },
+     {
+      "id": "MrULDDzsFJQ",
+      "t": "113學年度康軒六上L6珍珠奶茶_課文導讀、課文欣賞、寫作特色",
+      "ch": "詹凱翔",
+      "d": "2:12",
+      "c": "guide",
+      "n": "課文導讀、說明文寫作特色"
+     },
+     {
+      "id": "BEey-h-Jshs",
+      "t": "珍珠奶茶憑什麼可以紅到全世界？珍珠奶茶的由來是什麼呢？快來跟想想實驗室一起了解珍珠奶茶的由來吧！",
+      "ch": "想想實驗室",
+      "d": "3:23",
+      "c": "ext",
+      "n": "珍奶由來，3 分鐘動畫，適合引起動機"
+     },
+     {
+      "id": "k7P79on2K6A",
+      "t": "正港台灣味 珍珠奶茶台中發跡－民視新聞",
+      "ch": "民視新聞網 Formosa TV News network",
+      "d": "1:53",
+      "c": "ext",
+      "n": "珍奶台中發跡（民視新聞）"
+     },
+     {
+      "id": "ybQbUN35kR8",
+      "t": "美國人竟為珍奶發明「國際珍奶日」？台灣的珍珠奶茶，是如何走向國際的？｜志祺七七",
+      "ch": "志祺七七",
+      "d": "11:11",
+      "c": "ext",
+      "n": "珍奶如何走向國際（志祺七七），可延伸討論"
+     }
+    ],
+    "pedia": "0103061150106"
+   },
+   {
+    "no": 7,
+    "name": "大小剛好的鞋子",
+    "genre": "記敘文",
+    "words": [
+     "仰",
+     "緬",
+     "甸",
+     "踝",
+     "絨",
+     "濺",
+     "襬",
+     "弄",
+     "恣",
+     "批",
+     "徑",
+     "謹",
+     "恰",
+     "乏",
+     "皆",
+     "嗤",
+     "嗯"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "LHQfDQcNX4Q",
+      "t": "113學年度康軒六上L7大小剛好的鞋子",
+      "ch": "詹凱翔",
+      "d": "2:59",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "_ijfFNbPz1Q",
+      "t": "113學年度康軒六上L7大小剛好的鞋子 簡化版課文",
+      "ch": "詹凱翔",
+      "d": "1:13",
+      "c": "read",
+      "n": "簡化版課文"
+     },
+     {
+      "id": "7GoxR0_Sf7E",
+      "t": "113學年度康軒六上L7大小剛好的鞋子 課文+題目+線上測驗",
+      "ch": "詹凱翔",
+      "d": "2:32",
+      "c": "read",
+      "n": "課文＋題目＋線上測驗，可當隨堂檢核"
+     },
+     {
+      "id": "BO4cvDaTgzY",
+      "t": "康軒國小六上 國語 第七課 大小剛好的鞋子",
+      "ch": "蔡小龍",
+      "d": "2:39",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "5PJ0xBEFerw",
+      "t": "113學年度康軒六上L7大小剛好的鞋子 語詞解釋及例句",
+      "ch": "詹凱翔",
+      "d": "1:51",
+      "c": "lang",
+      "n": "語詞解釋及例句"
+     },
+     {
+      "id": "5h16DlomTJ0",
+      "t": "15國小國語 六年級 第八課大小剛好的鞋子1 周知儀 博愛國小",
+      "ch": "臺北酷課雲",
+      "d": "17:34",
+      "c": "class",
+      "n": "酷課雲完整課堂（上）"
+     },
+     {
+      "id": "lJRe9mNONtQ",
+      "t": "16國小國語 六年級 第八課大小剛好的鞋子2 周知儀 博愛國小",
+      "ch": "臺北酷課雲",
+      "d": "15:47",
+      "c": "class",
+      "n": "酷課雲完整課堂（下）"
+     },
+     {
+      "id": "K3xD30xHvmg",
+      "t": "【緬甸之旅 Trip to Myanmar】仰光Yangon × 蒲甘Bagan ×  曼德勒Mandalay 三城",
+      "ch": "Ryan's footprint果子的腳印",
+      "d": "4:31",
+      "c": "ext",
+      "n": "緬甸仰光・蒲甘・曼德勒，補足課文背景"
+     },
+     {
+      "id": "YtgSHyov84c",
+      "t": "Myanmar 緬甸 | 英文介紹 中英字幕 | English/Chinese",
+      "ch": "Everyday一点點",
+      "d": "3:01",
+      "c": "ext",
+      "n": "緬甸國家簡介，中英字幕，可跨科使用"
+     }
+    ],
+    "pedia": "0103061150107"
+   },
+   {
+    "no": 8,
+    "name": "狐假虎威",
+    "genre": "文言寓言",
+    "words": [
+     "策",
+     "劉",
+     "纂",
+     "寓",
+     "鷸",
+     "蚌",
+     "述",
+     "赫",
+     "畏",
+     "詢",
+     "曰",
+     "吾",
+     "遂",
+     "諷",
+     "蔽",
+     "妨",
+     "虛",
+     "誘"
+    ],
+    "note": "選自劉向編纂《戰國策》",
+    "vids": [
+     {
+      "id": "IR3Ii1N4CB0",
+      "t": "113學年度康軒六上L8狐假虎威-題解",
+      "ch": "詹凱翔",
+      "d": "0:53",
+      "c": "guide",
+      "n": "題解：《戰國策》與寓言體"
+     },
+     {
+      "id": "JMFx8VgAaCs",
+      "t": "國小六上國語 第八課 狐假虎威",
+      "ch": "蔡小龍",
+      "d": "2:11",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "lwa2DK2S6fI",
+      "t": "成語介紹：狐假虎威(康軒六上)",
+      "ch": "How To Not Breakdown (不崩潰指南)",
+      "d": "5:44",
+      "c": "lang",
+      "n": "成語「狐假虎威」用法解析"
+     },
+     {
+      "id": "yGMdxfa7wcI",
+      "t": "一起學成語 ▶ 12【狐假虎威】歡樂谷 S10｜哈密瓜哥哥、海苔哥哥教你認識成語｜聽故事學成語｜成語由來｜寓言｜民間",
+      "ch": "momokids親子台",
+      "d": "4:24",
+      "c": "ext",
+      "n": "momokids 成語動畫，低門檻暖身"
+     },
+     {
+      "id": "GrTidIyIFfg",
+      "t": "【東雨成語小學堂】EP16《狐假虎威》｜成語故事｜睡前故事",
+      "ch": "東雨文化Tony Culture",
+      "d": "3:00",
+      "c": "ext",
+      "n": "東雨成語小學堂，3 分鐘"
+     },
+     {
+      "id": "aGk_1sFQKus",
+      "t": "《狐假虎威》| 成语故事 | 学中文 | 熊猫博士和托托 | Learn Chinese",
+      "ch": "熊猫博士和托托 - 儿童故事和歌曲",
+      "d": "7:40",
+      "c": "ext",
+      "n": "熊貓博士版成語故事"
+     },
+     {
+      "id": "PS87z2g7-E0",
+      "t": "TVB 粵語配音 | 成語動畫廊 - ［鷸蚌相爭］第29集|熊貓博士｜YY",
+      "ch": "BaBee (社會時事、爸爸媽媽、兒童天地)",
+      "d": "2:22",
+      "c": "ext",
+      "n": "同出《戰國策》的〈鷸蚌相爭〉，本課生字含「鷸」"
+     },
+     {
+      "id": "rTuuny-itOE",
+      "t": "一起學成語 ▶ 36【鷸蚌相爭】歡樂谷 S10｜彤彤姐姐、香草姐姐教你認識成語｜聽故事學成語｜成語由來｜寓言｜民間傳",
+      "ch": "momokids親子台",
+      "d": "4:10",
+      "c": "ext",
+      "n": "〈鷸蚌相爭〉動畫，可與本課對讀"
+     }
+    ],
+    "pedia": "0103061150108"
+   },
+   {
+    "no": 9,
+    "name": "空城計",
+    "genre": "章回小說",
+    "words": [
+     "亭",
+     "支",
+     "縣",
+     "懿",
+     "剩",
+     "魏",
+     "旗",
+     "幟",
+     "崗",
+     "姓",
+     "倘",
+     "僮",
+     "薰",
+     "撤",
+     "諸",
+     "葛",
+     "慎",
+     "丞"
+    ],
+    "note": "改寫自羅貫中《三國演義》",
+    "vids": [
+     {
+      "id": "Pr7Z_qibA5I",
+      "t": "113學年度康軒六上L9空城計 全文概述",
+      "ch": "詹凱翔",
+      "d": "1:07",
+      "c": "guide",
+      "n": "全文概述"
+     },
+     {
+      "id": "t9g1qz487ig",
+      "t": "國小六上國語 第九課 空城計",
+      "ch": "蔡小龍",
+      "d": "",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "I2pedT6AroI",
+      "t": "課文動畫─空城計",
+      "ch": "蔦松藝術高中徐秀慧",
+      "d": "4:08",
+      "c": "read",
+      "n": "課文動畫，文白對照好用"
+     },
+     {
+      "id": "TNy5T4-ikpk",
+      "t": "【三国演义】19 空城计丨Romance of the Three Kingdoms丨中国经典名著【三淼儿童官方频道",
+      "ch": "三淼儿童官方频道",
+      "d": "3:05",
+      "c": "ext",
+      "n": "三國演義動畫・空城計（3 分鐘）"
+     },
+     {
+      "id": "Wo-N5LwA6UI",
+      "t": "10分钟儿童历史动画-《三国演义》-空城计退敌",
+      "ch": "薇薇的中文屋",
+      "d": "8:25",
+      "c": "ext",
+      "n": "10 分鐘兒童歷史動畫版"
+     },
+     {
+      "id": "mN6443DWMsU",
+      "t": "动画片三国演义 第46集 空城计 高清",
+      "ch": "GalaxySpace YouTube",
+      "d": "25:01",
+      "c": "ext",
+      "n": "動畫《三國演義》第 46 集全集（25 分）"
+     }
+    ],
+    "pedia": "0103061150109"
+   },
+   {
+    "no": 10,
+    "name": "耶誕節",
+    "genre": "記敘文",
+    "words": [
+     "耶",
+     "郊",
+     "慈",
+     "祥",
+     "劈",
+     "啪",
+     "零",
+     "厭",
+     "倦",
+     "辯",
+     "私",
+     "貧",
+     "係",
+     "趁",
+     "稍",
+     "罕",
+     "烘",
+     "衷",
+     "鋼"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "NttOd_ujkkQ",
+      "t": "113學年度康軒六上L10 耶誕節",
+      "ch": "詹凱翔",
+      "d": "3:45",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "eGfq-IdzvYU",
+      "t": "國小六上國語第十課耶誕節",
+      "ch": "蔡小龍",
+      "d": "3:12",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "ZhcMHmoMcVc",
+      "t": "113學年度康軒六上L10 耶誕節 課文語詞解釋 薄暮",
+      "ch": "詹凱翔",
+      "d": "0:14",
+      "c": "lang",
+      "n": "語詞：薄暮"
+     },
+     {
+      "id": "_7rsotmH28Y",
+      "t": "113學年度康軒六上L10 耶誕節 生字延伸成語 趁火打劫",
+      "ch": "詹凱翔",
+      "d": "0:14",
+      "c": "lang",
+      "n": "生字延伸成語：趁火打劫"
+     },
+     {
+      "id": "2Mv3knKBxPQ",
+      "t": "113學年度康軒六上L10 耶誕節 生字延伸成語 兵不厭詐",
+      "ch": "詹凱翔",
+      "d": "0:15",
+      "c": "lang",
+      "n": "生字延伸成語：兵不厭詐"
+     },
+     {
+      "id": "yDU5yRYzip0",
+      "t": "113學年度康軒六上L10 耶誕節 生字延伸成語 孜孜不倦",
+      "ch": "詹凱翔",
+      "d": "0:14",
+      "c": "lang",
+      "n": "生字延伸成語：孜孜不倦"
+     },
+     {
+      "id": "dg_oTB7b1Bs",
+      "t": "113學年度康軒六上L10 耶誕節 生字延伸成語 感激涕零",
+      "ch": "詹凱翔",
+      "d": "0:14",
+      "c": "lang",
+      "n": "生字延伸成語：感激涕零"
+     },
+     {
+      "id": "_c2lbV7n03I",
+      "t": "【節日小知識】耶誕節快到了！為什麼耶誕老公公會送禮物給我們呢？｜小行星樂樂TV 聖誕節",
+      "ch": "樂樂TV",
+      "d": "2:01",
+      "c": "ext",
+      "n": "耶誕節由來，2 分鐘，低年段也可用"
+     }
+    ],
+    "pedia": "0103061150110"
+   },
+   {
+    "no": 11,
+    "name": "下午茶風波",
+    "genre": "劇本",
+    "words": [
+     "楓",
+     "恢",
+     "潑",
+     "莓",
+     "廳",
+     "額",
+     "灌",
+     "醉",
+     "釀",
+     "替",
+     "諒",
+     "脣",
+     "奔",
+     "乞",
+     "某",
+     "煥",
+     "橇",
+     "鈴",
+     "迴"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "0xlglHiM_UQ",
+      "t": "國小六上國語 第十一課 下午茶風波",
+      "ch": "蔡小龍",
+      "d": "3:11",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "X_fonTfKJD8",
+      "t": "小四國語｜文本｜淺談劇本",
+      "ch": "臺北酷課雲",
+      "d": "7:31",
+      "c": "genre",
+      "n": "淺談劇本：認識劇本體例（酷課雲）"
+     },
+     {
+      "id": "4t8WV7RW9qE",
+      "t": "英式下午茶：歷史與由來",
+      "ch": "FollowThatBug",
+      "d": "3:11",
+      "c": "ext",
+      "n": "英式下午茶的歷史與由來"
+     },
+     {
+      "id": "auz9wWQsn6A",
+      "t": "『英式下午茶只喝紅茶？歐洲人成為茶奴的各種瘋狂』-《偵茶事務所》EP2",
+      "ch": "Taiwan Bar",
+      "d": "5:44",
+      "c": "ext",
+      "n": "台灣吧《偵茶事務所》，茶文化延伸"
+     }
+    ],
+    "pedia": "0103061150111"
+   },
+   {
+    "no": 12,
+    "name": "橘子",
+    "genre": "小說",
+    "words": [
+     "廂",
+     "頰",
+     "袱",
+     "瘡",
+     "狽",
+     "憊",
+     "淒",
+     "隧",
+     "卯",
+     "貫",
+     "岔",
+     "欄",
+     "柵",
+     "矮",
+     "陰",
+     "扔",
+     "茫",
+     "悶"
+    ],
+    "note": "115 學年度新換課文；依生字（廂・袱・隧・欄柵・岔・扔）判讀應為芥川龍之介〈橘子〉（原題〈蜜柑〉）",
+    "vids": [
+     {
+      "id": "aJn7lXCTYHY",
+      "t": "【電影】《橘子》（蜜柑）_原案：芥川龍之介_2021 DSE中文科閱讀篇章_Mikan by Ryunosuke A",
+      "ch": "MC Chiang & His Chinese Team",
+      "d": "5:41",
+      "c": "ext",
+      "n": "〈橘子〉短片改編，5 分鐘看完全故事"
+     },
+     {
+      "id": "MpqOqHtIDFk",
+      "t": "這是一本很短的日本小說讀物。【橘子〜芥川龍之介〜】",
+      "ch": "聴くだけ読書　日本の文学読みきかせ",
+      "d": "13:06",
+      "c": "read",
+      "n": "〈橘子〉中文朗讀全文"
+     },
+     {
+      "id": "859Rn5iF8Io",
+      "t": "輕輕鬆鬆 #達理中文幾分鐘 #芥川龍之介 #2021DSE  #中文卷一選材#橘子",
+      "ch": "達理Quiz 360",
+      "d": "6:55",
+      "c": "guide",
+      "n": "篇章解析（香港 DSE 版本，分析架構可借用）"
+     },
+     {
+      "id": "JQtPPMGvJqw",
+      "t": "我看芥川龍之介  橘子",
+      "ch": "善變陳",
+      "d": "1:45",
+      "c": "ext",
+      "n": "讀後感分享，可作討論引子"
+     }
+    ],
+    "pedia": "0103061150112"
+   }
+  ],
+  "六下": [
+   {
+    "no": 1,
+    "name": "馬達加斯加，出發！",
+    "genre": "遊記",
+    "words": [
+     "嶼",
+     "獨",
+     "馳",
+     "輾",
+     "櫛",
+     "鱗",
+     "幣",
+     "莊",
+     "瀕",
+     "撒",
+     "掠",
+     "覓",
+     "紳",
+     "濛",
+     "亢",
+     "凌",
+     "岌"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "gBDxsy_0bxE",
+      "t": "113學年度康軒六下L1馬達加斯加 出發",
+      "ch": "詹凱翔",
+      "d": "4:55",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "YFnY85YToQQ",
+      "t": "113學年度康軒六下L1馬達加斯加 出發_簡化版課文",
+      "ch": "詹凱翔",
+      "d": "2:40",
+      "c": "read",
+      "n": "簡化版課文"
+     },
+     {
+      "id": "cwjkPmimilI",
+      "t": "康軒國語六下第一課 馬達加斯加 出發v1.1破音字更正",
+      "ch": "蔡小龍",
+      "d": "5:35",
+      "c": "guide",
+      "n": "全課重點整理（含破音字更正）"
+     },
+     {
+      "id": "H4hHnxZf86s",
+      "t": "\"印度洋的孤島\"馬達加斯加獨特生態系 \"生命之樹\"果實能吃能喝甚至還能拿來當保養品 卻不敵人類破壞瀕臨滅絕...│【",
+      "ch": "消失的國界│從台灣看見世界的故事",
+      "d": "8:23",
+      "c": "ext",
+      "n": "馬達加斯加獨特生態系（消失的國界）"
+     },
+     {
+      "id": "1SxaBJOoozE",
+      "t": "馬達加斯加限定 是泰迪熊還是狐猴? FOLLOW ME, BANG! 【下課花路米 精選】",
+      "ch": "小公視",
+      "d": "4:22",
+      "c": "ext",
+      "n": "下課花路米：狐猴，兒童取向"
+     },
+     {
+      "id": "6UBQa9UWe5o",
+      "t": "【李四端的雲端世界】2012/09/08 這可愛\"狐猴\" 馬達加斯加才有!",
+      "ch": "雲端世界",
+      "d": "7:59",
+      "c": "ext",
+      "n": "馬達加斯加才有的狐猴"
+     },
+     {
+      "id": "ZMgxQ_vhZlw",
+      "t": "廖科溢《我的非洲很有事》搶先看之馬達加斯加 猴麵包樹",
+      "ch": "亞洲旅遊台 - 官方頻道",
+      "d": "2:01",
+      "c": "ext",
+      "n": "猴麵包樹，2 分鐘"
+     },
+     {
+      "id": "ktwNY-U9nnQ",
+      "t": "BBC地球的熱帶島嶼 1 馬達加斯加",
+      "ch": "Harvest Culture 百禾文化",
+      "d": "3:00",
+      "c": "ext",
+      "n": "BBC《地球的熱帶島嶼》馬達加斯加"
+     }
+    ],
+    "pedia": "0103061140201"
+   },
+   {
+    "no": 2,
+    "name": "沉睡的天空之城",
+    "genre": "遊記",
+    "words": [
+     "址",
+     "屏",
+     "秘",
+     "魯",
+     "璀",
+     "璨",
+     "愜",
+     "振",
+     "氛",
+     "序",
+     "澎",
+     "湃",
+     "砌",
+     "梯",
+     "玄",
+     "拴",
+     "盎",
+     "眸",
+     "杏"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "h8KNql6KE4s",
+      "t": "康軒六下L6沉睡的天空之城",
+      "ch": "詹凱翔",
+      "d": "4:25",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "--wRfs-JXgo",
+      "t": "康軒國語六下第二課 沉睡的天空之城 V2.1",
+      "ch": "蔡小龍",
+      "d": "4:15",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "ZFcg4U_iRNU",
+      "t": "101歷史教室：馬丘比丘《國家地理》雜誌",
+      "ch": "國家地理雜誌 National Geographic Magazine",
+      "d": "3:30",
+      "c": "ext",
+      "n": "國家地理《101 歷史教室：馬丘比丘》"
+     },
+     {
+      "id": "0CFWEubc3F4",
+      "t": "國家地理【遠古工程巡禮】馬丘比丘",
+      "ch": "國家地理 National Geographic TW",
+      "d": "4:58",
+      "c": "ext",
+      "n": "國家地理《遠古工程巡禮》馬丘比丘"
+     },
+     {
+      "id": "cKGMEAePYP4",
+      "t": "【消失的國界】探索秘境！馬丘比丘鬼斧神工　原始城堡內藏科技概念｜李天怡主持｜三立新聞台",
+      "ch": "三立新聞LIVE",
+      "d": "6:33",
+      "c": "ext",
+      "n": "消失的國界：馬丘比丘鬼斧神工"
+     }
+    ],
+    "pedia": "0103061140202"
+   },
+   {
+    "no": 3,
+    "name": "走進太陽之城",
+    "genre": "遊記",
+    "words": [
+     "萊",
+     "瑞",
+     "霍",
+     "茅",
+     "唯",
+     "爆",
+     "供",
+     "府",
+     "購",
+     "碳",
+     "騎",
+     "駛",
+     "箱",
+     "嬉",
+     "乒",
+     "乓",
+     "鬆",
+     "欄"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "KbVe-sPKNvE",
+      "t": "康軒國語六下第三課 走進太陽之城",
+      "ch": "蔡小龍",
+      "d": "4:50",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "rvCIE32CO_Y",
+      "t": "【西藏 1】聖城拉薩一日深度體驗｜到「甜茶館」悠閑體驗藏民日常｜世上最高的宮殿 布達拉宮",
+      "ch": "K | 歷史 文化 旅遊",
+      "d": "14:39",
+      "c": "ext",
+      "n": "聖城拉薩一日深度體驗"
+     },
+     {
+      "id": "_Eg0_2iAREc",
+      "t": "【西藏3】布達拉宮和大昭寺！世界屋脊上的明珠！揭開布達拉宮神秘的面紗！乾隆皇帝的唐卡也在裡面！超過3700公斤黃金裝",
+      "ch": "融融歷險記Ben's Adventure",
+      "d": "17:47",
+      "c": "ext",
+      "n": "布達拉宮與大昭寺"
+     },
+     {
+      "id": "7r8q7keVRfM",
+      "t": "【國語×自然跨域專題】走進太陽城・邁向綠色未來｜熱烈報名中】｜陳文琦老師x許凱琳老師",
+      "ch": "康軒陪你教國小",
+      "d": "2:27:10",
+      "c": "teach",
+      "n": "康軒官方：國語×自然跨域專題研習（2.5 小時）"
+     }
+    ],
+    "pedia": "0103061140203"
+   },
+   {
+    "no": 4,
+    "name": "送友人",
+    "genre": "唐詩",
+    "words": [
+     "郭",
+     "征",
+     "茲",
+     "蕭",
+     "澈",
+     "辭",
+     "臥",
+     "蹤",
+     "逢",
+     "抒",
+     "泊",
+     "暉",
+     "摯",
+     "誼"
+    ],
+    "note": "李白・五言律詩",
+    "vids": [
+     {
+      "id": "lD0c5v4TUWA",
+      "t": "康軒國語六下第四課 送友人-注釋語譯篇",
+      "ch": "蔡小龍",
+      "d": "4:06",
+      "c": "read",
+      "n": "注釋語譯篇"
+     },
+     {
+      "id": "8myh2JWl5tM",
+      "t": "康軒國語六下第四課 送友人-賞析篇",
+      "ch": "蔡小龍",
+      "d": "3:34",
+      "c": "guide",
+      "n": "賞析篇"
+     },
+     {
+      "id": "Tuw85iBnN2E",
+      "t": "114六下康軒國語第四課送友人1：天才李白的背包客生涯",
+      "ch": "小雅書房",
+      "d": "5:35",
+      "c": "author",
+      "n": "天才李白的背包客生涯"
+     },
+     {
+      "id": "_xw2tTN5jLM",
+      "t": "114六下康軒國語第四課送友人2，內容解析：作者李白",
+      "ch": "小雅書房",
+      "d": "8:53",
+      "c": "guide",
+      "n": "內容解析：作者李白"
+     },
+     {
+      "id": "ijaHcCa6WAA",
+      "t": "康軒國文   李白介紹(詩仙)",
+      "ch": "林暉恩",
+      "d": "4:58",
+      "c": "author",
+      "n": "李白（詩仙）介紹"
+     },
+     {
+      "id": "IqYr240EuUc",
+      "t": "【婷婷唱古文】新歌发布《送友人》| 李白 〔唐代〕| 诗歌吟唱 送友人 诗歌赏析  | 浮云游子意，落日故人情",
+      "ch": "TingTing Sing 婷婷唱古文",
+      "d": "2:26",
+      "c": "ext",
+      "n": "《送友人》詩歌吟唱，可帶學生吟誦"
+     },
+     {
+      "id": "ArhyO3aXz1w",
+      "t": "一口气看完李白一生，大唐有你才真的了不起",
+      "ch": "知识放映室",
+      "d": "11:54",
+      "c": "ext",
+      "n": "一口氣看完李白一生（11 分）"
+     }
+    ],
+    "pedia": "0103061140204"
+   },
+   {
+    "no": 5,
+    "name": "蚵鄉風情",
+    "genre": "記敘文",
+    "words": [
+     "蚵",
+     "嬸",
+     "攏",
+     "柄",
+     "笨",
+     "拙",
+     "疲",
+     "憊",
+     "鈔",
+     "剖",
+     "棚",
+     "裹",
+     "樁",
+     "巡",
+     "甦",
+     "豎",
+     "媒",
+     "沸",
+     "宛"
+    ],
+    "note": "作者賴鈺婷",
+    "vids": [
+     {
+      "id": "Zp4ZgNSZB8Q",
+      "t": "康軒國語六下第五課 蚵鄉風情",
+      "ch": "蔡小龍",
+      "d": "4:34",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "PU-dvEQoPa8",
+      "t": "114六下康軒國語第五課蚵鄉風情:課文解析1",
+      "ch": "小雅書房",
+      "d": "9:56",
+      "c": "guide",
+      "n": "課文解析（一）"
+     },
+     {
+      "id": "n_rnsEqD84Q",
+      "t": "114六下康軒國語第五課蚵鄉風情2:課文架構、修辭、句型",
+      "ch": "小雅書房",
+      "d": "9:30",
+      "c": "lang",
+      "n": "課文架構、修辭、句型"
+     },
+     {
+      "id": "c-mJUooaJpY",
+      "t": "線上課程影片 - 康軒文教國文教材 -  國小六年級 - 作家對我說 【蚵鄉風情】 作者賴鈺婷",
+      "ch": "橘制作影像工作室",
+      "d": "7:26",
+      "c": "author",
+      "n": "康軒官方「作家對我說」：作者賴鈺婷"
+     },
+     {
+      "id": "vnOx_0ldMVY",
+      "t": "國小國語 六年級 第七課 蚵鄉風情-1 李瓊宜 博愛國小",
+      "ch": "臺北酷課雲",
+      "d": "18:18",
+      "c": "class",
+      "n": "酷課雲完整課堂"
+     },
+     {
+      "id": "9CFttckk7_U",
+      "t": "彰化蚵仔是如何養殖的呢 ? 一起搭蚵仔車去看看吧｜一日蚵農｜福寶濕地",
+      "ch": "什麼瑞瑞 What's Ray",
+      "d": "6:53",
+      "c": "ext",
+      "n": "一日蚵農：彰化蚵仔怎麼養"
+     },
+     {
+      "id": "33SJs-Eiaos",
+      "t": "【彰化】潮間帶海牛採蚵 即將失傳的台灣特有漁法（王功漁港國宴海鮮小吃 蚵仔炸）｜《世界第一等》976集精華版",
+      "ch": "GTV 自由的旅行者Freedom Travelers",
+      "d": "13:52",
+      "c": "ext",
+      "n": "潮間帶海牛採蚵，即將失傳的漁法"
+     },
+     {
+      "id": "NJ8K1xexw0s",
+      "t": "台灣第一等【古寧頭海上蚵田 花崗石柱養石蚵／彰化王功 兩年生珍珠霸王蚵】 _精選特輯",
+      "ch": "台灣第一等 八大電視",
+      "d": "19:24",
+      "c": "ext",
+      "n": "王功珍珠蚵（台灣第一等）"
+     }
+    ],
+    "pedia": "0103061140205"
+   },
+   {
+    "no": 6,
+    "name": "童年‧夏日‧棉花糖",
+    "genre": "抒情文",
+    "words": [
+     "碧",
+     "疏",
+     "凰",
+     "株",
+     "巔",
+     "戀",
+     "蔭",
+     "紡",
+     "緯",
+     "纖",
+     "裊",
+     "袖",
+     "鋁",
+     "廠",
+     "孜",
+     "猶",
+     "陰",
+     "逝",
+     "斑"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "p-nIEnA6wkI",
+      "t": "康軒六下L9童年˙夏日˙棉花糖",
+      "ch": "詹凱翔",
+      "d": "3:47",
+      "c": "read",
+      "n": "課文朗讀"
+     },
+     {
+      "id": "26KqgIpwM-U",
+      "t": "113學年度康軒六下L6童年 夏日 棉花糖",
+      "ch": "詹凱翔",
+      "d": "",
+      "c": "read",
+      "n": "課文朗讀（另一版本）"
+     },
+     {
+      "id": "S5WWF0E7ohc",
+      "t": "康軒國語六下第六課 童年夏日棉花糖",
+      "ch": "蔡小龍",
+      "d": "4:06",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "5DPwhw4RwNM",
+      "t": "超萌棉花糖實驗♥甜食當前小朋友忍得住誘惑嗎？【意義製造 │社會實驗 │棉花糖實驗 The Marshmallow T",
+      "ch": "意義製造",
+      "d": "3:24",
+      "c": "ext",
+      "n": "棉花糖實驗，3 分鐘，可談延遲享樂"
+     },
+     {
+      "id": "89NoAtDovRo",
+      "t": "一場實驗揭秘了成功者的模式!?  |  棉花糖實驗，提升延遲享樂的能力！",
+      "ch": "Better Leaf 好葉",
+      "d": "14:44",
+      "c": "ext",
+      "n": "棉花糖實驗深談（14 分）"
+     }
+    ],
+    "pedia": "0103061140206"
+   },
+   {
+    "no": 7,
+    "name": "我的少年夢",
+    "genre": "記敘文",
+    "words": [
+     "斜",
+     "閣",
+     "匱",
+     "攤",
+     "冥",
+     "篷",
+     "徒",
+     "籌",
+     "埡",
+     "訝",
+     "脈",
+     "紮",
+     "窸",
+     "窣",
+     "誦",
+     "宇",
+     "宙",
+     "浩",
+     "瀚"
+    ],
+    "note": "作者劉墉",
+    "vids": [
+     {
+      "id": "V2IEeM05cCU",
+      "t": "康軒國語六下第七課 我的少年夢",
+      "ch": "蔡小龍",
+      "d": "4:23",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "Ir2-jF5Zm2Q",
+      "t": "【劉墉│最暖心的告白】人生是小小又大大的一條河",
+      "ch": "聯合文學",
+      "d": "1:07",
+      "c": "author",
+      "n": "劉墉：人生是小小又大大的一條河（1 分鐘）"
+     },
+     {
+      "id": "XJaWK20HDzk",
+      "t": "【文訊專訪】劉墉──自由在我，大觀自在│人物春秋│資深作家│Vol. 418",
+      "ch": "文訊雜誌社",
+      "d": "5:29",
+      "c": "author",
+      "n": "文訊專訪劉墉"
+     },
+     {
+      "id": "sl7CQdeJBzM",
+      "t": "【完整版】暢銷作家父子 劉墉、劉軒的生活哲學 20201116【劉墉、劉軒】",
+      "ch": "大雲時堂",
+      "d": "45:40",
+      "c": "ext",
+      "n": "劉墉、劉軒父子對談（45 分，建議節選）"
+     }
+    ],
+    "pedia": "0103061140207"
+   },
+   {
+    "no": 8,
+    "name": "如何張開追夢的翅膀",
+    "genre": "議論文",
+    "words": [
+     "瞻",
+     "愚",
+     "汲",
+     "庶",
+     "鍥",
+     "垮",
+     "嶄",
+     "輩",
+     "赴",
+     "構",
+     "諺",
+     "羹",
+     "坪",
+     "斤",
+     "貫",
+     "拓"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "ezMLuy9XmPg",
+      "t": "康軒國語六下第八課  如何張開追夢的翅膀",
+      "ch": "蔡小龍",
+      "d": "4:10",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "m0NigTMBJEY",
+      "t": "【中文】【語文知識】議論文三角陣 ｜ 論點、論據、論證",
+      "ch": "陳偉健老師",
+      "d": "1:41",
+      "c": "genre",
+      "n": "議論文三要素：論點、論據、論證"
+     },
+     {
+      "id": "0R51Ee5SGv0",
+      "t": "《雜草的夢想》-迪士尼勵志動畫小短片",
+      "ch": "馬來觀雲 | MHObserveNimbus",
+      "d": "2:48",
+      "c": "ext",
+      "n": "《雜草的夢想》勵志動畫短片"
+     },
+     {
+      "id": "g8IzyXq-6B0",
+      "t": "【寫給中小學生的工作圖鑑】夢想工作大調查！",
+      "ch": "采實童書",
+      "d": "2:39",
+      "c": "ext",
+      "n": "夢想工作大調查，銜接生涯探索"
+     }
+    ],
+    "pedia": "0103061140208"
+   },
+   {
+    "no": 9,
+    "name": "成為人生的開拓者",
+    "genre": "議論文",
+    "words": [
+     "恭",
+     "份",
+     "荊",
+     "棘",
+     "俗",
+     "窘",
+     "溝",
+     "闖",
+     "涯",
+     "曙",
+     "帆",
+     "槳"
+    ],
+    "note": "",
+    "vids": [
+     {
+      "id": "zCqmeiQ6wAU",
+      "t": "康軒國語六下第九課  成為人生的開拓者",
+      "ch": "蔡小龍",
+      "d": "5:16",
+      "c": "guide",
+      "n": "全課重點整理"
+     },
+     {
+      "id": "4A1p1p_qx0s",
+      "t": "【動畫短篇新秀獎20】我的夢想",
+      "ch": "台灣漫畫夢工場",
+      "d": "3:10",
+      "c": "ext",
+      "n": "動畫短片《我的夢想》"
+     },
+     {
+      "id": "RKzwxDnvc8Y",
+      "t": "夢想雨果｜想過你自己的特質嗎? 別輕看自己!｜動畫",
+      "ch": "Dream Hugo 夢想雨果",
+      "d": "1:44",
+      "c": "ext",
+      "n": "夢想雨果：看見自己的特質"
+     }
+    ],
+    "pedia": "0103061140209"
+   }
+  ]
+ },
+ "general": [
+  {
+   "id": "IOhmfthRgxg",
+   "t": "【康軒國語】用圖卡與聲音玩轉國語課－以康軒六上第二單元為主要課例示範｜李衿綺老師",
+   "ch": "康軒陪你教國小",
+   "d": "2:57:05",
+   "c": "teach",
+   "n": "康軒官方研習：用圖卡與聲音玩轉國語課－以六上第二單元為例"
+  },
+  {
+   "id": "bxkQeo2rutg",
+   "t": "【康軒國語】看見國語課堂教學的新風景--故事文體的教學重點｜楊裕貿教授",
+   "ch": "康軒陪你教國小",
+   "d": "1:56:54",
+   "c": "teach",
+   "n": "楊裕貿教授：故事文體的教學重點"
+  },
+  {
+   "id": "gpM1tow1GGg",
+   "t": "【中高年級】麗雲老師直播課 – 從細緻到極致：升級您的教學level",
+   "ch": "康軒陪你教國小",
+   "d": "1:57:54",
+   "c": "teach",
+   "n": "麗雲老師：中高年級教學升級"
+  },
+  {
+   "id": "i2F2Iae16Yg",
+   "t": "小三國語｜文本｜記敘文概說",
+   "ch": "臺北酷課雲",
+   "d": "13:18",
+   "c": "genre",
+   "n": "記敘文概說（酷課雲）"
+  },
+  {
+   "id": "-eQF-PfOYYQ",
+   "t": "小五國語｜文本｜ 議論文概說",
+   "ch": "臺北酷課雲",
+   "d": "11:36",
+   "c": "genre",
+   "n": "議論文概說（酷課雲）"
+  },
+  {
+   "id": "X_fonTfKJD8",
+   "t": "小四國語｜文本｜淺談劇本",
+   "ch": "臺北酷課雲",
+   "d": "7:31",
+   "c": "genre",
+   "n": "淺談劇本（酷課雲）"
+  },
+  {
+   "id": "AhwdxjJrGLA",
+   "t": "康軒國文   摹寫修辭",
+   "ch": "林暉恩",
+   "d": "3:40",
+   "c": "genre",
+   "n": "摹寫修辭"
+  },
+  {
+   "id": "Bfa_PIhJATY",
+   "t": "康軒國文   擬人修辭",
+   "ch": "林暉恩",
+   "d": "2:23",
+   "c": "genre",
+   "n": "擬人修辭"
+  },
+  {
+   "id": "lh1XlXXkqSA",
+   "t": "康軒國文   譬喻修辭",
+   "ch": "林暉恩",
+   "d": "1:32",
+   "c": "genre",
+   "n": "譬喻修辭"
+  }
+ ]
+};
+const CAT = {read:"課文朗讀",guide:"課文導讀",lang:"語詞修辭",class:"完整課堂",
+             ext:"延伸主題",author:"作者背景",genre:"文體寫作",teach:"教師研習"};
+const CORE = new Set(["read","guide","lang","class"]);
+const KEY = "knsh6.star";
+let stars = new Set();
+try { stars = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) {}
+function saveStars(){ try { localStorage.setItem(KEY, JSON.stringify([...stars])); } catch (e) {} }
+
+const state = {sem:"六上", q:"", cats:new Set(), short:false, star:false};
+const secs = d => { if(!d) return 1e9; const p=d.split(":").map(Number); return p.reduce((a,b)=>a*60+b,0); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function matches(v, lesson){
+  if(state.cats.size && !state.cats.has(v.c)) return false;
+  if(state.short && secs(v.d) > 300) return false;
+  if(state.star && !stars.has(v.id)) return false;
+  if(state.q){
+    const hay = (v.t+" "+v.ch+" "+v.n+" "+CAT[v.c]+" "+(lesson?lesson.name+lesson.words.join(""):"")).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function vrow(v){
+  const g = CORE.has(v.c) ? "core" : "ext";
+  return `<li class="v ${g}">
+    <a class="vmain" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener" data-id="${v.id}">
+      <span class="vt">${esc(v.t)}</span>
+      <span class="vmeta"><span class="cat ${g}">${CAT[v.c]}</span><span>${esc(v.ch)}</span>${v.d?`<span class="dur">${v.d}</span>`:""}</span>
+      ${v.n?`<span class="vn">${esc(v.n)}</span>`:""}
+    </a>
+    <button class="star" type="button" data-star="${v.id}" aria-pressed="${stars.has(v.id)}" aria-label="收藏"
+      title="收藏">${stars.has(v.id)?"★":"☆"}</button>
+  </li>`;
+}
+
+function group(vids, kind, label){
+  const list = vids.filter(v => (kind==="core") === CORE.has(v.c));
+  if(!list.length) return "";
+  return `<div class="group"><h3 class="ghead ${kind}">${label} <b>${list.length}</b></h3>
+    <ul class="vids">${list.map(vrow).join("")}</ul></div>`;
+}
+
+function render(){
+  const sems = state.sem==="all" ? ["六上","六下"] : [state.sem];
+  let html = "", shown = 0, lessons = 0;
+  for(const sem of sems){
+    for(const L of DATA.sem[sem]){
+      const vids = L.vids.filter(v => matches(v, L));
+      if(!vids.length) continue;
+      lessons++; shown += vids.length;
+      const qy = encodeURIComponent(`康軒 ${sem} 國語 ${L.name}`);
+      html += `<article class="lesson">
+        <div class="rail">
+          <span class="no">${String(L.no).padStart(2,"0")}<small>${sem}</small></span>
+          <span class="genre">${L.genre}</span>
+        </div>
+        <div>
+          <h2>${esc(L.name)}</h2>
+          ${L.note?`<p class="lnote">${esc(L.note)}</p>`:""}
+          <details class="words"><summary>生字 ${L.words.length} 字</summary>
+            <div class="wordgrid">${L.words.map(w=>`<span>${w}</span>`).join("")}</div></details>
+          ${group(vids,"core","課本直搭")}
+          ${group(vids,"ext","延伸補充")}
+          <div class="lesslinks">
+            <a href="https://www.youtube.com/results?search_query=${qy}" target="_blank" rel="noopener">在 YouTube 搜這一課</a>
+            <a href="https://pedia.cloud.edu.tw/Bookmark/TCollection?TextNameId=${L.pedia}" target="_blank" rel="noopener">生字詞彙表</a>
+          </div>
+        </div></article>`;
+    }
+  }
+  document.getElementById("list").innerHTML = html ||
+    `<div class="empty">沒有符合的影片。<br>試著清掉搜尋字或分類篩選。</div>`;
+  document.getElementById("count").textContent = shown ? `${lessons} 課 · ${shown} 支` : "";
+
+  const gv = DATA.general.filter(v => matches(v, null));
+  document.getElementById("general").innerHTML = gv.length
+    ? `<ul class="vids">${gv.map(vrow).join("")}</ul>`
+    : `<p class="empty" style="padding:12px">沒有符合的通用資源。</p>`;
+}
+
+document.addEventListener("click", e => {
+  const seg = e.target.closest("#semseg button");
+  if(seg){ state.sem = seg.dataset.sem;
+    document.querySelectorAll("#semseg button").forEach(b => b.setAttribute("aria-pressed", b===seg));
+    render(); return; }
+  const chip = e.target.closest(".chip[data-cat]");
+  if(chip){ const c = chip.dataset.cat;
+    if(state.cats.has(c)) state.cats.delete(c); else state.cats.add(c);
+    chip.setAttribute("aria-pressed", state.cats.has(c)); render(); return; }
+  const st = e.target.closest("[data-star]");
+  if(st){ const id = st.dataset.star;
+    if(stars.has(id)) stars.delete(id); else stars.add(id);
+    saveStars(); render(); return; }
+  if(e.target.id === "shortonly"){ state.short = !state.short;
+    e.target.setAttribute("aria-pressed", state.short); render(); return; }
+  if(e.target.id === "staronly"){ state.star = !state.star;
+    e.target.setAttribute("aria-pressed", state.star); render(); return; }
+  if(e.target.id === "themebtn"){
+    const cur = document.documentElement.getAttribute("data-theme");
+    const dark = cur ? cur === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    try { localStorage.setItem("knsh6.theme", dark ? "light" : "dark"); } catch (e) {}
+  }
+});
+document.getElementById("q").addEventListener("input", e => {
+  state.q = e.target.value.trim().toLowerCase(); render();
+});
+try { const t = localStorage.getItem("knsh6.theme"); if(t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+document.getElementById("s-lesson").textContent =
+  DATA.sem["六上"].length + DATA.sem["六下"].length;
+document.getElementById("s-video").textContent =
+  DATA.sem["六上"].concat(DATA.sem["六下"]).reduce((a,l)=>a+l.vids.length,0) + DATA.general.length;
+render();
+</script>
+
+</body>
+</html>

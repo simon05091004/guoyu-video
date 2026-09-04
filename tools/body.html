@@ -1,0 +1,173 @@
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">115 學年度 · 康軒版 · 第十一冊／第十二冊</div>
+  <h1>康軒六年級國語影音庫</h1>
+  <p class="lede">六年級國語每一課的 YouTube 補充影片索引。分成「課本直搭」——照著康軒課次拍的朗讀、導讀、語詞修辭；以及「延伸補充」——課文背後的地方、人物、成語與文體。挑好就開，不用再自己大海撈針。</p>
+  <div class="statline">
+    <span><b id="s-lesson">21</b> 課</span>
+    <span><b id="s-video">139</b> 支影片</span>
+    <span><b>2026-09-02</b> 逐支檢查可播放</span>
+    <span><button class="themebtn" id="themebtn" type="button">切換深／淺色</button></span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolrow">
+    <div class="seg" id="semseg" role="group" aria-label="學期">
+      <button type="button" data-sem="六上" aria-pressed="true">六上</button>
+      <button type="button" data-sem="六下" aria-pressed="false">六下</button>
+      <button type="button" data-sem="all" aria-pressed="false">全部</button>
+    </div>
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="搜課名、生字、影片標題或頻道…" aria-label="搜尋">
+    </label>
+  </div>
+  <div class="toolrow">
+    <button class="chip core" type="button" data-cat="read" aria-pressed="false">課文朗讀</button>
+    <button class="chip core" type="button" data-cat="guide" aria-pressed="false">課文導讀</button>
+    <button class="chip core" type="button" data-cat="lang" aria-pressed="false">語詞修辭</button>
+    <button class="chip core" type="button" data-cat="class" aria-pressed="false">完整課堂</button>
+    <button class="chip ext" type="button" data-cat="ext" aria-pressed="false">延伸主題</button>
+    <button class="chip ext" type="button" data-cat="author" aria-pressed="false">作者背景</button>
+    <button class="chip ext" type="button" data-cat="genre" aria-pressed="false">文體寫作</button>
+    <button class="chip" type="button" id="shortonly" aria-pressed="false">5 分鐘內</button>
+    <button class="chip" type="button" id="staronly" aria-pressed="false">★ 我的收藏</button>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main id="list"></main>
+
+<div class="sechead">
+  <h2>不分課通用</h2>
+  <p>文體、修辭與教師研習，任何一課都用得上</p>
+</div>
+<div class="panel" id="general"></div>
+
+<footer class="src">
+  <p><b>課次與生字</b>來自教育部<a href="https://pedia.cloud.edu.tw/Bookmark/Textword?category=%E5%9C%8B%E8%AA%9E&amp;year=115_1&amp;degree=6&amp;press=%E5%BA%B7%E8%BB%92%E7%89%88" target="_blank" rel="noopener">教育百科・生字詞彙表</a>（六上取 115 學年度上學期，六下取最新的 114 學年度下學期；六下課次自 113 學年度改版後為 9 課）。</p>
+  <p><b>文體標記</b>是依課名、生字與課文特徵判讀的，實際請以康軒教師手冊為準。六上第十二課〈橘子〉是 115 學年度新換的課文，尚無版本專屬影片，先放同篇作品的延伸資源。</p>
+  <p><b>影片</b>全部是他人上傳的公開內容，可能隨時被下架或改為私人。每張課卡下方都留了「在 YouTube 搜這一課」，找不到時可直接重搜最新的。播放前請自行確認內容合適。</p>
+</footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const CAT = {read:"課文朗讀",guide:"課文導讀",lang:"語詞修辭",class:"完整課堂",
+             ext:"延伸主題",author:"作者背景",genre:"文體寫作",teach:"教師研習"};
+const CORE = new Set(["read","guide","lang","class"]);
+const KEY = "knsh6.star";
+let stars = new Set();
+try { stars = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) {}
+function saveStars(){ try { localStorage.setItem(KEY, JSON.stringify([...stars])); } catch (e) {} }
+
+const state = {sem:"六上", q:"", cats:new Set(), short:false, star:false};
+const secs = d => { if(!d) return 1e9; const p=d.split(":").map(Number); return p.reduce((a,b)=>a*60+b,0); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function matches(v, lesson){
+  if(state.cats.size && !state.cats.has(v.c)) return false;
+  if(state.short && secs(v.d) > 300) return false;
+  if(state.star && !stars.has(v.id)) return false;
+  if(state.q){
+    const hay = (v.t+" "+v.ch+" "+v.n+" "+CAT[v.c]+" "+(lesson?lesson.name+lesson.words.join(""):"")).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function vrow(v){
+  const g = CORE.has(v.c) ? "core" : "ext";
+  return `<li class="v ${g}">
+    <a class="vmain" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener" data-id="${v.id}">
+      <span class="vt">${esc(v.t)}</span>
+      <span class="vmeta"><span class="cat ${g}">${CAT[v.c]}</span><span>${esc(v.ch)}</span>${v.d?`<span class="dur">${v.d}</span>`:""}</span>
+      ${v.n?`<span class="vn">${esc(v.n)}</span>`:""}
+    </a>
+    <button class="star" type="button" data-star="${v.id}" aria-pressed="${stars.has(v.id)}" aria-label="收藏"
+      title="收藏">${stars.has(v.id)?"★":"☆"}</button>
+  </li>`;
+}
+
+function group(vids, kind, label){
+  const list = vids.filter(v => (kind==="core") === CORE.has(v.c));
+  if(!list.length) return "";
+  return `<div class="group"><h3 class="ghead ${kind}">${label} <b>${list.length}</b></h3>
+    <ul class="vids">${list.map(vrow).join("")}</ul></div>`;
+}
+
+function render(){
+  const sems = state.sem==="all" ? ["六上","六下"] : [state.sem];
+  let html = "", shown = 0, lessons = 0;
+  for(const sem of sems){
+    for(const L of DATA.sem[sem]){
+      const vids = L.vids.filter(v => matches(v, L));
+      if(!vids.length) continue;
+      lessons++; shown += vids.length;
+      const qy = encodeURIComponent(`康軒 ${sem} 國語 ${L.name}`);
+      html += `<article class="lesson">
+        <div class="rail">
+          <span class="no">${String(L.no).padStart(2,"0")}<small>${sem}</small></span>
+          <span class="genre">${L.genre}</span>
+        </div>
+        <div>
+          <h2>${esc(L.name)}</h2>
+          ${L.note?`<p class="lnote">${esc(L.note)}</p>`:""}
+          <details class="words"><summary>生字 ${L.words.length} 字</summary>
+            <div class="wordgrid">${L.words.map(w=>`<span>${w}</span>`).join("")}</div></details>
+          ${group(vids,"core","課本直搭")}
+          ${group(vids,"ext","延伸補充")}
+          <div class="lesslinks">
+            <a href="https://www.youtube.com/results?search_query=${qy}" target="_blank" rel="noopener">在 YouTube 搜這一課</a>
+            <a href="https://pedia.cloud.edu.tw/Bookmark/TCollection?TextNameId=${L.pedia}" target="_blank" rel="noopener">生字詞彙表</a>
+          </div>
+        </div></article>`;
+    }
+  }
+  document.getElementById("list").innerHTML = html ||
+    `<div class="empty">沒有符合的影片。<br>試著清掉搜尋字或分類篩選。</div>`;
+  document.getElementById("count").textContent = shown ? `${lessons} 課 · ${shown} 支` : "";
+
+  const gv = DATA.general.filter(v => matches(v, null));
+  document.getElementById("general").innerHTML = gv.length
+    ? `<ul class="vids">${gv.map(vrow).join("")}</ul>`
+    : `<p class="empty" style="padding:12px">沒有符合的通用資源。</p>`;
+}
+
+document.addEventListener("click", e => {
+  const seg = e.target.closest("#semseg button");
+  if(seg){ state.sem = seg.dataset.sem;
+    document.querySelectorAll("#semseg button").forEach(b => b.setAttribute("aria-pressed", b===seg));
+    render(); return; }
+  const chip = e.target.closest(".chip[data-cat]");
+  if(chip){ const c = chip.dataset.cat;
+    if(state.cats.has(c)) state.cats.delete(c); else state.cats.add(c);
+    chip.setAttribute("aria-pressed", state.cats.has(c)); render(); return; }
+  const st = e.target.closest("[data-star]");
+  if(st){ const id = st.dataset.star;
+    if(stars.has(id)) stars.delete(id); else stars.add(id);
+    saveStars(); render(); return; }
+  if(e.target.id === "shortonly"){ state.short = !state.short;
+    e.target.setAttribute("aria-pressed", state.short); render(); return; }
+  if(e.target.id === "staronly"){ state.star = !state.star;
+    e.target.setAttribute("aria-pressed", state.star); render(); return; }
+  if(e.target.id === "themebtn"){
+    const cur = document.documentElement.getAttribute("data-theme");
+    const dark = cur ? cur === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    try { localStorage.setItem("knsh6.theme", dark ? "light" : "dark"); } catch (e) {}
+  }
+});
+document.getElementById("q").addEventListener("input", e => {
+  state.q = e.target.value.trim().toLowerCase(); render();
+});
+try { const t = localStorage.getItem("knsh6.theme"); if(t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+document.getElementById("s-lesson").textContent =
+  DATA.sem["六上"].length + DATA.sem["六下"].length;
+document.getElementById("s-video").textContent =
+  DATA.sem["六上"].concat(DATA.sem["六下"]).reduce((a,l)=>a+l.vids.length,0) + DATA.general.length;
+render();
+</script>
