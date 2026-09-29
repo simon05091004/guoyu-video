@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="第六課〈珍珠奶茶〉中英雙語搶答遊戲：平板掃 QR code 就能玩，附印尼語小提示。">
+<meta name="theme-color" content="#F3EAD9">
+<title>珍珠奶茶搶答 Bubble Tea Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root{
+  --bg:#F3EAD9; --surface:#FFFDF8; --sunk:#EFE5D2;
+  --line:#DFCFB4; --line-soft:#EADCC4;
+  --ink:#2A1D12; --ink2:#6B594A; --ink3:#9A8977;
+  --brand:#8C4A26; --brand-ink:#FFF6EA;
+  --a:#D64B45; --b:#2F7CA8; --c:#C98217; --d:#3F9169;
+  --good:#2E7D4F; --good-bg:#E4F2E7; --good-line:#BFDECB;
+  --bad:#C0392B;  --bad-bg:#FBE9E6;  --bad-line:#EFCCC5;
+  --shadow:0 1px 2px rgba(42,29,18,.07), 0 6px 18px rgba(42,29,18,.07);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#17120E; --surface:#221A14; --sunk:#1D1610;
+  --line:#3A2C21; --line-soft:#2C2119;
+  --ink:#F1E7DA; --ink2:#B7A695; --ink3:#8A7A6B;
+  --brand:#E8A877; --brand-ink:#2A1A0F;
+  --a:#E4675F; --b:#5AA3CC; --c:#D9A33F; --d:#5CB588;
+  --good:#7ED3A0; --good-bg:#16291D; --good-line:#2A4633;
+  --bad:#F08C7E;  --bad-bg:#2C1714;  --bad-line:#4B2A24;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  --bg:#17120E; --surface:#221A14; --sunk:#1D1610;
+  --line:#3A2C21; --line-soft:#2C2119;
+  --ink:#F1E7DA; --ink2:#B7A695; --ink3:#8A7A6B;
+  --brand:#E8A877; --brand-ink:#2A1A0F;
+  --a:#E4675F; --b:#5AA3CC; --c:#D9A33F; --d:#5CB588;
+  --good:#7ED3A0; --good-bg:#16291D; --good-line:#2A4633;
+  --bad:#F08C7E;  --bad-bg:#2C1714;  --bad-line:#4B2A24;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0; min-height:100%; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%; touch-action:manipulation;
+}
+.serif{font-family:"Noto Serif TC",Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:0;background:none}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:8px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px calc(32px + env(safe-area-inset-bottom))}
+.screen{display:none}
+.screen.on{display:block}
+.en{color:var(--ink2);font-size:.86em;line-height:1.45;font-weight:400}
+.ba{color:var(--brand);font-size:.84em;font-weight:500}
+.hide{display:none !important}
+
+/* ---------- shared bits ---------- */
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;box-shadow:var(--shadow)}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+  background:var(--sunk);border:1px solid var(--line-soft);font-size:13px;font-weight:500;color:var(--ink2)
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:56px;padding:14px 26px;border-radius:14px;font-weight:700;font-size:17px;
+  background:var(--brand);color:var(--brand-ink);box-shadow:var(--shadow);
+  transition:transform .08s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn.wide{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.center{text-align:center}
+
+/* ---------- home ---------- */
+.hero{padding:34px 0 8px;text-align:center}
+.boba{font-size:54px;line-height:1;margin-bottom:10px}
+h1{margin:0;font-family:"Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(30px,7.5vw,44px);line-height:1.15}
+h1 .sub{display:block;font-family:inherit;font-size:.5em;font-weight:700;color:var(--ink2);margin-top:8px;letter-spacing:.01em}
+.lesson{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:14px}
+.block{margin-top:22px;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line-soft);box-shadow:var(--shadow)}
+.block h2{margin:0 0 4px;font-size:17px;font-weight:700}
+.block h2 .en{display:block}
+label.fld{display:block;margin-top:14px}
+label.fld span{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+input[type=text]{
+  width:100%;min-height:56px;padding:12px 16px;font:inherit;border-radius:12px;
+  border:1.5px solid var(--line);background:var(--sunk);color:var(--ink)
+}
+.avatars{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.av{width:52px;height:52px;border-radius:14px;font-size:26px;display:grid;place-items:center;
+  background:var(--sunk);border:2px solid transparent}
+.av[aria-pressed=true]{border-color:var(--brand);background:var(--surface)}
+.rounds{display:grid;gap:10px;margin-top:12px}
+.rd{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px 16px;
+  border-radius:14px;background:var(--sunk);border:1.5px solid var(--line-soft);
+}
+.rd:active{transform:translateY(1px)}
+.rd .no{
+  flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  font-weight:900;font-size:17px;background:var(--brand);color:var(--brand-ink)
+}
+.rd .tx{flex:1;min-width:0}
+.rd .tx b{display:block;font-size:16.5px}
+.rd .ct{flex:0 0 auto;font-size:13px;color:var(--ink3);font-weight:600}
+.rd.all{background:var(--brand);border-color:var(--brand)}
+.rd.all .tx b,.rd.all .ct{color:var(--brand-ink)}
+.rd.all .tx .en{color:var(--brand-ink);opacity:.8}
+.rd.all .no{background:rgba(255,255,255,.22);color:var(--brand-ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tg{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;
+  background:var(--sunk);border:1.5px solid var(--line-soft);font-size:14px;font-weight:600;min-height:44px
+}
+.tg[aria-pressed=true]{background:var(--surface);border-color:var(--brand);color:var(--brand)}
+.foot{margin-top:26px;font-size:13px;color:var(--ink3);text-align:center;line-height:1.7}
+.foot a{color:var(--brand)}
+
+/* ---------- play: top bar ---------- */
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 8px}
+.barrow{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.barrow .who{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barrow .sp{flex:1}
+.score{font-variant-numeric:tabular-nums;font-weight:900;color:var(--brand);font-size:18px}
+.mini{
+  min-height:40px;padding:7px 12px;border-radius:999px;background:var(--sunk);
+  border:1.5px solid var(--line-soft);font-size:13.5px;font-weight:700;color:var(--ink2)
+}
+.mini[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+@media (max-width:460px){ .barrow .who{display:none} }
+.track{height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:9px}
+.track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s ease}
+.timer{display:flex;align-items:center;gap:8px;margin-top:10px}
+.tbar{flex:1;height:14px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--d);border-radius:99px}
+.tbar.warn i{background:var(--a)}
+.tnum{font-variant-numeric:tabular-nums;font-weight:900;font-size:17px;min-width:2.4em;text-align:right}
+.tbar.warn ~ .tnum{color:var(--a)}
+
+/* ---------- play: question ---------- */
+.qhead{margin:16px 0 14px;text-align:center}
+.qtag{display:inline-flex;gap:8px;align-items:center;font-size:12.5px;letter-spacing:.06em;
+  color:var(--ink3);font-weight:600;text-transform:uppercase;margin-bottom:10px}
+.qzh{font-family:"Noto Serif TC",Georgia,serif;font-weight:700;font-size:clamp(21px,4.6vw,30px);line-height:1.35;margin:0}
+.qen{margin:8px 0 0;color:var(--ink2);font-size:clamp(14.5px,3vw,17px);line-height:1.45}
+.qba{margin:8px 0 0;color:var(--brand);font-size:14.5px;font-weight:500}
+body.en-first .qzh{font-family:"Noto Sans TC",sans-serif;font-weight:500;font-size:clamp(15px,3vw,17.5px);color:var(--ink2);order:2}
+body.en-first .qen{font-family:"Noto Serif TC",Georgia,serif;font-weight:700;color:var(--ink);font-size:clamp(20px,4.4vw,28px);line-height:1.35;order:1;margin:0}
+body.en-first .qhead{display:flex;flex-direction:column}
+body.en-first .qtag{order:0;justify-content:center}
+body.en-first .qba{order:3}
+
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tiles.two{grid-template-columns:1fr 1fr}
+@media (max-width:560px){ .tiles{grid-template-columns:1fr} }
+.tile{
+  display:flex;align-items:center;gap:14px;text-align:left;min-height:88px;padding:16px 18px;
+  border-radius:16px;color:#fff;font-weight:700;font-size:18px;line-height:1.35;
+  box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .08s ease,opacity .2s ease;
+}
+.tile:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tile .sh{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;font-size:19px;
+  background:rgba(255,255,255,.22);border-radius:9px}
+.tile .tx{flex:1;min-width:0}
+.tile .en{color:rgba(255,255,255,.88);font-size:.8em;display:block;margin-top:3px}
+.tile.k0{background:var(--a)} .tile.k1{background:var(--b)}
+.tile.k2{background:var(--c)} .tile.k3{background:var(--d)}
+.tile[disabled]{cursor:default}
+.tiles.locked .tile{opacity:.4}
+.tiles.locked .tile.pick{opacity:1;outline:4px solid var(--ink);outline-offset:2px}
+.tiles.locked .tile.right{opacity:1}
+.tiles.locked .tile.right::after{content:"✓";margin-left:auto;font-size:26px}
+
+/* order + match */
+.steps{display:grid;gap:10px}
+.step{
+  display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;min-height:72px;
+  border-radius:14px;background:var(--surface);border:2px solid var(--line);font-weight:600;font-size:16.5px
+}
+.step .nu{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--sunk);color:var(--ink3);font-weight:900;font-size:15px}
+.step[aria-pressed=true]{border-color:var(--brand);background:var(--sunk)}
+.step[aria-pressed=true] .nu{background:var(--brand);color:var(--brand-ink)}
+.step.ok{border-color:var(--good);background:var(--good-bg)}
+.step.no{border-color:var(--bad);background:var(--bad-bg)}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;align-items:start}
+.pairs .col{display:grid;gap:10px}
+.pairs h3{margin:0 0 2px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.pc{
+  display:flex;align-items:center;gap:10px;text-align:left;padding:13px 14px;min-height:68px;
+  border-radius:14px;background:var(--surface);border:2px solid var(--line);font-weight:600;font-size:16px
+}
+.pc .dot{flex:0 0 auto;width:14px;height:14px;border-radius:50%;background:var(--sunk);border:1px solid var(--line)}
+.pc[aria-pressed=true]{border-color:var(--brand)}
+.pc.p0 .dot{background:var(--a)} .pc.p1 .dot{background:var(--b)} .pc.p2 .dot{background:var(--c)}
+.pc.p0,.pc.p1,.pc.p2{border-style:dashed}
+.pc.ok{border-color:var(--good);background:var(--good-bg);border-style:solid}
+.pc.no{border-color:var(--bad);background:var(--bad-bg);border-style:solid}
+/* answer cards follow the same language order as the question stem */
+.tile .tx,.step .tx,.pc .tx{display:flex;flex-direction:column;min-width:0}
+.tile .tx .zh{font-size:18px;font-weight:700;color:#fff}
+.tile .tx .en{font-size:14.4px;font-weight:400;color:rgba(255,255,255,.88);margin-top:3px}
+body.en-first .tile .tx .zh{order:2;font-size:14.4px;font-weight:400;color:rgba(255,255,255,.88);margin-top:3px}
+body.en-first .tile .tx .en{order:1;font-size:18px;font-weight:700;color:#fff;margin-top:0}
+.step .tx .zh,.pc .tx .zh{font-weight:700}
+body.en-first .step .tx .zh,body.en-first .pc .tx .zh{order:2;font-weight:400;font-size:.86em;color:var(--ink2);margin-top:3px}
+body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;font-size:1em;color:var(--ink)}
+
+.helper{margin:14px 0 10px;font-size:14.5px;color:var(--ink2);text-align:center}
+.submit{margin-top:14px}
+
+/* ---------- feedback ---------- */
+.fb{margin-top:18px;padding:20px;border-radius:18px;border:2px solid;box-shadow:var(--shadow)}
+.fb.good{background:var(--good-bg);border-color:var(--good-line)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad-line)}
+.fbtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fbmark{font-size:34px;line-height:1}
+.fbver{font-family:"Noto Serif TC",Georgia,serif;font-weight:900;font-size:24px}
+.fb.good .fbver{color:var(--good)} .fb.bad .fbver{color:var(--bad)}
+.fbpts{margin-left:auto;font-weight:900;font-size:20px;font-variant-numeric:tabular-nums}
+.fbans{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.fbans b{font-size:17px}
+.fbwhy{margin-top:10px;font-size:15.5px;line-height:1.6}
+.fbwhy .en{display:block;margin-top:4px}
+.srcref{margin-top:10px;font-size:13px;color:var(--ink3);font-weight:600}
+
+/* ---------- done ---------- */
+.big{font-family:"Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(44px,13vw,74px);line-height:1;color:var(--brand);font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+.stat{padding:14px;border-radius:14px;background:var(--sunk);text-align:center}
+.stat b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--ink2)}
+.rbars{display:grid;gap:9px;margin-top:8px}
+.rb{display:flex;align-items:center;gap:10px;font-size:14px}
+.rb .nm{flex:0 0 40%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.rb .ln{flex:1;height:10px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.rb .ln i{display:block;height:100%;background:var(--d);border-radius:99px}
+.rb .vl{flex:0 0 auto;font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:600}
+.review{display:grid;gap:10px;margin-top:8px}
+.rv{padding:14px;border-radius:14px;background:var(--sunk);border-left:4px solid var(--bad)}
+.rv.ok{border-left-color:var(--good)}
+.rv .q{font-weight:700;font-size:15.5px}
+.rv .q .en{display:block;font-weight:400;margin-top:2px}
+.rv .aa{margin-top:6px;font-size:14.5px}
+.rv .aa .yours{color:var(--bad)}
+.rv .aa .right{color:var(--good);font-weight:700}
+.lb{display:grid;gap:8px;margin-top:8px}
+.lbi{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:var(--sunk);font-size:15px}
+.lbi .rk{width:26px;font-weight:900;color:var(--ink3);font-variant-numeric:tabular-nums}
+.lbi .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.lbi .sc{font-weight:900;font-variant-numeric:tabular-nums}
+.lbi.me{background:var(--surface);border:1.5px solid var(--brand)}
+@media print{ .bar,.btn,.tg{display:none !important} body{background:#fff} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===================== HOME ===================== -->
+<section class="screen on" id="s-home">
+  <div class="hero">
+    <div class="boba" aria-hidden="true">🧋</div>
+    <div class="lesson">第六課 · Lesson 6 · 說明文</div>
+    <h1>珍珠奶茶搶答<span class="sub">Bubble Tea Quiz · Kuis Teh Susu Mutiara</span></h1>
+  </div>
+
+  <div class="block">
+    <h2>你是誰？<span class="en">Who's playing? · Siapa yang bermain?</span></h2>
+    <label class="fld">
+      <span>暱稱 Nickname <span class="en" style="font-weight:400">（可以用綽號 · any nickname is fine）</span></span>
+      <input type="text" id="nick" maxlength="14" autocomplete="off" placeholder="例 e.g. 阿明 / Rina" enterkeyhint="done">
+    </label>
+    <div class="fld"><span style="display:block;font-size:14px;font-weight:600;margin-bottom:6px">選一個頭像 Pick an avatar</span>
+      <div class="avatars" id="avatars" role="group" aria-label="頭像 Avatar"></div>
+    </div>
+    <div class="toggles">
+      <button class="tg" id="tg-lang" aria-pressed="false">🔤 <span>英語在前 English first</span></button>
+      <button class="tg" id="tg-ba" aria-pressed="true">🇮🇩 <span>印尼語提示 Bahasa</span></button>
+      <button class="tg" id="tg-snd" aria-pressed="true">🔊 <span>音效 Sound</span></button>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>選一關開始 <span class="en">Pick a round · Pilih babak</span></h2>
+    <div class="rounds" id="rounds"></div>
+  </div>
+
+  <p class="foot">
+    每題答對得分，答得越快分數越高，連續答對還有連勝加分。<br>
+    <span class="en">Faster correct answers score more. Answer streaks earn a bonus.</span><br>
+    <a href="host.html">👩‍🏫 老師投影頁（QR code）Teacher screen</a>
+  </p>
+</section>
+
+<!-- ===================== PLAY ===================== -->
+<section class="screen" id="s-play">
+  <div class="bar">
+    <div class="barrow">
+      <span class="who" id="p-who">🧋 玩家</span>
+      <span class="sp"></span>
+      <button class="mini" id="mini-lang" aria-pressed="false" title="英語在前 English first">中／EN</button>
+      <button class="mini" id="mini-snd" aria-pressed="true" title="音效 Sound">🔊</button>
+      <span class="pill" id="p-count">1 / 24</span>
+      <span class="score" id="p-score">0</span>
+    </div>
+    <div class="track"><i id="p-track" style="width:0%"></i></div>
+    <div class="timer" id="p-timerwrap">
+      <div class="tbar" id="p-tbar"><i style="width:100%"></i></div>
+      <div class="tnum" id="p-tnum">25</div>
+    </div>
+  </div>
+
+  <div class="qhead">
+    <div class="qtag" id="q-tag"></div>
+    <p class="qzh" id="q-zh"></p>
+    <p class="qen" id="q-en"></p>
+    <p class="qba hide" id="q-ba"></p>
+  </div>
+
+  <div id="q-body"></div>
+  <div id="q-fb"></div>
+  <div class="submit hide" id="q-next"><button class="btn wide" id="btn-next">下一題 Next →</button></div>
+</section>
+
+<!-- ===================== DONE ===================== -->
+<section class="screen" id="s-done">
+  <div class="hero">
+    <div class="boba" id="d-emoji" aria-hidden="true">🎉</div>
+    <div class="lesson" id="d-round"></div>
+    <div class="big" id="d-score">0</div>
+    <h1 style="font-size:clamp(20px,5vw,28px);margin-top:8px" id="d-rank"></h1>
+  </div>
+
+  <div class="stats" id="d-stats"></div>
+
+  <div class="block">
+    <h2>每一關表現 <span class="en">How each round went</span></h2>
+    <div class="rbars" id="d-rbars"></div>
+  </div>
+
+  <div class="block">
+    <h2>複習：題目與答案 <span class="en">Review: questions and answers</span></h2>
+    <div class="review" id="d-review"></div>
+  </div>
+
+  <div class="block">
+    <h2>這台平板的排行榜 <span class="en">Best scores on this tablet</span></h2>
+    <div class="lb" id="d-lb"></div>
+  </div>
+
+  <div class="row" style="margin-top:20px">
+    <button class="btn" id="btn-again">🔁 再玩一次 Play again</button>
+    <button class="btn ghost" id="btn-home">🏠 換一關 Pick another round</button>
+  </div>
+</section>
+
+</div>
+<script>
+"use strict";
+/* ============================================================
+   第六課〈珍珠奶茶〉搶答遊戲 · Lesson 6 Bubble Tea quiz
+   題目全部出自簡報內容；src 欄位標出投影片段落，方便老師對照。
+   ============================================================ */
+
+var ROUNDS = [
+  { id: 1, zh: '風靡全球',       en: 'A global craze',            emoji: '🌏' },
+  { id: 2, zh: '誕生與演變',     en: 'Origin and evolution',      emoji: '🫖' },
+  { id: 3, zh: '美味關鍵',       en: 'The secret of the taste',   emoji: '😋' },
+  { id: 4, zh: '語詞與修辭',     en: 'Words, patterns, rhetoric', emoji: '✍️' },
+  { id: 5, zh: '創意與臺印交流', en: 'Creativity · Taiwan × Indonesia', emoji: '🇹🇼' }
+];
+
+var QS = [
+/* ---------- 第一關 ¶1 ---------- */
+{ r:1, t:'mc', src:'第一段 ¶1',
+  zh:'珍珠奶茶紅遍全球，被稱為什麼？',
+  en:'Bubble tea is loved all over the world. What do people call it?',
+  o:[['臺灣之光','the Pride of Taiwan'],['臺灣之寶','the Treasure of Taiwan'],
+     ['世界之光','the Light of the World'],['國民點心','the national snack']],
+  why:['課文第一段說：它不只受臺灣人喜愛，更紅遍全球，被稱為「臺灣之光」。',
+       'Paragraph 1: it is loved not only in Taiwan but all over the world — "the Pride of Taiwan".'] },
+
+{ r:1, t:'tf', src:'第一段 ¶1', ans:false,
+  zh:'珍珠奶茶只有臺灣人愛喝。',
+  en:'Only people in Taiwan like bubble tea.',
+  why:['錯。課文說它「不只受臺灣人喜愛，更紅遍全球」。',
+       'False. The text says it is loved not only in Taiwan but all over the world.'] },
+
+/* ---------- 第二關 ¶2–3 ---------- */
+{ r:2, t:'mc', src:'第二段 ¶2',
+  zh:'傳說是誰把茶葉和烹茶的技術帶到西藏？',
+  en:'Legend says who brought tea leaves and tea-making skills to Tibet?',
+  o:[['文成公主','Princess Wencheng'],['楊貴妃','Lady Yang'],
+     ['武則天','Empress Wu'],['王昭君','Wang Zhaojun']],
+  why:['文成公主嫁到西藏，帶去茶葉和泡茶的技術，當地人用牛奶、羊奶煮茶，從此愛上奶茶。',
+       'Princess Wencheng married into Tibet; locals boiled the tea with cow’s and goat’s milk and fell in love with milk tea.'] },
+
+{ r:2, t:'mc', src:'第二段 ¶2 · 俗諺',
+  zh:'「寧可三日無糧，不可一日無茶」這句俗諺想說明什麼？',
+  en:'"Better three days without food than one day without tea." What does this folk saying show?',
+  o:[['當地人非常愛喝茶','how much the local people love tea'],
+     ['那裡沒有糧食可以吃','that there was no food there'],
+     ['茶葉比米還貴','that tea cost more than rice'],
+     ['三天不吃飯也沒關係','that skipping food for three days is fine']],
+  why:['這是「引用」的修辭，用俗諺來說明當地人愛茶的程度。',
+       'This is a quotation — a folk saying used to show how deeply they love tea.'] },
+
+{ r:2, t:'mc', src:'第三段 ¶3',
+  zh:'奶茶加入粉圓、變成珍珠奶茶，是什麼時候的事？',
+  en:'When were tapioca pearls added to milk tea to make bubble tea?',
+  o:[['1980 年代的臺灣','1980s Taiwan'],['唐朝的西藏','Tang-dynasty Tibet'],
+     ['1950 年代的日本','1950s Japan'],['2000 年以後的印尼','Indonesia after 2000']],
+  why:['1980 年代的臺灣，有人把粉圓加進奶茶，珍珠奶茶就誕生了。',
+       'In 1980s Taiwan someone put tapioca pearls into milk tea — and bubble tea was born.'] },
+
+{ r:2, t:'mc', src:'第三段 ¶3', ba:'ubi = 地瓜 sweet potato · singkong = 樹薯 cassava',
+  zh:'課文說，做「珍珠」用的是哪一種粉？',
+  en:'According to the text, the "pearls" are made from which starch?',
+  o:[['地瓜粉或樹薯粉','sweet potato or cassava starch'],['麵粉','wheat flour'],
+     ['在來米粉','rice flour'],['玉米粉','corn starch']],
+  why:['粉圓是用地瓜粉或樹薯粉加水攪拌做成的。印尼語：ubi（地瓜）、singkong（樹薯）。',
+       'Pearls are made by mixing sweet potato or cassava starch with water. In Bahasa: ubi, singkong.'] },
+
+{ r:2, t:'order', src:'第三段 ¶3',
+  zh:'把粉圓的做法排出正確順序。',
+  en:'Put the four steps of making tapioca pearls in the right order.',
+  it:[['地瓜粉或樹薯粉加水攪拌','Mix sweet potato or cassava starch with water'],
+      ['搓揉成小顆粒，篩去多餘的粉末','Roll into small balls and sift off the extra powder'],
+      ['放進滾水裡煮熟','Cook them in boiling water'],
+      ['冷卻後拌入黑糖漿','Cool them, then stir into brown sugar syrup']],
+  why:['攪拌 → 搓揉篩粉 → 滾水煮熟 → 冷卻拌黑糖漿，這樣粉圓才會 Q 彈又香甜。',
+       'Mix → roll and sift → boil → cool and sweeten. That is how pearls turn out chewy and sweet.'] },
+
+{ r:2, t:'mc', src:'第三段 ¶3',
+  zh:'四十年來，珍奶的茶底從紅茶擴展到哪些茶？',
+  en:'Over forty years, the tea base grew from black tea to which teas?',
+  o:[['綠茶和烏龍茶','green tea and oolong tea'],['花茶和普洱茶','flower tea and pu’er'],
+     ['咖啡和可可','coffee and cocoa'],['一直只用紅茶','it has always been only black tea']],
+  why:['四十年來，茶底從紅茶擴展到綠茶、烏龍茶，口味越來越多。',
+       'The tea base expanded from black tea to green and oolong tea.'] },
+
+/* ---------- 第三關 ¶4–5 ---------- */
+{ r:3, t:'mc', src:'第四段 ¶4',
+  zh:'課文說，好吃的粉圓口感應該是怎樣？',
+  en:'What texture should good tapioca pearls have?',
+  o:[['Q 彈、有嚼勁','chewy and bouncy — "QQ"'],['又黏又稠','thick and sticky'],
+     ['硬得咬不動','too hard to bite'],['一入口就化掉','melting away at once']],
+  why:['粉圓要 Q 彈、有嚼勁，不可以太黏稠，這是好喝的關鍵之一。',
+       'Pearls must be chewy and bouncy, never mushy or sticky — one key to the taste.'] },
+
+{ r:3, t:'mc', src:'第四段 ¶4',
+  zh:'課文說粉圓和奶茶要「聯袂演出」，意思是？',
+  en:'The text says the pearls and the milk tea must "perform hand in hand". This means:',
+  o:[['兩者一起合作才完美','the two must work together to be perfect'],
+     ['兩者要分開賣','they should be sold separately'],
+     ['兩者輪流上場表演','they take turns on stage'],
+     ['比賽誰比較好喝','they compete to taste better']],
+  why:['「聯袂」（liánmèi）是手牽手、一起出場；粉圓 Q 彈加上奶茶新鮮，合作起來才好喝。',
+       '"Liánmèi" means hand in hand: chewy pearls plus fresh milk tea, working together.'] },
+
+{ r:3, t:'match', src:'第五段 ¶5',
+  zh:'把課文提到的「好搭檔」配成一對。',
+  en:'Match the food pairs the text calls perfect partners.',
+  pr:[[['泡菜','pickled cabbage'],['臭豆腐','stinky tofu']],
+      [['油條','fried dough stick'],['豆漿','soy milk']],
+      [['五味醬','five-flavor sauce'],['章魚','octopus']]],
+  why:['課文用這三組「好搭檔」說明珍奶也一樣：茶香和奶香要剛好平衡。',
+       'These three pairs show the same idea: in bubble tea, tea and milk must be in balance.'] },
+
+{ r:3, t:'mc', src:'第五段 ¶5',
+  zh:'課文把粉圓在茶湯中的樣子比喻成什麼？',
+  en:'What are the pearls in the tea compared to?',
+  o:[['一場優美的舞蹈','a graceful dance'],['一串珍珠項鍊','a pearl necklace'],
+     ['一場大雨','a heavy rain'],['一堆小石頭','a pile of little stones']],
+  why:['「粉圓在茶湯中，如同一場優美的舞蹈」——這是譬喻，每一顆都是小小的驚喜。',
+       'A simile: the pearls dance in the tea, and every one is a little surprise.'] },
+
+/* ---------- 第四關 語詞 · 句型 · 修辭 ---------- */
+{ r:4, t:'mc', src:'語詞 1',
+  zh:'「風靡」（fēngmǐ）是什麼意思？',
+  en:'What does "fēngmǐ" mean?',
+  o:[['廣受歡迎、成為風潮','to be a craze, wildly popular'],['隨著風飄動','to drift in the wind'],
+     ['迷路找不到方向','to get lost'],['生病沒力氣','to be weak and ill']],
+  why:['風靡全球＝在全世界都非常流行。',
+       '"Fēngmǐ quánqiú" = to be a craze all over the world.'] },
+
+{ r:4, t:'mc', src:'語詞 2',
+  zh:'「源源不絕」是什麼意思？',
+  en:'What does "yuányuán bùjué" mean?',
+  o:[['接連不斷、不會停止','never-ending, coming continuously'],['水源乾掉了','the water source dried up'],
+     ['從頭再開始','to start over'],['來源不清楚','of unknown origin']],
+  why:['課文最後說，珍奶讓世界看見臺灣「源源不絕」的創新力量。',
+       'The text ends by saying bubble tea shows Taiwan’s never-ending creativity.'] },
+
+{ r:4, t:'mc', src:'語詞 2',
+  zh:'「發揚光大」是什麼意思？',
+  en:'What does "fāyáng guāngdà" mean?',
+  o:[['把好的事物傳承下去並擴大','to carry something good forward and make it greater'],
+     ['發出很亮的光','to shine a bright light'],
+     ['大聲說話讓人聽見','to speak loudly'],
+     ['把電燈打開','to switch on a lamp']],
+  why:['臺灣人把奶茶發揚光大，做出各式各樣的珍珠奶茶。',
+       'Taiwanese people carried milk tea forward and created all kinds of bubble tea.'] },
+
+{ r:4, t:'mc', src:'句型',
+  zh:'選出最合適的詞：「珍奶不僅好喝，＿＿好玩。」',
+  en:'Fill in the blank: "Bubble tea is not only tasty, ___ fun."',
+  o:[['更','but also (更)'],['卻','but (卻)'],['雖然','although (雖然)'],['因為','because (因為)']],
+  why:['句型是「不僅……更……」，後面用「更」表示程度再往上加。',
+       'The pattern is "bù jǐn… gèng…" = not only… but also…'] },
+
+{ r:4, t:'mc', src:'修辭',
+  zh:'「它取悅著我們的味蕾」用了哪一種修辭？',
+  en:'"It pleases our taste buds" — which rhetorical device is this?',
+  o:[['轉化（擬人）','personification'],['譬喻','simile'],['引用','quotation'],['設問','question and answer']],
+  why:['把茶當作人來寫，會「取悅」別人，這是轉化（擬人）。',
+       'The tea is written about as if it were a person — personification.'] },
+
+{ r:4, t:'mc', src:'修辭',
+  zh:'「粉圓在茶湯中，如同一場優美的舞蹈」用了哪一種修辭？',
+  en:'"The pearls in the tea are like a graceful dance" — which device is this?',
+  o:[['譬喻','simile'],['轉化（擬人）','personification'],['引用','quotation'],['設問','question and answer']],
+  why:['有「如同」這類比喻詞，把粉圓比作舞蹈，是譬喻。',
+       'The word "like" compares the pearls to a dance — a simile.'] },
+
+/* ---------- 第五關 ¶6–7 · 三語小教室 ---------- */
+{ r:5, t:'mc', src:'第六段 ¶6',
+  zh:'下面哪一樣「不是」課文提到的珍奶跨界食物？',
+  en:'Which one is NOT a bubble-tea crossover food mentioned in the text?',
+  o:[['珍奶咖哩飯','bubble tea curry rice'],['珍奶披薩','bubble tea pizza'],
+     ['珍奶冰品','bubble tea ice dessert'],['粉圓拉麵','ramen topped with pearls']],
+  why:['課文提到披薩、冰品和拉麵，沒有提到咖哩飯。',
+       'The text mentions pizza, ice desserts and ramen — not curry rice.'] },
+
+{ r:5, t:'mc', src:'第六段 ¶6',
+  zh:'課文裡的珍奶披薩，上面放了什麼？',
+  en:'What goes on the bubble tea pizza in the text?',
+  o:[['起司、煉乳和粉圓','cheese, condensed milk and pearls'],
+     ['番茄醬和火腿','tomato sauce and ham'],
+     ['黑胡椒和洋蔥','black pepper and onion'],
+     ['蜂蜜芥末醬','honey mustard']],
+  why:['珍奶披薩用起司加煉乳（liànrǔ）再放上粉圓，把鹹的披薩變成甜點。',
+       'Cheese plus condensed milk and tapioca pearls turn a savoury pizza into a dessert.'] },
+
+{ r:5, t:'mc', src:'三語小教室', ba:'singkong · ubi · teh · susu',
+  zh:'「樹薯」的印尼語是哪一個？',
+  en:'Which Bahasa Indonesia word means "cassava"?',
+  o:[['singkong','singkong'],['ubi（地瓜 sweet potato）','ubi (sweet potato)'],
+     ['teh（茶 tea）','teh (tea)'],['susu（牛奶 milk）','susu (milk)']],
+  why:['樹薯 = singkong；地瓜 = ubi。粉圓就是用這兩種澱粉做的。',
+       'Cassava = singkong; sweet potato = ubi. Pearls are made from these starches.'] },
+
+{ r:5, t:'mc', src:'三語小教室', ba:'gula merah',
+  zh:'印尼語 gula merah 是什麼？',
+  en:'What is "gula merah" in Bahasa Indonesia?',
+  o:[['黑糖','brown sugar'],['牛奶 susu','milk'],['冰 es','ice'],['茶 teh','tea']],
+  why:['gula merah＝黑糖。粉圓煮好後要拌入黑糖漿才香甜。',
+       'Gula merah = brown sugar. Cooked pearls are stirred into brown sugar syrup.'] },
+
+{ r:5, t:'mc', src:'三語小教室', ba:'Enak! · Terima kasih! · Selamat datang!',
+  zh:'喝到一杯很好喝的珍奶，印尼語可以說什麼？',
+  en:'You taste a delicious bubble tea. What can you say in Bahasa Indonesia?',
+  o:[['Enak!','Enak! (Delicious!)'],['Terima kasih!','Terima kasih! (Thank you!)'],
+     ['Selamat datang!','Selamat datang! (Welcome!)'],['Sampai jumpa!','Sampai jumpa! (See you!)']],
+  why:['Enak＝好喝、好吃。謝謝是 terima kasih，歡迎是 selamat datang。',
+       'Enak = delicious. Thank you = terima kasih; welcome = selamat datang.'] },
+
+{ r:5, t:'mc', src:'第七段 ¶7',
+  zh:'課文最後說，珍奶從臺灣走向世界，讓世界看見臺灣什麼？',
+  en:'The text ends: bubble tea went from Taiwan to the world, showing everyone Taiwan’s…',
+  o:[['源源不絕的創新力量','never-ending power to innovate'],
+     ['最便宜的物價','cheapest prices'],
+     ['最古老的茶園','oldest tea gardens'],
+     ['最大的食品工廠','biggest food factory']],
+  why:['第七段：從臺灣走向世界，讓世界看見臺灣源源不絕的創新力量。',
+       'Paragraph 7: it shows the world the never-ending creativity of Taiwan’s food culture.'] }
+];
+
+var TIME = { mc: 25, tf: 15, order: 45, match: 45 };
+var SHAPES = ['▲', '◆', '●', '■'];
+var AVATARS = ['🧋', '🫖', '🍵', '🧊', '🥤', '🌴', '🐯', '🦊', '🐼', '🐸', '⭐️', '🚀'];
+
+/* ---------------- helpers ---------------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+function shuffle(a) {
+  a = a.slice();
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function store(key, val) {
+  try {
+    if (val === undefined) { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; }
+    localStorage.setItem(key, JSON.stringify(val));
+  } catch (e) { /* private mode / blocked storage — the game still works */ }
+  return null;
+}
+
+/* ---------------- sound ---------------- */
+var AC = null;
+function beep(freqs, dur, vol) {
+  if (!S.snd) return;
+  try {
+    if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)();
+    var t = AC.currentTime;
+    freqs.forEach(function (f, i) {
+      var o = AC.createOscillator(), g = AC.createGain();
+      o.type = 'triangle'; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t + i * dur);
+      g.gain.linearRampToValueAtTime(vol, t + i * dur + .015);
+      g.gain.exponentialRampToValueAtTime(.0001, t + i * dur + dur);
+      o.connect(g); g.connect(AC.destination);
+      o.start(t + i * dur); o.stop(t + i * dur + dur + .02);
+    });
+  } catch (e) { /* no audio available */ }
+}
+var sndRight = function () { beep([660, 880, 1170], .11, .16); };
+var sndWrong = function () { beep([210, 160], .16, .16); };
+var sndTick  = function () { beep([1000], .05, .06); };
+
+/* ---------------- state ---------------- */
+var S = {
+  name: '', av: AVATARS[0], enFirst: false, ba: true, snd: true,
+  sel: 'all', queue: [], i: 0, score: 0, streak: 0, bestStreak: 0,
+  log: [], locked: true, dur: 0, t0: 0, raf: 0, lastSec: 99, view: null
+};
+
+/* ---------------- home ---------------- */
+function buildAvatars() {
+  var box = $('avatars');
+  box.innerHTML = '';
+  AVATARS.forEach(function (a) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'av'; b.textContent = a;
+    b.setAttribute('aria-pressed', a === S.av ? 'true' : 'false');
+    b.setAttribute('aria-label', '頭像 ' + a);
+    b.onclick = function () {
+      S.av = a; savePrefs();
+      [].forEach.call(box.children, function (c) { c.setAttribute('aria-pressed', c.textContent === a ? 'true' : 'false'); });
+    };
+    box.appendChild(b);
+  });
+}
+
+function roundBtn(sel, no, zh, en, count, primary) {
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'rd' + (primary ? ' all' : '');
+  b.innerHTML = '<span class="no">' + esc(no) + '</span>' +
+    '<span class="tx"><b>' + esc(zh) + '</b><span class="en">' + esc(en) + '</span></span>' +
+    '<span class="ct">' + count + ' 題</span>';
+  b.onclick = function () { startRound(sel); };
+  return b;
+}
+
+function buildRounds() {
+  var box = $('rounds');
+  box.innerHTML = '';
+  var param = new URLSearchParams(location.search).get('round');
+  var pre = null;
+  ROUNDS.forEach(function (r) { if (String(r.id) === param) pre = r; });
+
+  if (pre) {
+    box.appendChild(roundBtn(pre.id, pre.emoji, '開始：第' + '一二三四五'[pre.id - 1] + '關 ' + pre.zh,
+      'Start round ' + pre.id + ' · ' + pre.en, QS.filter(function (q) { return q.r === pre.id; }).length, true));
+  }
+  box.appendChild(roundBtn('all', '🧋', '全部 ' + QS.length + ' 題', 'The whole lesson · Semua soal', QS.length, !pre));
+  ROUNDS.forEach(function (r) {
+    if (pre && pre.id === r.id) return;
+    box.appendChild(roundBtn(r.id, r.emoji, '第' + '一二三四五'[r.id - 1] + '關 ' + r.zh, r.en,
+      QS.filter(function (q) { return q.r === r.id; }).length, false));
+  });
+  box.appendChild(roundBtn('quick', '⚡️', '快速挑戰 10 題', 'Quick 10 · random questions', 10, false));
+}
+
+function savePrefs() {
+  store('bt6.prefs', { name: $('nick').value.trim(), av: S.av, enFirst: S.enFirst, ba: S.ba, snd: S.snd });
+}
+function loadPrefs() {
+  var p = store('bt6.prefs');
+  if (!p) return;
+  if (p.name) $('nick').value = p.name;
+  if (p.av && AVATARS.indexOf(p.av) >= 0) S.av = p.av;
+  S.enFirst = !!p.enFirst; S.ba = p.ba !== false; S.snd = p.snd !== false;
+}
+function applyPrefs() {
+  document.body.classList.toggle('en-first', S.enFirst);
+  $('tg-lang').setAttribute('aria-pressed', S.enFirst ? 'true' : 'false');
+  $('tg-ba').setAttribute('aria-pressed', S.ba ? 'true' : 'false');
+  $('tg-snd').setAttribute('aria-pressed', S.snd ? 'true' : 'false');
+  // the same two switches stay reachable while playing
+  $('mini-lang').setAttribute('aria-pressed', S.enFirst ? 'true' : 'false');
+  $('mini-snd').setAttribute('aria-pressed', S.snd ? 'true' : 'false');
+  $('mini-snd').textContent = S.snd ? '🔊' : '🔇';
+}
+
+function show(id) {
+  ['s-home', 's-play', 's-done'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
+  window.scrollTo(0, 0);
+}
+
+/* ---------------- round flow ---------------- */
+function startRound(sel) {
+  S.name = ($('nick').value || '').trim().slice(0, 14) || '玩家 Player';
+  savePrefs();
+  S.sel = sel;
+  if (sel === 'all') S.queue = QS.slice();
+  else if (sel === 'quick') {
+    var idx = shuffle(QS.map(function (_, i) { return i; })).slice(0, 10).sort(function (a, b) { return a - b; });
+    S.queue = idx.map(function (i) { return QS[i]; });
+  } else S.queue = QS.filter(function (q) { return q.r === sel; });
+  S.i = 0; S.score = 0; S.streak = 0; S.bestStreak = 0; S.log = [];
+  $('p-who').textContent = S.av + ' ' + S.name;
+  show('s-play');
+  renderQ();
+}
+
+function stopTimer() { S.locked = true; if (S.raf) cancelAnimationFrame(S.raf); S.raf = 0; }
+
+function startTimer(sec) {
+  S.dur = sec * 1000; S.t0 = performance.now(); S.locked = false; S.lastSec = 99;
+  $('p-tbar').classList.remove('warn');
+  tick();
+}
+function tick() {
+  var left = Math.max(0, S.dur - (performance.now() - S.t0));
+  var frac = left / S.dur;
+  $('p-tbar').querySelector('i').style.width = (frac * 100) + '%';
+  var sec = Math.ceil(left / 1000);
+  if (sec !== S.lastSec) {
+    $('p-tnum').textContent = sec;
+    if (sec <= 5 && sec > 0) { $('p-tbar').classList.add('warn'); sndTick(); }
+    S.lastSec = sec;
+  }
+  if (left <= 0) { stopTimer(); finishQ(null, true); return; }
+  S.raf = requestAnimationFrame(tick);
+}
+function timeFrac() { return Math.max(0, Math.min(1, (S.dur - (performance.now() - S.t0)) / S.dur)); }
+
+/* ---------------- render one question ---------------- */
+function renderQ() {
+  var q = S.queue[S.i];
+  var rd = ROUNDS[q.r - 1];
+  $('p-count').textContent = (S.i + 1) + ' / ' + S.queue.length;
+  $('p-score').textContent = S.score;
+  $('p-track').style.width = (S.i / S.queue.length * 100) + '%';
+  $('q-tag').innerHTML = rd.emoji + ' ' + esc(rd.zh) + ' · ' + esc(rd.en) + ' · ' + esc(q.src);
+  $('q-zh').textContent = q.zh;
+  $('q-en').textContent = q.en;
+  $('q-ba').textContent = q.ba ? '🇮🇩 ' + q.ba : '';
+  $('q-ba').classList.toggle('hide', !(q.ba && S.ba));
+  $('q-fb').innerHTML = '';
+  $('q-next').classList.add('hide');
+
+  var body = $('q-body');
+  body.innerHTML = '';
+  if (q.t === 'mc') renderMC(q, body);
+  else if (q.t === 'tf') renderTF(q, body);
+  else if (q.t === 'order') renderOrder(q, body);
+  else if (q.t === 'match') renderMatch(q, body);
+
+  window.scrollTo(0, 0);
+  startTimer(TIME[q.t]);
+}
+
+function tileEl(k, zh, en, onTap) {
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'tile k' + k;
+  b.innerHTML = '<span class="sh" aria-hidden="true">' + SHAPES[k] + '</span>' +
+    '<span class="tx"><span class="zh">' + esc(zh) + '</span><span class="en">' + esc(en) + '</span></span>';
+  b.onclick = onTap;
+  return b;
+}
+
+function renderMC(q, body) {
+  var order = shuffle(q.o.map(function (_, i) { return i; }));
+  S.view = { kind: 'mc', order: order };
+  var grid = document.createElement('div');
+  grid.className = 'tiles';
+  order.forEach(function (oi, k) {
+    grid.appendChild(tileEl(k, q.o[oi][0], q.o[oi][1], function () {
+      if (S.locked) return;
+      finishQ({ pick: k }, false);
+    }));
+  });
+  body.appendChild(grid);
+}
+
+function renderTF(q, body) {
+  S.view = { kind: 'tf' };
+  var grid = document.createElement('div');
+  grid.className = 'tiles two';
+  [[true, '對', 'True · Benar', 3], [false, '錯', 'False · Salah', 0]].forEach(function (opt) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tile k' + opt[3];
+    b.innerHTML = '<span class="sh" aria-hidden="true">' + (opt[0] ? '✓' : '✗') + '</span>' +
+      '<span class="tx"><span class="zh">' + opt[1] + '</span><span class="en">' + opt[2] + '</span></span>';
+    b.onclick = function () { if (!S.locked) finishQ({ pick: opt[0] }, false); };
+    grid.appendChild(b);
+  });
+  body.appendChild(grid);
+}
+
+function renderOrder(q, body) {
+  S.view = { kind: 'order', shown: shuffle(q.it.map(function (_, i) { return i; })), picked: [] };
+  var help = document.createElement('p');
+  help.className = 'helper';
+  help.innerHTML = '照順序點選（1 → 4）<span class="en">Tap them in order, 1 to 4. Tap again to undo.</span>';
+  body.appendChild(help);
+  var list = document.createElement('div');
+  list.className = 'steps'; list.id = 'orderList';
+  body.appendChild(list);
+  var sub = document.createElement('button');
+  sub.type = 'button'; sub.className = 'btn wide submit'; sub.id = 'orderSubmit'; sub.disabled = true;
+  sub.style.opacity = '.45';
+  sub.textContent = '送出 Submit';
+  sub.onclick = function () { if (!S.locked && S.view.picked.length === q.it.length) finishQ({ order: S.view.picked.slice() }, false); };
+  body.appendChild(sub);
+  paintOrder(q);
+}
+
+function paintOrder(q) {
+  var list = $('orderList'), v = S.view;
+  list.innerHTML = '';
+  v.shown.forEach(function (ii) {
+    var pos = v.picked.indexOf(ii);
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'step';
+    b.setAttribute('aria-pressed', pos >= 0 ? 'true' : 'false');
+    b.innerHTML = '<span class="nu">' + (pos >= 0 ? (pos + 1) : '·') + '</span>' +
+      '<span class="tx"><span class="zh">' + esc(q.it[ii][0]) + '</span><span class="en">' + esc(q.it[ii][1]) + '</span></span>';
+    b.onclick = function () {
+      if (S.locked) return;
+      if (pos >= 0) v.picked.splice(pos, 1);
+      else v.picked.push(ii);
+      paintOrder(q);
+    };
+    list.appendChild(b);
+  });
+  var sub = $('orderSubmit');
+  var ready = v.picked.length === q.it.length;
+  sub.disabled = !ready; sub.style.opacity = ready ? '1' : '.45';
+}
+
+function renderMatch(q, body) {
+  S.view = { kind: 'match', right: shuffle(q.pr.map(function (_, i) { return i; })), pairs: {}, sel: null };
+  var help = document.createElement('p');
+  help.className = 'helper';
+  help.innerHTML = '先點左邊，再點右邊，把兩樣配成一對。<span class="en">Tap one on the left, then its partner on the right.</span>';
+  body.appendChild(help);
+  var grid = document.createElement('div');
+  grid.className = 'pairs'; grid.id = 'matchGrid';
+  body.appendChild(grid);
+  var sub = document.createElement('button');
+  sub.type = 'button'; sub.className = 'btn wide submit'; sub.id = 'matchSubmit'; sub.disabled = true;
+  sub.style.opacity = '.45';
+  sub.textContent = '送出 Submit';
+  sub.onclick = function () {
+    if (!S.locked && Object.keys(S.view.pairs).length === q.pr.length) finishQ({ pairs: S.view.pairs }, false);
+  };
+  body.appendChild(sub);
+  paintMatch(q);
+}
+
+function paintMatch(q) {
+  var v = S.view, grid = $('matchGrid');
+  grid.innerHTML = '';
+  var L = document.createElement('div'), R = document.createElement('div');
+  L.className = 'col'; R.className = 'col';
+  L.innerHTML = '<h3>左 Left</h3>'; R.innerHTML = '<h3>右 Right</h3>';
+  function card(txt, cls, onTap, pressed) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'pc ' + cls;
+    b.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    b.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="tx"><span class="zh">' +
+      esc(txt[0]) + '</span><span class="en">' + esc(txt[1]) + '</span></span>';
+    b.onclick = onTap;
+    return b;
+  }
+  // colour index for a pair, by the order pairs were made
+  var made = Object.keys(v.pairs);
+  function colourOf(li) { var k = made.indexOf(String(li)); return k >= 0 ? ' p' + (k % 3) : ''; }
+  q.pr.forEach(function (p, li) {
+    L.appendChild(card(p[0], 'l' + colourOf(li), function () {
+      if (S.locked) return;
+      if (v.pairs[li] !== undefined) { delete v.pairs[li]; v.sel = null; }
+      else v.sel = (v.sel === li ? null : li);
+      paintMatch(q);
+    }, v.sel === li));
+  });
+  v.right.forEach(function (ri) {
+    var ownerL = null;
+    Object.keys(v.pairs).forEach(function (k) { if (v.pairs[k] === ri) ownerL = Number(k); });
+    R.appendChild(card(q.pr[ri][1], 'r' + (ownerL !== null ? colourOf(ownerL) : ''), function () {
+      if (S.locked) return;
+      if (ownerL !== null) { delete v.pairs[ownerL]; paintMatch(q); return; }
+      if (v.sel === null) return;
+      v.pairs[v.sel] = ri; v.sel = null;
+      paintMatch(q);
+    }, false));
+  });
+  grid.appendChild(L); grid.appendChild(R);
+  var sub = $('matchSubmit');
+  var ready = Object.keys(v.pairs).length === q.pr.length;
+  sub.disabled = !ready; sub.style.opacity = ready ? '1' : '.45';
+}
+
+/* ---------------- grade one question ---------------- */
+function markTiles(correctIdx, pickIdx) {
+  var grid = $('q-body').querySelector('.tiles');
+  if (!grid) return;
+  grid.classList.add('locked');
+  [].forEach.call(grid.children, function (c, k) {
+    c.disabled = true;
+    if (k === correctIdx) c.classList.add('right');
+    if (k === pickIdx) c.classList.add('pick');
+  });
+}
+
+function finishQ(payload, timedOut) {
+  if (S.locked && !timedOut) return;
+  var frac = timedOut ? 0 : timeFrac();
+  stopTimer();
+  var q = S.queue[S.i], v = S.view, ok = false, your = '（沒作答 no answer）', right = '';
+
+  if (q.t === 'mc') {
+    right = q.o[0][0] + ' · ' + q.o[0][1];
+    var ck = v.order.indexOf(0);
+    if (payload) { your = q.o[v.order[payload.pick]][0]; ok = payload.pick === ck; }
+    markTiles(ck, payload ? payload.pick : -1);
+
+  } else if (q.t === 'tf') {
+    right = q.ans ? '對 True' : '錯 False';
+    if (payload) { your = payload.pick ? '對 True' : '錯 False'; ok = payload.pick === q.ans; }
+    markTiles(q.ans ? 0 : 1, payload ? (payload.pick ? 0 : 1) : -1);
+
+  } else if (q.t === 'order') {
+    right = q.it.map(function (x) { return x[0]; }).join(' → ');
+    var pk = payload ? payload.order : v.picked;
+    ok = pk.length === q.it.length && pk.every(function (x, i) { return x === i; });
+    your = pk.length ? pk.map(function (ii) { return q.it[ii][0]; }).join(' → ') : your;
+    S.locked = true;
+    var list = $('orderList');
+    if (list) [].forEach.call(list.children, function (c, k) {
+      var ii = v.shown[k];
+      c.disabled = true;
+      c.classList.add(pk.indexOf(ii) === ii ? 'ok' : 'no');
+      c.querySelector('.nu').textContent = ii + 1;
+    });
+    var os = $('orderSubmit'); if (os) os.classList.add('hide');
+
+  } else if (q.t === 'match') {
+    right = q.pr.map(function (p) { return p[0][0] + ' ＋ ' + p[1][0]; }).join('、');
+    var pr = payload ? payload.pairs : v.pairs;
+    var keys = Object.keys(pr);
+    ok = keys.length === q.pr.length && keys.every(function (k) { return pr[k] === Number(k); });
+    your = keys.length ? keys.map(function (k) { return q.pr[k][0][0] + ' ＋ ' + q.pr[pr[k]][1][0]; }).join('、') : your;
+    S.locked = true;
+    var grid = $('matchGrid');
+    if (grid) [].forEach.call(grid.querySelectorAll('.pc'), function (c) { c.disabled = true; });
+    // colour left cards by whether their pairing was right
+    var lcards = grid ? grid.querySelectorAll('.col:first-child .pc') : [];
+    [].forEach.call(lcards, function (c, li) { c.classList.add(pr[li] === li ? 'ok' : 'no'); });
+    var ms = $('matchSubmit'); if (ms) ms.classList.add('hide');
+  }
+
+  var pts = 0, bonus = 0;
+  if (ok) {
+    pts = Math.round(1000 * (0.6 + 0.4 * frac));
+    S.streak++;
+    S.bestStreak = Math.max(S.bestStreak, S.streak);
+    bonus = Math.min(S.streak - 1, 5) * 100;
+    sndRight();
+  } else { S.streak = 0; sndWrong(); }
+  S.score += pts + bonus;
+  $('p-score').textContent = S.score;
+
+  S.log.push({ q: q, ok: ok, pts: pts + bonus, your: your, right: right, timedOut: timedOut && !payload });
+
+  var fb = document.createElement('div');
+  fb.className = 'fb ' + (ok ? 'good' : 'bad');
+  fb.innerHTML =
+    '<div class="fbtop"><span class="fbmark" aria-hidden="true">' + (ok ? '🎉' : '💧') + '</span>' +
+    '<span class="fbver">' + (ok ? '答對了！Correct!' : (timedOut && !payload ? '時間到 Time’s up' : '再想想 Not quite')) + '</span>' +
+    '<span class="fbpts">' + (pts + bonus > 0 ? '+' + (pts + bonus) : '+0') + '</span></div>' +
+    (bonus ? '<div class="srcref">🔥 連勝 ' + S.streak + ' 題，加 ' + bonus + ' 分 · streak bonus</div>' : '') +
+    '<div class="fbans"><b>正確答案 Answer：' + esc(right) + '</b>' +
+      (ok ? '' : '<div class="en">你的答案 Your answer：' + esc(your) + '</div>') + '</div>' +
+    '<div class="fbwhy">' + esc(q.why[0]) + '<span class="en">' + esc(q.why[1]) + '</span></div>' +
+    '<div class="srcref">📖 ' + esc(q.src) + '</div>';
+  $('q-fb').appendChild(fb);
+  $('q-next').classList.remove('hide');
+  $('btn-next').textContent = (S.i + 1 >= S.queue.length) ? '看成績 See my score →' : '下一題 Next →';
+  $('p-track').style.width = ((S.i + 1) / S.queue.length * 100) + '%';
+  $('btn-next').focus({ preventScroll: true });
+}
+
+function nextQ() {
+  S.i++;
+  if (S.i >= S.queue.length) done();
+  else renderQ();
+}
+
+/* ---------------- results ---------------- */
+function done() {
+  var total = S.log.length;
+  var right = S.log.filter(function (l) { return l.ok; }).length;
+  var pct = total ? Math.round(right / total * 100) : 0;
+  var rd = (S.sel === 'all') ? { zh: '全部題目', en: 'The whole lesson' }
+        : (S.sel === 'quick') ? { zh: '快速挑戰', en: 'Quick challenge' }
+        : ROUNDS[S.sel - 1];
+  var grades = [
+    [100, '🏆', '珍奶大師', 'Bubble Tea Master'],
+    [80,  '🥇', '珍珠達人', 'Pearl Expert'],
+    [60,  '🥈', '奶茶學徒', 'Milk Tea Apprentice'],
+    [40,  '🥉', '再泡一杯', 'Brew another cup'],
+    [0,   '📖', '回課文再讀一次', 'Read the lesson once more']
+  ];
+  var g = grades.filter(function (x) { return pct >= x[0]; })[0];
+  $('d-emoji').textContent = g[1];
+  $('d-round').textContent = rd.zh + ' · ' + rd.en;
+  $('d-score').textContent = S.score;
+  $('d-rank').innerHTML = esc(g[2]) + '<span class="sub">' + esc(g[3]) + '</span>';
+
+  $('d-stats').innerHTML =
+    stat(right + ' / ' + total, '答對題數 Correct') +
+    stat(pct + '%', '正確率 Accuracy') +
+    stat(S.bestStreak, '最長連勝 Best streak') +
+    stat(S.score, '總分 Score');
+
+  // per-round bars
+  var bars = '';
+  ROUNDS.forEach(function (r) {
+    var items = S.log.filter(function (l) { return l.q.r === r.id; });
+    if (!items.length) return;
+    var okn = items.filter(function (l) { return l.ok; }).length;
+    bars += '<div class="rb"><span class="nm">' + r.emoji + ' ' + esc(r.zh) + '</span>' +
+      '<span class="ln"><i style="width:' + (okn / items.length * 100) + '%"></i></span>' +
+      '<span class="vl">' + okn + '/' + items.length + '</span></div>';
+  });
+  $('d-rbars').innerHTML = bars;
+
+  // review — wrong answers first
+  var sorted = S.log.slice().sort(function (a, b) { return (a.ok ? 1 : 0) - (b.ok ? 1 : 0); });
+  $('d-review').innerHTML = sorted.map(function (l) {
+    return '<div class="rv' + (l.ok ? ' ok' : '') + '">' +
+      '<div class="q">' + (l.ok ? '✓' : '✗') + ' ' + esc(l.q.zh) + '<span class="en">' + esc(l.q.en) + '</span></div>' +
+      '<div class="aa"><span class="right">✔ ' + esc(l.right) + '</span>' +
+      (l.ok ? '' : '<br><span class="yours">✘ ' + esc(l.your) + '</span>') + '</div>' +
+      '<div class="aa en">' + esc(l.q.why[0]) + '<br>' + esc(l.q.why[1]) + '</div></div>';
+  }).join('');
+
+  // leaderboard on this tablet
+  var ts = Date.now();
+  var board = store('bt6.scores') || [];
+  board.push({ n: S.name, a: S.av, s: S.score, r: right, t: total, ts: ts });
+  board.sort(function (x, y) { return y.s - x.s; });
+  board = board.slice(0, 20);
+  store('bt6.scores', board);
+  $('d-lb').innerHTML = board.slice(0, 8).map(function (b, k) {
+    return '<div class="lbi' + (b.ts === ts ? ' me' : '') + '"><span class="rk">' + (k + 1) + '</span>' +
+      '<span class="nm">' + esc(b.a + ' ' + b.n) + '</span>' +
+      '<span class="sc">' + b.s + '</span></div>';
+  }).join('') || '<p class="en">還沒有紀錄 No scores yet.</p>';
+
+  show('s-done');
+  beep(pct >= 60 ? [660, 880, 1320] : [520, 440], .14, .15);
+}
+function stat(v, label) {
+  return '<div class="stat"><b>' + esc(v) + '</b><span>' + esc(label) + '</span></div>';
+}
+
+/* ---------------- wiring ---------------- */
+$('btn-next').onclick = nextQ;
+$('btn-again').onclick = function () { startRound(S.sel); };
+$('btn-home').onclick = function () { show('s-home'); };
+function toggleLang() { S.enFirst = !S.enFirst; applyPrefs(); savePrefs(); }
+function toggleSnd() { S.snd = !S.snd; applyPrefs(); savePrefs(); if (S.snd) sndTick(); }
+$('tg-lang').onclick = toggleLang;
+$('mini-lang').onclick = toggleLang;
+$('tg-snd').onclick = toggleSnd;
+$('mini-snd').onclick = toggleSnd;
+$('tg-ba').onclick = function () {
+  S.ba = !S.ba; applyPrefs(); savePrefs();
+  var q = S.queue[S.i];
+  if (q) $('q-ba').classList.toggle('hide', !(q.ba && S.ba));
+};
+
+document.addEventListener('keydown', function (e) {
+  if (!$('s-play').classList.contains('on')) return;
+  if (!$('q-next').classList.contains('hide') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); nextQ(); return; }
+  if (S.locked) return;
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 4) {
+    var grid = $('q-body').querySelector('.tiles');
+    if (grid && grid.children[n - 1]) { e.preventDefault(); grid.children[n - 1].click(); }
+  }
+});
+
+loadPrefs();
+applyPrefs();
+buildAvatars();
+buildRounds();
+</script>
+</body>
+</html>
