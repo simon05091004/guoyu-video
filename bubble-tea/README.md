@@ -4,8 +4,9 @@
 不用安裝 App、不用登入、不用帳號，也沒有任何伺服器。題目全部出自課堂簡報，
 並為印尼籍學生加上印尼語小提示。
 
-- **投影頁（老師）**：[`host.html`](host.html) — 顯示 QR code 與玩法說明
+- **投影頁（老師）**：[`host.html`](host.html) — QR code、房號與即時排行榜
 - **遊戲（學生）**：[`index.html`](index.html) — 平板掃碼後開啟的頁面
+- **即時排行榜設定**：[`firebase-config.js`](firebase-config.js)（沒填就是單機模式）、[`sync.js`](sync.js)
 
 線上版（GitHub Pages）：
 
@@ -44,10 +45,88 @@ QR code 是在頁面裡自己畫出來的（不是去外部服務要圖），所
 - 右上角的「中／EN」可以隨時把英文換成大字在前，中文變成小字輔助，遊戲進行中也能切。
 - 涉及三語小教室的題目會多一行印尼語提示（可在首頁關掉）。
 
+## 即時全班排行榜
+
+**要不要開都可以。** `firebase-config.js` 沒填的話，遊戲完全正常，只是每台平板各自記分；
+填好之後，老師投影頁右邊會出現全班的即時排行榜，學生答題時也看得到自己目前第幾名。
+
+### 運作方式
+
+老師投影頁開啟時會產生一個四碼**房號**（例如 `A7K2`），並把它寫進 QR code。
+掃同一個 QR code 的人就在同一個房間裡；每答完一題，成績就傳到 Firebase，
+投影頁透過 SSE 即時更新，不用重新整理。換一個班級就按「新房間」，下課按「清空這個房間」。
+
+沒有載入 Firebase SDK，只用瀏覽器內建的 `fetch` 與 `EventSource` 打 REST API，
+所以學校網路擋掉 `gstatic.com` 之類的 CDN 也不影響。連不上時會自動退回單機模式，
+遊戲本身不會中斷。
+
+### 設定步驟（約五分鐘）
+
+1. 到 [Firebase 主控台](https://console.firebase.google.com/) 建立一個專案
+   （沿用現有專案也可以，但建議另開一個，跟其他資料分開）。
+2. 左側 **建構 Build → Realtime Database** → 建立資料庫 →
+   位置選 `asia-southeast1`（新加坡，離臺灣最近）→ 先選「**以鎖定模式啟動**」。
+3. 複製資料庫網址，長得像
+   `https://你的專案-default-rtdb.asia-southeast1.firebasedatabase.app`。
+4. 左側 **建構 Build → Authentication** → 開始使用 → 登入方式 →
+   啟用「**匿名**」。（學生不用註冊，這只是讓 Firebase 規則擋掉外人亂寫。）
+5. **專案設定 → 一般 → 你的應用程式** → 新增網頁應用程式（`</>`）→ 複製 `apiKey`。
+6. 把這兩個值填進 [`firebase-config.js`](firebase-config.js)：
+
+   ```js
+   window.BT_SYNC = {
+     dbUrl: "https://你的專案-default-rtdb.asia-southeast1.firebasedatabase.app",
+     apiKey: "AIza……",
+     authUrl: "https://identitytoolkit.googleapis.com/v1/accounts:signUp"
+   };
+   ```
+
+7. 回到 **Realtime Database → 規則**，貼上下面這段再按「發布」：
+
+   ```json
+   {
+     "rules": {
+       "rooms": {
+         "$room": {
+           ".read": "auth != null",
+           "players": {
+             "$player": {
+               ".write": "auth != null",
+               ".validate": "newData.hasChildren(['n','s','c','t','u'])",
+               "n": { ".validate": "newData.isString() && newData.val().length <= 20" },
+               "a": { ".validate": "newData.isString() && newData.val().length <= 8" },
+               "s": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 200000" },
+               "c": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100" },
+               "t": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100" },
+               "d": { ".validate": "newData.isBoolean()" },
+               "u": { ".validate": "newData.isNumber()" },
+               "$other": { ".validate": false }
+             }
+           }
+         }
+       }
+     }
+   }
+   ```
+
+8. 推上 GitHub Pages，投影 `host.html`，房號和排行榜就會出現。
+
+### 這樣夠安全嗎
+
+規則只允許「登入過的人」寫入 `rooms/<房號>/players/<某個人>`，而且限定欄位、
+型別與數值上限，寫不進別的路徑，也沒有人能用一次請求把整個房間洗掉
+（「清空」是逐一刪除）。**但匿名登入人人可拿**，所以拿到網址的人理論上仍能在房間裡
+亂寫分數。這裡存的只有暱稱、頭像和分數，換個房號或按清空就沒了 —— 對課堂用途夠用，
+但**不要拿這個專案存任何其他資料**。
+
+流量也很省：一個 30 人的班級跑完 24 題大約 800 次讀寫，Firebase 免費額度是每天 10 GB 傳輸，
+遠遠用不完。
+
 ## 計分
 
 答對得 600–1000 分（越快分數越高），連續答對第 2 題起每題多 100 分、最多加到 500 分。
-成績只存在各自的平板上（`localStorage`），同一台平板會累積排行榜，不會傳到任何地方。
+成績存在各自的平板上（`localStorage`），同一台平板會累積排行榜。
+有開即時排行榜的話，成績另外會送到你自己的 Firebase 專案；沒開的話不會傳到任何地方。
 按「再玩一次」就重來。
 
 ## 要改題目？

@@ -132,6 +132,12 @@ input[type=text]{
   border:1.5px solid var(--line-soft);font-size:13.5px;font-weight:700;color:var(--ink2)
 }
 .mini[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+/* live room */
+.roomchip{display:flex;justify-content:center;margin:0 0 4px}
+.roomchip span{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;
+  background:var(--sunk);border:1px solid var(--line-soft);font-size:13.5px;font-weight:600;color:var(--ink2)}
+.roomchip b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--brand)}
+#p-rank{font-variant-numeric:tabular-nums}
 @media (max-width:460px){ .barrow .who{display:none} }
 .track{height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:9px}
 .track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s ease}
@@ -268,6 +274,7 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
     <div class="lesson">第六課 · Lesson 6 · 說明文</div>
     <h1>珍珠奶茶搶答<span class="sub">Bubble Tea Quiz · Kuis Teh Susu Mutiara</span></h1>
   </div>
+  <p class="roomchip hide" id="roomchip"></p>
 
   <div class="block">
     <h2>你是誰？<span class="en">Who's playing? · Siapa yang bermain?</span></h2>
@@ -305,6 +312,7 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
       <span class="sp"></span>
       <button class="mini" id="mini-lang" aria-pressed="false" title="英語在前 English first">中／EN</button>
       <button class="mini" id="mini-snd" aria-pressed="true" title="音效 Sound">🔊</button>
+      <span class="pill hide" id="p-rank"></span>
       <span class="pill" id="p-count">1 / 24</span>
       <span class="score" id="p-score">0</span>
     </div>
@@ -348,6 +356,11 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
     <div class="review" id="d-review"></div>
   </div>
 
+  <div class="block hide" id="d-liveblock">
+    <h2>全班即時排行榜 <span class="en">Live class leaderboard · Papan skor kelas</span></h2>
+    <div class="lb" id="d-live"></div>
+  </div>
+
   <div class="block">
     <h2>這台平板的排行榜 <span class="en">Best scores on this tablet</span></h2>
     <div class="lb" id="d-lb"></div>
@@ -360,6 +373,8 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
 </section>
 
 </div>
+<script src="firebase-config.js"></script>
+<script src="sync.js"></script>
 <script>
 "use strict";
 /* ============================================================
@@ -630,6 +645,72 @@ var S = {
   log: [], locked: true, dur: 0, t0: 0, raf: 0, lastSec: 99, view: null
 };
 
+/* ---------------- live room (optional) ----------------
+   有設定 firebase-config.js 而且網址帶 ?room=XXXX 時才會連線。
+   連不上就靜靜退回單機模式，遊戲完全不受影響。 */
+var ROOM = (new URLSearchParams(location.search).get('room') || '')
+             .toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+var ONLINE = false, PID = null, liveTimer = 0;
+
+function playerId(room) {
+  var k = 'bt6.pid.' + room, v = store(k);
+  if (!v) { v = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4); store(k, v); }
+  return v;
+}
+
+function roomChip(state) {
+  var el = $('roomchip');
+  if (state === 'off') { el.classList.add('hide'); return; }
+  var icon = { connecting: '🟡', on: '🟢', error: '⚪️' }[state];
+  var text = { connecting: '連線中… connecting', on: '已加入 joined', error: '單機模式 offline' }[state];
+  el.classList.remove('hide');
+  el.innerHTML = '<span>' + icon + ' ' + esc(text) + ' · 房號 <b>' + esc(ROOM) + '</b></span>';
+}
+
+function roomInit() {
+  if (!(window.BTSync && BTSync.ready() && ROOM)) { roomChip('off'); return; }
+  PID = playerId(ROOM);
+  roomChip('connecting');
+  BTSync.join(ROOM).then(function () { ONLINE = true; roomChip('on'); })
+                   .catch(function () { ONLINE = false; roomChip('error'); });
+}
+
+function pushScore(finished) {
+  if (!ONLINE) return Promise.resolve();
+  var right = S.log.filter(function (l) { return l.ok; }).length;
+  return BTSync.save(PID, { n: S.name, a: S.av, s: S.score, c: right,
+                            t: S.queue.length, d: !!finished, u: Date.now() })
+    .catch(function () { ONLINE = false; roomChip('error'); });
+}
+
+function refreshRank() {
+  if (!ONLINE) return;
+  BTSync.list().then(function (rows) {
+    var k = -1;
+    rows.forEach(function (r, i) { if (r.id === PID) k = i; });
+    if (k < 0) return;
+    $('p-rank').classList.remove('hide');
+    $('p-rank').textContent = '第 ' + (k + 1) + ' / ' + rows.length + ' 名';
+  }).catch(function () {});
+}
+
+function renderLive(rows) {
+  $('d-liveblock').classList.remove('hide');
+  $('d-live').innerHTML = rows.length ? rows.slice(0, 12).map(function (r, k) {
+    return '<div class="lbi' + (r.id === PID ? ' me' : '') + '"><span class="rk">' + (k + 1) + '</span>' +
+      '<span class="nm">' + esc(r.a + ' ' + r.n) + (r.d ? ' ✓' : '') + '</span>' +
+      '<span class="sc">' + r.s + '</span></div>';
+  }).join('') : '<p class="en">還沒有其他人完成 Nobody else has finished yet.</p>';
+}
+
+function startLiveBoard() {
+  if (!ONLINE) return;
+  var tick = function () { BTSync.list().then(renderLive).catch(function () {}); };
+  tick();
+  liveTimer = setInterval(tick, 5000);
+}
+function stopLiveBoard() { if (liveTimer) { clearInterval(liveTimer); liveTimer = 0; } }
+
 /* ---------------- home ---------------- */
 function buildAvatars() {
   var box = $('avatars');
@@ -715,7 +796,10 @@ function startRound(sel) {
   } else S.queue = QS.filter(function (q) { return q.r === sel; });
   S.i = 0; S.score = 0; S.streak = 0; S.bestStreak = 0; S.log = [];
   $('p-who').textContent = S.av + ' ' + S.name;
+  $('p-rank').classList.add('hide');
+  stopLiveBoard();
   show('s-play');
+  pushScore(false);
   renderQ();
 }
 
@@ -997,6 +1081,7 @@ function finishQ(payload, timedOut) {
   $('btn-next').textContent = (S.i + 1 >= S.queue.length) ? '看成績 See my score →' : '下一題 Next →';
   $('p-track').style.width = ((S.i + 1) / S.queue.length * 100) + '%';
   $('btn-next').focus({ preventScroll: true });
+  pushScore(false).then(refreshRank);
 }
 
 function nextQ() {
@@ -1067,6 +1152,9 @@ function done() {
       '<span class="sc">' + b.s + '</span></div>';
   }).join('') || '<p class="en">還沒有紀錄 No scores yet.</p>';
 
+  $('d-liveblock').classList.add('hide');
+  pushScore(true).then(startLiveBoard);
+
   show('s-done');
   beep(pct >= 60 ? [660, 880, 1320] : [520, 440], .14, .15);
 }
@@ -1077,7 +1165,7 @@ function stat(v, label) {
 /* ---------------- wiring ---------------- */
 $('btn-next').onclick = nextQ;
 $('btn-again').onclick = function () { startRound(S.sel); };
-$('btn-home').onclick = function () { show('s-home'); };
+$('btn-home').onclick = function () { stopLiveBoard(); show('s-home'); };
 function toggleLang() { S.enFirst = !S.enFirst; applyPrefs(); savePrefs(); }
 function toggleSnd() { S.snd = !S.snd; applyPrefs(); savePrefs(); if (S.snd) sndTick(); }
 $('tg-lang').onclick = toggleLang;
@@ -1105,6 +1193,7 @@ loadPrefs();
 applyPrefs();
 buildAvatars();
 buildRounds();
+roomInit();
 </script>
 </body>
 </html>

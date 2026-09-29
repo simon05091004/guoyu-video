@@ -60,6 +60,37 @@ ol li .ba{display:block;color:var(--brand);font-size:.84em;font-weight:500}
 .pk{padding:10px 15px;border-radius:999px;background:var(--sunk);border:1.5px solid var(--line-soft);
   font-size:15px;font-weight:600;min-height:46px}
 .pk[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+/* --- room code + live leaderboard --- */
+.roomline{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.roomline .lbl{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.roomline b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(26px,4vw,38px);
+  letter-spacing:.14em;color:var(--brand);line-height:1}
+.roomline button{padding:8px 14px;border-radius:999px;background:var(--sunk);border:1.5px solid var(--line-soft);
+  font-size:13.5px;font-weight:600;min-height:42px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--ink3);margin-right:6px}
+.dot.on{background:#3F9169} .dot.err{background:#D64B45} .dot.wait{background:#C98217}
+.boardmeta{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--ink2);margin-bottom:12px}
+.board{display:grid;gap:8px;min-height:80px}
+.brow{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;background:var(--sunk);
+  border:1.5px solid transparent}
+.brow .rk{width:34px;flex:0 0 auto;font-weight:900;font-size:17px;color:var(--ink3);
+  font-variant-numeric:tabular-nums;text-align:center}
+.brow .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:17px}
+.brow .pg{flex:0 0 96px;display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink3);
+  font-variant-numeric:tabular-nums}
+.brow .pg .ln{flex:1;height:7px;border-radius:99px;background:var(--line-soft);overflow:hidden}
+.brow .pg .ln i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s ease}
+.brow .sc{flex:0 0 auto;font-weight:900;font-size:19px;font-variant-numeric:tabular-nums;min-width:3.4em;text-align:right}
+.brow.p1{background:var(--surface);border-color:var(--brand)}
+.brow.p1 .rk,.brow.p2 .rk,.brow.p3 .rk{color:var(--brand)}
+.brow.done .nm::after{content:"✓";margin-left:8px;color:#3F9169;font-weight:900}
+.empty{padding:22px 4px;text-align:center;color:var(--ink3);font-size:14.5px;line-height:1.7}
+.dangerbtn{margin-top:14px;padding:9px 16px;border-radius:12px;background:var(--sunk);
+  border:1.5px solid var(--line-soft);font-size:13.5px;font-weight:600;color:var(--ink2);min-height:44px}
+.setup{font-size:14.5px;line-height:1.7;color:var(--ink2)}
+.setup code{background:var(--sunk);padding:2px 6px;border-radius:6px;font-size:.92em}
+.hide{display:none !important}
+
 .note{margin-top:18px;font-size:14.5px;color:var(--ink2);line-height:1.65}
 .note code{background:var(--sunk);padding:2px 6px;border-radius:6px;font-size:.92em}
 .big-link{display:inline-block;margin-top:14px;font-weight:700;color:var(--brand)}
@@ -80,6 +111,10 @@ ol li .ba{display:block;color:var(--brand);font-size:.84em;font-weight:500}
 
 <div class="grid">
   <section class="card qrbox">
+    <div class="roomline" id="roomline">
+      <span class="lbl">房號 Room</span><b id="roomcode">----</b>
+      <button type="button" id="newroom">🔄 新房間 New room</button>
+    </div>
     <img id="qr" alt="加入遊戲的 QR code" width="380" height="380">
     <div class="url" id="urlbox"></div>
     <button class="copy" id="copy">📋 複製連結 Copy link</button>
@@ -87,11 +122,22 @@ ol li .ba{display:block;color:var(--brand);font-size:.84em;font-weight:500}
   </section>
 
   <section class="card">
+    <h2><span class="dot" id="linkdot"></span>即時排行榜 <span class="en">Live leaderboard · Papan skor langsung</span></h2>
+    <div class="boardmeta" id="boardmeta"></div>
+    <div class="board" id="board"></div>
+    <button type="button" class="dangerbtn hide" id="clearroom">🧹 清空這個房間 Clear this room</button>
+  </section>
+</div>
+
+<div style="margin-top:26px">
+  <section class="card">
     <h2>怎麼玩 <span class="en">How to play · Cara bermain</span></h2>
     <ol>
       <li>拿起平板，打開相機或 QR 掃描器，對準左邊的 QR code。
         <span class="en">Open the camera or a QR scanner on the tablet and point it at the QR code.</span>
         <span class="ba">Buka kamera di tablet dan pindai kode QR.</span></li>
+      <li class="hide" id="step-room">掃到的人會自動加入房號 <b id="step-roomcode"></b>，成績即時顯示在右邊的排行榜。換一個班級就按「新房間」。
+        <span class="en">Everyone who scans joins the same room, and their scores appear live on the board. Tap "New room" for the next class.</span></li>
       <li>輸入暱稱、選一個頭像。
         <span class="en">Type a nickname and pick an avatar.</span>
         <span class="ba">Tulis nama panggilan, pilih avatar.</span></li>
@@ -110,6 +156,8 @@ ol li .ba{display:block;color:var(--brand);font-size:.84em;font-weight:500}
 </div>
 </div>
 
+<script src="firebase-config.js"></script>
+<script src="sync.js"></script>
 <script>
 "use strict";
 /* ============================================================
@@ -397,10 +445,31 @@ var ROUNDS = [
   { id: '5', zh: '第五關 創意與臺印交流', en: 'Creativity · TW × ID' }
 ];
 var current = 'all';
+var room = '';
+var stopStream = null;
+
+/* 房號：避開容易看錯的 0/O/1/I */
+var ROOM_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function newRoomCode() {
+  var out = '';
+  for (var i = 0; i < 4; i++) out += ROOM_ALPHABET[Math.floor(Math.random() * ROOM_ALPHABET.length)];
+  return out;
+}
+function loadRoom() {
+  try {
+    var r = localStorage.getItem('bt6.host.room');
+    if (r && /^[A-Z0-9]{4}$/.test(r)) return r;
+  } catch (e) {}
+  return newRoomCode();
+}
+function saveRoom(r) { try { localStorage.setItem('bt6.host.room', r); } catch (e) {} }
 
 function gameURL(round) {
   var base = location.href.replace(/host\.html.*$/, 'index.html');
-  return base + (round === 'all' ? '' : '?round=' + round);
+  var qs = [];
+  if (round !== 'all') qs.push('round=' + round);
+  if (BTSync.ready() && room) qs.push('room=' + room);
+  return base + (qs.length ? '?' + qs.join('&') : '');
 }
 
 function drawQR(text) {
@@ -426,6 +495,11 @@ function drawQR(text) {
 }
 
 function paint() {
+  document.getElementById('roomcode').textContent = room || '----';
+  if (BTSync.ready() && room) {
+    document.getElementById('step-room').classList.remove('hide');
+    document.getElementById('step-roomcode').textContent = room;
+  }
   var url = gameURL(current);
   drawQR(url);
   document.getElementById('urlbox').innerHTML =
@@ -443,6 +517,83 @@ function paint() {
   });
 }
 
+/* ---------------- live leaderboard ---------------- */
+function setDot(state) {
+  var d = document.getElementById('linkdot');
+  d.className = 'dot' + (state === 'on' ? ' on' : state === 'error' ? ' err' : state === 'connecting' ? ' wait' : '');
+  d.title = { on: '已連線 connected', error: '連線中斷 disconnected',
+              connecting: '連線中 connecting…', off: '未啟用 off' }[state] || '';
+}
+
+function renderBoard(rows) {
+  var box = document.getElementById('board'), meta = document.getElementById('boardmeta');
+  var done = rows.filter(function (r) { return r.d; }).length;
+  meta.textContent = rows.length ? ('👥 ' + rows.length + ' 人加入 joined　·　✓ ' + done + ' 人完成 finished') : '';
+  if (!rows.length) {
+    box.innerHTML = '<div class="empty">還沒有人加入，請學生掃 QR code。<br>' +
+      'Nobody has joined yet — ask the class to scan the QR code.</div>';
+    return;
+  }
+  box.innerHTML = rows.slice(0, 15).map(function (r, k) {
+    var pct = r.t ? Math.round(r.c / r.t * 100) : 0;
+    var medal = k === 0 ? '🥇' : k === 1 ? '🥈' : k === 2 ? '🥉' : (k + 1);
+    return '<div class="brow p' + (k + 1) + (r.d ? ' done' : '') + '">' +
+      '<span class="rk">' + medal + '</span>' +
+      '<span class="nm">' + esc(r.a + ' ' + r.n) + '</span>' +
+      '<span class="pg"><span class="ln"><i style="width:' + pct + '%"></i></span>' + r.c + '/' + (r.t || '–') + '</span>' +
+      '<span class="sc">' + r.s + '</span></div>';
+  }).join('');
+}
+
+function esc(t) {
+  return String(t).replace(/[&<>"]/g, function (c) {
+    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+  });
+}
+
+function connectRoom() {
+  if (stopStream) { stopStream(); stopStream = null; }
+  if (!BTSync.ready()) return;
+  renderBoard([]);
+  BTSync.join(room).then(function () {
+    stopStream = BTSync.stream(renderBoard, setDot);
+  }).catch(function (e) {
+    setDot('error');
+    document.getElementById('board').innerHTML =
+      '<div class="empty">連不上即時排行榜（' + esc(e.message) + '）。<br>' +
+      '遊戲本身不受影響，學生照樣可以掃碼作答。</div>';
+  });
+}
+
+function showSetupHint() {
+  document.getElementById('roomline').classList.add('hide');
+  setDot('off');
+  document.getElementById('board').innerHTML =
+    '<div class="setup">即時排行榜還沒設定，目前每台平板只看得到自己的成績（遊戲其他功能完全正常）。<br><br>' +
+    '要開啟的話，把 Firebase 的 <code>dbUrl</code> 和 <code>apiKey</code> 填進 <code>firebase-config.js</code>，' +
+    '步驟寫在 <code>README.md</code>，大約五分鐘。<br>' +
+    '<span style="color:var(--ink3)">The live board is off until firebase-config.js is filled in — see README.md.</span></div>';
+}
+
+document.getElementById('newroom').onclick = function () {
+  room = newRoomCode();
+  saveRoom(room);
+  paint();
+  connectRoom();
+};
+
+document.getElementById('clearroom').onclick = function () {
+  if (!window.confirm('清空「' + room + '」房間裡的所有成績？\nClear every score in room ' + room + '?')) return;
+  var btn = this;
+  BTSync.clear().then(function () {
+    btn.textContent = '✓ 已清空 Cleared';
+    setTimeout(function () { btn.textContent = '🧹 清空這個房間 Clear this room'; }, 1600);
+  }).catch(function () {
+    btn.textContent = '⚠️ 清空失敗 Failed';
+    setTimeout(function () { btn.textContent = '🧹 清空這個房間 Clear this room'; }, 2200);
+  });
+};
+
 document.getElementById('copy').onclick = function () {
   var url = gameURL(current), btn = this;
   var done = function () { btn.textContent = '✓ 已複製 Copied'; setTimeout(function () { btn.textContent = '📋 複製連結 Copy link'; }, 1600); };
@@ -450,11 +601,26 @@ document.getElementById('copy').onclick = function () {
   else window.prompt('複製這個連結 Copy this link:', url);
 };
 
-document.getElementById('note').innerHTML = location.protocol === 'file:'
-  ? '⚠️ 這個頁面是用 <code>file://</code> 開的，QR code 裡的網址平板掃了也連不上。請把整個資料夾放到 GitHub Pages（或任何網站空間）再投影這一頁。'
-  : '平板不必安裝任何 App，也不用登入。成績存在各自的平板上（同一台平板會累積排行榜），不會傳到任何伺服器。<br><span style="color:var(--ink3)">No app, no login, no server — each tablet keeps its own scores.</span>';
+document.getElementById('note').innerHTML =
+  location.protocol === 'file:'
+    ? '⚠️ 這個頁面是用 <code>file://</code> 開的，QR code 裡的網址平板掃了也連不上。請把整個資料夾放到 GitHub Pages（或任何網站空間）再投影這一頁。'
+  : BTSync.ready()
+    ? '平板不必安裝任何 App，也不用登入。掃到同一個房號的人，成績會即時出現在右邊的排行榜上；' +
+      '資料只存在你自己的 Firebase 專案裡，下課按「清空這個房間」就沒了。' +
+      '<br><span style="color:var(--ink3)">No app and no login — scores stream live to the board on the right, and stay in your own Firebase project.</span>'
+    : '平板不必安裝任何 App，也不用登入。成績存在各自的平板上（同一台平板會累積排行榜），不會傳到任何伺服器。' +
+      '<br><span style="color:var(--ink3)">No app, no login, no server — each tablet keeps its own scores.</span>';
 
-paint();
+if (BTSync.ready()) {
+  room = loadRoom();
+  saveRoom(room);
+  document.getElementById('clearroom').classList.remove('hide');
+  paint();
+  connectRoom();
+} else {
+  paint();
+  showSetupHint();
+}
 </script>
 </body>
 </html>
