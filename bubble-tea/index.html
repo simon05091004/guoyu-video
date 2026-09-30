@@ -390,8 +390,9 @@ var ROUNDS = [
   { id: 1, zh: '風靡全球',       en: 'A global craze',            emoji: '🌏' },
   { id: 2, zh: '誕生與演變',     en: 'Origin and evolution',      emoji: '🫖' },
   { id: 3, zh: '美味關鍵',       en: 'The secret of the taste',   emoji: '😋' },
-  { id: 4, zh: '語詞與修辭',     en: 'Words, patterns, rhetoric', emoji: '✍️' },
-  { id: 5, zh: '創意與影響',     en: 'Creativity and influence',       emoji: '💡' }
+  { id: 4, zh: '語詞',           en: 'Key words',                 emoji: '✍️' },
+  { id: 5, zh: '句型與修辭',     en: 'Patterns and rhetoric',     emoji: '🎭' },
+  { id: 6, zh: '創意與影響',     en: 'Creativity and influence',  emoji: '💡' }
 ];
 
 var QS = [
@@ -499,7 +500,7 @@ var QS = [
   why:['「粉圓在茶湯中，如同一場優美的舞蹈」——這是譬喻，每一顆都是小小的驚喜。',
        'A simile: the pearls dance in the tea, and every one is a little surprise.'] },
 
-/* ---------- 第四關 語詞 · 句型 · 修辭 ---------- */
+/* ---------- 第四關 語詞 ---------- */
 { r:4, t:'mc', src:'語詞 1',
   zh:'「風靡」（fēngmǐ）是什麼意思？',
   en:'What does "fēngmǐ" mean?',
@@ -553,29 +554,29 @@ var QS = [
   why:['四十年來茶底從紅茶擴展到綠茶、烏龍茶，配料也越來越多，做出各式各樣的珍珠奶茶。',
        'The tea base grew from black tea to green and oolong, with more and more toppings — all kinds of bubble tea.'] },
 
-{ r:4, t:'mc', src:'句型',
+{ r:5, t:'mc', src:'句型',
   zh:'選出最合適的詞：「珍奶不僅好喝，＿＿好玩。」',
   en:'Fill in the blank: "Bubble tea is not only tasty, ___ fun."',
   o:[['更','but also (更)'],['卻','but (卻)'],['雖然','although (雖然)'],['因為','because (因為)']],
   why:['句型是「不僅……更……」，後面用「更」表示程度再往上加。',
        'The pattern is "bù jǐn… gèng…" = not only… but also…'] },
 
-{ r:4, t:'mc', src:'修辭',
+{ r:5, t:'mc', src:'修辭',
   zh:'「它取悅著我們的味蕾」用了哪一種修辭？',
   en:'"It pleases our taste buds" — which rhetorical device is this?',
   o:[['轉化（擬人）','personification'],['譬喻','simile'],['引用','quotation'],['設問','question and answer']],
   why:['把茶當作人來寫，會「取悅」別人，這是轉化（擬人）。',
        'The tea is written about as if it were a person — personification.'] },
 
-{ r:4, t:'mc', src:'修辭',
+{ r:5, t:'mc', src:'修辭',
   zh:'「粉圓在茶湯中，如同一場優美的舞蹈」用了哪一種修辭？',
   en:'"The pearls in the tea are like a graceful dance" — which device is this?',
   o:[['譬喻','simile'],['轉化（擬人）','personification'],['引用','quotation'],['設問','question and answer']],
   why:['有「如同」這類比喻詞，把粉圓比作舞蹈，是譬喻。',
        'The word "like" compares the pearls to a dance — a simile.'] },
 
-/* ---------- 第五關 ¶6–7 · 三語小教室 ---------- */
-{ r:5, t:'mc', src:'第六段 ¶6',
+/* ---------- 第六關 ¶6–7 ---------- */
+{ r:6, t:'mc', src:'第六段 ¶6',
   zh:'下面哪一樣「不是」課文提到的珍奶跨界食物？',
   en:'Which one is NOT a bubble-tea crossover food mentioned in the text?',
   o:[['珍奶咖哩飯','bubble tea curry rice'],['珍奶披薩','bubble tea pizza'],
@@ -583,7 +584,7 @@ var QS = [
   why:['課文提到披薩、冰品和拉麵，沒有提到咖哩飯。',
        'The text mentions pizza, ice desserts and ramen — not curry rice.'] },
 
-{ r:5, t:'mc', src:'第六段 ¶6',
+{ r:6, t:'mc', src:'第六段 ¶6',
   zh:'課文裡的珍奶披薩，上面放了什麼？',
   en:'What goes on the bubble tea pizza in the text?',
   o:[['起司、煉乳和粉圓','cheese, condensed milk and pearls'],
@@ -593,7 +594,7 @@ var QS = [
   why:['珍奶披薩用起司加煉乳（liànrǔ）再放上粉圓，把鹹的披薩變成甜點。',
        'Cheese plus condensed milk and tapioca pearls turn a savoury pizza into a dessert.'] },
 
-{ r:5, t:'mc', src:'第七段 ¶7',
+{ r:6, t:'mc', src:'第七段 ¶7',
   zh:'課文最後說，珍奶從臺灣走向世界，讓世界看見臺灣什麼？',
   en:'The text ends: bubble tea went from Taiwan to the world, showing everyone Taiwan’s…',
   o:[['源源不絕的創新力量','never-ending power to innovate'],
@@ -749,6 +750,12 @@ function buildAvatars() {
   });
 }
 
+/* 關卡序號：十關以內用國字，超過就直接用數字 */
+function cnRound(id) {
+  var cn = '一二三四五六七八九十';
+  return '第' + (cn[id - 1] || id) + '關';
+}
+
 function roundBtn(sel, no, zh, en, count, primary) {
   var b = document.createElement('button');
   b.type = 'button'; b.className = 'rd' + (primary ? ' all' : '');
@@ -767,13 +774,13 @@ function buildRounds() {
   ROUNDS.forEach(function (r) { if (String(r.id) === param) pre = r; });
 
   if (pre) {
-    box.appendChild(roundBtn(pre.id, pre.emoji, '開始：第' + '一二三四五'[pre.id - 1] + '關 ' + pre.zh,
+    box.appendChild(roundBtn(pre.id, pre.emoji, '開始：' + cnRound(pre.id) + ' ' + pre.zh,
       'Start round ' + pre.id + ' · ' + pre.en, QS.filter(function (q) { return q.r === pre.id; }).length, true));
   }
   box.appendChild(roundBtn('all', '🧋', '全部 ' + QS.length + ' 題', 'The whole lesson', QS.length, !pre));
   ROUNDS.forEach(function (r) {
     if (pre && pre.id === r.id) return;
-    box.appendChild(roundBtn(r.id, r.emoji, '第' + '一二三四五'[r.id - 1] + '關 ' + r.zh, r.en,
+    box.appendChild(roundBtn(r.id, r.emoji, cnRound(r.id) + ' ' + r.zh, r.en,
       QS.filter(function (q) { return q.r === r.id; }).length, false));
   });
   box.appendChild(roundBtn('quick', '⚡️', '快速挑戰 10 題', 'Quick 10 · random questions', 10, false));
