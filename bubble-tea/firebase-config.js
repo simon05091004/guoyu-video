@@ -9,10 +9,10 @@
 window.BT_SYNC = {
   // Firebase Realtime Database 的網址，長得像
   // https://你的專案-default-rtdb.asia-southeast1.firebasedatabase.app
-  dbUrl: "",
+  dbUrl: "https://kahoo-1033e-default-rtdb.asia-southeast1.firebasedatabase.app",
 
   // Firebase 專案設定裡的 Web API Key
-  apiKey: "",
+  apiKey: "AIzaSyDh8z6k1VQsgUN5Qbpzc_hUbN56hjbRQi0",
 
   // 匿名登入的端點，正常情況不用改（本機測試或用模擬器時才改）
   authUrl: "https://identitytoolkit.googleapis.com/v1/accounts:signUp"
