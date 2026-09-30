@@ -382,6 +382,10 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
    題目全部出自簡報內容；src 欄位標出投影片段落，方便老師對照。
    ============================================================ */
 
+/* ===== 課程內容開始 · LESSON CONTENT START =====
+   換一課時，只要改到「LESSON CONTENT END」為止的這一段：
+   ROUNDS（關卡）、QS（題庫）、AVATARS（頭像）、GRADES（等級稱號）、TIME（作答秒數）。
+   下面的遊戲引擎、QR 產生器與即時排行榜都不必動。 */
 var ROUNDS = [
   { id: 1, zh: '風靡全球',       en: 'A global craze',            emoji: '🌏' },
   { id: 2, zh: '誕生與演變',     en: 'Origin and evolution',      emoji: '🫖' },
@@ -596,9 +600,22 @@ var QS = [
        'Paragraph 7: it shows the world the never-ending creativity of Taiwan’s food culture.'] }
 ];
 
-var TIME = { mc: 25, tf: 15, order: 45, match: 45 };
-var SHAPES = ['▲', '◆', '●', '■'];
 var AVATARS = ['🧋', '🫖', '🍵', '🧊', '🥤', '🌴', '🐯', '🦊', '🐼', '🐸', '⭐️', '🚀'];
+
+/* 結算時的等級稱號：[最低正確率, emoji, 中文, English]，由高到低 */
+var GRADES = [
+  [100, '🏆', '珍奶大師',       'Bubble Tea Master'],
+  [80,  '🥇', '珍珠達人',       'Pearl Expert'],
+  [60,  '🥈', '奶茶學徒',       'Milk Tea Apprentice'],
+  [40,  '🥉', '再泡一杯',       'Brew another cup'],
+  [0,   '📖', '回課文再讀一次', 'Read the lesson once more']
+];
+
+/* 每種題型的作答秒數 */
+var TIME = { mc: 25, tf: 15, order: 45, match: 45 };
+/* ===== 課程內容結束 · LESSON CONTENT END ===== */
+
+var SHAPES = ['▲', '◆', '●', '■'];
 
 /* ---------------- helpers ---------------- */
 function $(id) { return document.getElementById(id); }
@@ -1098,14 +1115,7 @@ function done() {
   var rd = (S.sel === 'all') ? { zh: '全部題目', en: 'The whole lesson' }
         : (S.sel === 'quick') ? { zh: '快速挑戰', en: 'Quick challenge' }
         : ROUNDS[S.sel - 1];
-  var grades = [
-    [100, '🏆', '珍奶大師', 'Bubble Tea Master'],
-    [80,  '🥇', '珍珠達人', 'Pearl Expert'],
-    [60,  '🥈', '奶茶學徒', 'Milk Tea Apprentice'],
-    [40,  '🥉', '再泡一杯', 'Brew another cup'],
-    [0,   '📖', '回課文再讀一次', 'Read the lesson once more']
-  ];
-  var g = grades.filter(function (x) { return pct >= x[0]; })[0];
+  var g = GRADES.filter(function (x) { return pct >= x[0]; })[0];
   $('d-emoji').textContent = g[1];
   $('d-round').textContent = rd.zh + ' · ' + rd.en;
   $('d-score').textContent = S.score;

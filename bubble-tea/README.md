@@ -131,7 +131,16 @@ QR code 是在頁面裡自己畫出來的（不是去外部服務要圖），所
 
 ## 要改題目？
 
-題庫在 [`index.html`](index.html) 裡的 `QS` 陣列，一題一個物件，直接改文字即可：
+題庫在 [`index.html`](index.html) 裡，用註解標出來的區塊：
+
+```
+/* ===== 課程內容開始 · LESSON CONTENT START ===== */
+   ... ROUNDS（關卡）、QS（題庫）、AVATARS（頭像）、GRADES（等級稱號）、TIME（秒數）
+/* ===== 課程內容結束 · LESSON CONTENT END ===== */
+```
+
+這個區塊以外都是遊戲引擎、QR 產生器與即時排行榜，換課時不用動。
+題庫是 `QS` 陣列，一題一個物件，直接改文字即可：
 
 ```js
 { r:1,                      // 第幾關（對應 ROUNDS）
