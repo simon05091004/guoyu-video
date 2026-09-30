@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="第六課〈珍珠奶茶〉中英雙語搶答遊戲：平板掃 QR code 就能玩，附印尼語小提示。">
+<meta name="description" content="第六課〈珍珠奶茶〉中英雙語搶答遊戲：平板掃 QR code 就能玩。">
 <meta name="theme-color" content="#F3EAD9">
 <title>珍珠奶茶搶答 Bubble Tea Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -272,12 +272,12 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
   <div class="hero">
     <div class="boba" aria-hidden="true">🧋</div>
     <div class="lesson">第六課 · Lesson 6 · 說明文</div>
-    <h1>珍珠奶茶搶答<span class="sub">Bubble Tea Quiz · Kuis Teh Susu Mutiara</span></h1>
+    <h1>珍珠奶茶搶答<span class="sub">Bubble Tea Quiz</span></h1>
   </div>
   <p class="roomchip hide" id="roomchip"></p>
 
   <div class="block">
-    <h2>你是誰？<span class="en">Who's playing? · Siapa yang bermain?</span></h2>
+    <h2>你是誰？<span class="en">Who's playing?</span></h2>
     <label class="fld">
       <span>暱稱 Nickname <span class="en" style="font-weight:400">（可以用綽號 · any nickname is fine）</span></span>
       <input type="text" id="nick" maxlength="14" autocomplete="off" placeholder="例 e.g. 阿明 / Rina" enterkeyhint="done">
@@ -287,7 +287,7 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
     </div>
     <div class="toggles">
       <button class="tg" id="tg-lang" aria-pressed="false">🔤 <span>英語在前 English first</span></button>
-      <button class="tg" id="tg-ba" aria-pressed="true">🇮🇩 <span>印尼語提示 Bahasa</span></button>
+      <button class="tg" id="tg-ba" aria-pressed="true">💬 <span>母語提示 First-language hint</span></button>
       <button class="tg" id="tg-snd" aria-pressed="true">🔊 <span>音效 Sound</span></button>
     </div>
   </div>
@@ -357,7 +357,7 @@ body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;fo
   </div>
 
   <div class="block hide" id="d-liveblock">
-    <h2>全班即時排行榜 <span class="en">Live class leaderboard · Papan skor kelas</span></h2>
+    <h2>全班即時排行榜 <span class="en">Live class leaderboard</span></h2>
     <div class="lb" id="d-live"></div>
   </div>
 
@@ -391,7 +391,7 @@ var ROUNDS = [
   { id: 2, zh: '誕生與演變',     en: 'Origin and evolution',      emoji: '🫖' },
   { id: 3, zh: '美味關鍵',       en: 'The secret of the taste',   emoji: '😋' },
   { id: 4, zh: '語詞與修辭',     en: 'Words, patterns, rhetoric', emoji: '✍️' },
-  { id: 5, zh: '創意與臺印交流', en: 'Creativity · Taiwan × Indonesia', emoji: '🇹🇼' }
+  { id: 5, zh: '創意與影響',     en: 'Creativity and influence',       emoji: '💡' }
 ];
 
 var QS = [
@@ -433,17 +433,17 @@ var QS = [
   zh:'奶茶加入粉圓、變成珍珠奶茶，是什麼時候的事？',
   en:'When were tapioca pearls added to milk tea to make bubble tea?',
   o:[['1980 年代的臺灣','1980s Taiwan'],['唐朝的西藏','Tang-dynasty Tibet'],
-     ['1950 年代的日本','1950s Japan'],['2000 年以後的印尼','Indonesia after 2000']],
+     ['1950 年代的日本','1950s Japan'],['2000 年以後的美國','the United States after 2000']],
   why:['1980 年代的臺灣，有人把粉圓加進奶茶，珍珠奶茶就誕生了。',
        'In 1980s Taiwan someone put tapioca pearls into milk tea — and bubble tea was born.'] },
 
-{ r:2, t:'mc', src:'第三段 ¶3', ba:'ubi = 地瓜 sweet potato · singkong = 樹薯 cassava',
+{ r:2, t:'mc', src:'第三段 ¶3',
   zh:'課文說，做「珍珠」用的是哪一種粉？',
   en:'According to the text, the "pearls" are made from which starch?',
   o:[['地瓜粉或樹薯粉','sweet potato or cassava starch'],['麵粉','wheat flour'],
      ['在來米粉','rice flour'],['玉米粉','corn starch']],
-  why:['粉圓是用地瓜粉或樹薯粉加水攪拌做成的。印尼語：ubi（地瓜）、singkong（樹薯）。',
-       'Pearls are made by mixing sweet potato or cassava starch with water. In Bahasa: ubi, singkong.'] },
+  why:['粉圓是用地瓜粉或樹薯粉加水攪拌做成的，這兩種都是常見的根莖類澱粉。',
+       'Pearls are made by mixing sweet potato or cassava starch with water.'] },
 
 { r:2, t:'order', src:'第三段 ¶3',
   zh:'把粉圓的做法排出正確順序。',
@@ -565,29 +565,6 @@ var QS = [
      ['蜂蜜芥末醬','honey mustard']],
   why:['珍奶披薩用起司加煉乳（liànrǔ）再放上粉圓，把鹹的披薩變成甜點。',
        'Cheese plus condensed milk and tapioca pearls turn a savoury pizza into a dessert.'] },
-
-{ r:5, t:'mc', src:'三語小教室', ba:'singkong · ubi · teh · susu',
-  zh:'「樹薯」的印尼語是哪一個？',
-  en:'Which Bahasa Indonesia word means "cassava"?',
-  o:[['singkong','singkong'],['ubi（地瓜 sweet potato）','ubi (sweet potato)'],
-     ['teh（茶 tea）','teh (tea)'],['susu（牛奶 milk）','susu (milk)']],
-  why:['樹薯 = singkong；地瓜 = ubi。粉圓就是用這兩種澱粉做的。',
-       'Cassava = singkong; sweet potato = ubi. Pearls are made from these starches.'] },
-
-{ r:5, t:'mc', src:'三語小教室', ba:'gula merah',
-  zh:'印尼語 gula merah 是什麼？',
-  en:'What is "gula merah" in Bahasa Indonesia?',
-  o:[['黑糖','brown sugar'],['牛奶 susu','milk'],['冰 es','ice'],['茶 teh','tea']],
-  why:['gula merah＝黑糖。粉圓煮好後要拌入黑糖漿才香甜。',
-       'Gula merah = brown sugar. Cooked pearls are stirred into brown sugar syrup.'] },
-
-{ r:5, t:'mc', src:'三語小教室', ba:'Enak! · Terima kasih! · Selamat datang!',
-  zh:'喝到一杯很好喝的珍奶，印尼語可以說什麼？',
-  en:'You taste a delicious bubble tea. What can you say in Bahasa Indonesia?',
-  o:[['Enak!','Enak! (Delicious!)'],['Terima kasih!','Terima kasih! (Thank you!)'],
-     ['Selamat datang!','Selamat datang! (Welcome!)'],['Sampai jumpa!','Sampai jumpa! (See you!)']],
-  why:['Enak＝好喝、好吃。謝謝是 terima kasih，歡迎是 selamat datang。',
-       'Enak = delicious. Thank you = terima kasih; welcome = selamat datang.'] },
 
 { r:5, t:'mc', src:'第七段 ¶7',
   zh:'課文最後說，珍奶從臺灣走向世界，讓世界看見臺灣什麼？',
@@ -766,7 +743,7 @@ function buildRounds() {
     box.appendChild(roundBtn(pre.id, pre.emoji, '開始：第' + '一二三四五'[pre.id - 1] + '關 ' + pre.zh,
       'Start round ' + pre.id + ' · ' + pre.en, QS.filter(function (q) { return q.r === pre.id; }).length, true));
   }
-  box.appendChild(roundBtn('all', '🧋', '全部 ' + QS.length + ' 題', 'The whole lesson · Semua soal', QS.length, !pre));
+  box.appendChild(roundBtn('all', '🧋', '全部 ' + QS.length + ' 題', 'The whole lesson', QS.length, !pre));
   ROUNDS.forEach(function (r) {
     if (pre && pre.id === r.id) return;
     box.appendChild(roundBtn(r.id, r.emoji, '第' + '一二三四五'[r.id - 1] + '關 ' + r.zh, r.en,
@@ -852,7 +829,7 @@ function renderQ() {
   $('q-tag').innerHTML = rd.emoji + ' ' + esc(rd.zh) + ' · ' + esc(rd.en) + ' · ' + esc(q.src);
   $('q-zh').textContent = q.zh;
   $('q-en').textContent = q.en;
-  $('q-ba').textContent = q.ba ? '🇮🇩 ' + q.ba : '';
+  $('q-ba').textContent = q.ba ? '💬 ' + q.ba : '';
   $('q-ba').classList.toggle('hide', !(q.ba && S.ba));
   $('q-fb').innerHTML = '';
   $('q-next').classList.add('hide');
@@ -895,7 +872,7 @@ function renderTF(q, body) {
   S.view = { kind: 'tf' };
   var grid = document.createElement('div');
   grid.className = 'tiles two';
-  [[true, '對', 'True · Benar', 3], [false, '錯', 'False · Salah', 0]].forEach(function (opt) {
+  [[true, '對', 'True', 3], [false, '錯', 'False', 0]].forEach(function (opt) {
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'tile k' + opt[3];
     b.innerHTML = '<span class="sh" aria-hidden="true">' + (opt[0] ? '✓' : '✗') + '</span>' +

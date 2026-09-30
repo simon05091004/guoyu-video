@@ -16,7 +16,7 @@
 ## 第六課〈珍珠奶茶〉搶答遊戲
 
 [`bubble-tea/`](bubble-tea/) 是六上第六課的中英雙語搶答遊戲（Kahoot 風格）：平板掃 QR code 就能玩，
-不用 App、不用登入、不用伺服器。24 題含排序題與配對題，每題中英文並列，並為印尼籍學生附印尼語提示。
+不用 App、不用登入、不用伺服器。21 題含排序題與配對題，每題中英文並列。
 老師投影 [`bubble-tea/host.html`](bubble-tea/host.html) 顯示 QR code，用法見 [`bubble-tea/README.md`](bubble-tea/README.md)。
 另外可選擇性開啟**全班即時排行榜**（Firebase Realtime Database，約五分鐘設定；不設定就是單機模式，功能不受影響）。
 
