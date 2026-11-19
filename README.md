@@ -20,6 +20,13 @@
 老師投影 [`bubble-tea/host.html`](bubble-tea/host.html) 顯示 QR code，用法見 [`bubble-tea/README.md`](bubble-tea/README.md)。
 另外可選擇性開啟**全班即時排行榜**（Firebase Realtime Database，約五分鐘設定；不設定就是單機模式，功能不受影響）。
 
+## 第八課〈狐假虎威〉字音字形搶答
+
+[`fox-tiger/`](fox-tiger/) 是六上第八課的字音字形搶答，玩法同上（掃 QR code、可開全班即時排行榜）。
+34 題、八關：第一到第七關對照課本「字音字形」的 ①～⑦（寓遇、赫嚇、遂逐、諷楓、蔽幣弊、妨仿彷訪、誘透），
+第八關綜合找錯字。題型有看注音選國字、看國字選注音、配對、找錯字，答案用大字楷書顯示。
+老師投影 [`fox-tiger/host.html`](fox-tiger/host.html)，說明見 [`fox-tiger/README.md`](fox-tiger/README.md)。
+
 ## 課次注意事項
 
 - 六上（第十一冊）12 課。**115 學年度第十二課由〈祕密花園〉換成〈橘子〉**，其餘與 114 學年度相同。

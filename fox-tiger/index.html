@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="第八課〈狐假虎威〉字音字形搶答遊戲（中英雙語）：平板掃 QR code 就能玩。">
+<meta name="theme-color" content="#F4EEE2">
+<title>狐假虎威 字音字形 · Sounds &amp; Shapes Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root{
+  --bg:#F4EEE2; --surface:#FFFCF6; --sunk:#ECE3D3;
+  --line:#DCCDB4; --line-soft:#E7DCC8;
+  --ink:#231A12; --ink2:#66574A; --ink3:#958574;
+  --brand:#A8441A; --brand-ink:#FFF7EE;
+  --kai:"LXGW WenKai TC","BiauKai","DFKai-SB","標楷體","Kaiti TC","STKaiti","Noto Serif TC",serif;
+  --a:#D64B45; --b:#2F7CA8; --c:#C98217; --d:#3F9169;
+  --good:#2E7D4F; --good-bg:#E4F2E7; --good-line:#BFDECB;
+  --bad:#C0392B;  --bad-bg:#FBE9E6;  --bad-line:#EFCCC5;
+  --shadow:0 1px 2px rgba(42,29,18,.07), 0 6px 18px rgba(42,29,18,.07);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#16110D; --surface:#211913; --sunk:#1B140F;
+  --line:#3A2B20; --line-soft:#2B2018;
+  --ink:#F2E8DB; --ink2:#B8A795; --ink3:#8B7B6B;
+  --brand:#F0A066; --brand-ink:#2A170A;
+  --a:#E4675F; --b:#5AA3CC; --c:#D9A33F; --d:#5CB588;
+  --good:#7ED3A0; --good-bg:#16291D; --good-line:#2A4633;
+  --bad:#F08C7E;  --bad-bg:#2C1714;  --bad-line:#4B2A24;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.3);
+}}
+:root[data-theme="dark"]{
+  --bg:#16110D; --surface:#211913; --sunk:#1B140F;
+  --line:#3A2B20; --line-soft:#2B2018;
+  --ink:#F2E8DB; --ink2:#B8A795; --ink3:#8B7B6B;
+  --brand:#F0A066; --brand-ink:#2A170A;
+  --a:#E4675F; --b:#5AA3CC; --c:#D9A33F; --d:#5CB588;
+  --good:#7ED3A0; --good-bg:#16291D; --good-line:#2A4633;
+  --bad:#F08C7E;  --bad-bg:#2C1714;  --bad-line:#4B2A24;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0; min-height:100%; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%; touch-action:manipulation;
+}
+.serif{font-family:"Noto Serif TC",Georgia,serif}
+.kai{font-family:var(--kai)}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:0;background:none}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:8px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px calc(32px + env(safe-area-inset-bottom))}
+.screen{display:none}
+.screen.on{display:block}
+.en{color:var(--ink2);font-size:.86em;line-height:1.45;font-weight:400}
+.ba{color:var(--brand);font-size:.84em;font-weight:500}
+.hide{display:none !important}
+
+/* ---------- shared bits ---------- */
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:16px;box-shadow:var(--shadow)}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+  background:var(--sunk);border:1px solid var(--line-soft);font-size:13px;font-weight:500;color:var(--ink2)
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:56px;padding:14px 26px;border-radius:14px;font-weight:700;font-size:17px;
+  background:var(--brand);color:var(--brand-ink);box-shadow:var(--shadow);
+  transition:transform .08s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn.wide{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.center{text-align:center}
+
+/* ---------- home ---------- */
+.hero{padding:34px 0 8px;text-align:center}
+.boba{font-size:54px;line-height:1;margin-bottom:10px}
+h1{margin:0;font-family:var(--kai);font-weight:700;font-size:clamp(30px,7.5vw,44px);line-height:1.15}
+h1 .sub{display:block;font-family:inherit;font-size:.5em;font-weight:700;color:var(--ink2);margin-top:8px;letter-spacing:.01em}
+.lesson{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:14px}
+.block{margin-top:22px;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line-soft);box-shadow:var(--shadow)}
+.block h2{margin:0 0 4px;font-size:17px;font-weight:700}
+.block h2 .en{display:block}
+label.fld{display:block;margin-top:14px}
+label.fld span{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+input[type=text]{
+  width:100%;min-height:56px;padding:12px 16px;font:inherit;border-radius:12px;
+  border:1.5px solid var(--line);background:var(--sunk);color:var(--ink)
+}
+.avatars{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.av{width:52px;height:52px;border-radius:14px;font-size:26px;display:grid;place-items:center;
+  background:var(--sunk);border:2px solid transparent}
+.av[aria-pressed=true]{border-color:var(--brand);background:var(--surface)}
+.rounds{display:grid;gap:10px;margin-top:12px}
+.rd{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px 16px;
+  border-radius:14px;background:var(--sunk);border:1.5px solid var(--line-soft);
+}
+.rd:active{transform:translateY(1px)}
+.rd .no{
+  flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  font-weight:900;font-size:17px;background:var(--brand);color:var(--brand-ink)
+}
+.rd .tx{flex:1;min-width:0}
+.rd .tx b{display:block;font-size:16.5px}
+.rd .ct{flex:0 0 auto;font-size:13px;color:var(--ink3);font-weight:600}
+.rd.all{background:var(--brand);border-color:var(--brand)}
+.rd.all .tx b,.rd.all .ct{color:var(--brand-ink)}
+.rd.all .tx .en{color:var(--brand-ink);opacity:.8}
+.rd.all .no{background:rgba(255,255,255,.22);color:var(--brand-ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tg{
+  display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;
+  background:var(--sunk);border:1.5px solid var(--line-soft);font-size:14px;font-weight:600;min-height:44px
+}
+.tg[aria-pressed=true]{background:var(--surface);border-color:var(--brand);color:var(--brand)}
+.foot{margin-top:26px;font-size:13px;color:var(--ink3);text-align:center;line-height:1.7}
+.foot a{color:var(--brand)}
+
+/* ---------- play: top bar ---------- */
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 8px}
+.barrow{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.barrow .who{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barrow .sp{flex:1}
+.score{font-variant-numeric:tabular-nums;font-weight:900;color:var(--brand);font-size:18px}
+.mini{
+  min-height:40px;padding:7px 12px;border-radius:999px;background:var(--sunk);
+  border:1.5px solid var(--line-soft);font-size:13.5px;font-weight:700;color:var(--ink2)
+}
+.mini[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+/* live room */
+.roomchip{display:flex;justify-content:center;margin:0 0 4px}
+.roomchip span{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;
+  background:var(--sunk);border:1px solid var(--line-soft);font-size:13.5px;font-weight:600;color:var(--ink2)}
+.roomchip b{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;color:var(--brand)}
+#p-rank{font-variant-numeric:tabular-nums}
+@media (max-width:460px){ .barrow .who{display:none} }
+.track{height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;margin-top:9px}
+.track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s ease}
+.timer{display:flex;align-items:center;gap:8px;margin-top:10px}
+.tbar{flex:1;height:14px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--d);border-radius:99px}
+.tbar.warn i{background:var(--a)}
+.tnum{font-variant-numeric:tabular-nums;font-weight:900;font-size:17px;min-width:2.4em;text-align:right}
+.tbar.warn ~ .tnum{color:var(--a)}
+
+/* ---------- play: question ---------- */
+.qhead{margin:16px 0 14px;text-align:center}
+.qtag{display:inline-flex;gap:8px;align-items:center;font-size:12.5px;letter-spacing:.06em;
+  color:var(--ink3);font-weight:600;text-transform:uppercase;margin-bottom:10px}
+.qzh{font-family:var(--kai);font-weight:700;font-size:clamp(21px,4.6vw,30px);line-height:1.35;margin:0}
+.qen{margin:8px 0 0;color:var(--ink2);font-size:clamp(14.5px,3vw,17px);line-height:1.45}
+.qba{margin:8px 0 0;color:var(--brand);font-size:14.5px;font-weight:500}
+body.en-first .qzh{font-family:"Noto Sans TC",sans-serif;font-weight:500;font-size:clamp(15px,3vw,17.5px);color:var(--ink2);order:2}
+body.en-first .qen{font-family:"Noto Serif TC",Georgia,serif;font-weight:700;color:var(--ink);font-size:clamp(20px,4.4vw,28px);line-height:1.35;order:1;margin:0}
+body.en-first .qhead{display:flex;flex-direction:column}
+body.en-first .qtag{order:0;justify-content:center}
+body.en-first .qba{order:3}
+
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tiles.two{grid-template-columns:1fr 1fr}
+@media (max-width:560px){ .tiles{grid-template-columns:1fr} }
+.tile{
+  display:flex;align-items:center;gap:14px;text-align:left;min-height:88px;padding:16px 18px;
+  border-radius:16px;color:#fff;font-weight:700;font-size:18px;line-height:1.35;
+  box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .08s ease,opacity .2s ease;
+}
+.tile:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tile .sh{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;font-size:19px;
+  background:rgba(255,255,255,.22);border-radius:9px}
+.tile .tx{flex:1;min-width:0}
+.tile .en{color:rgba(255,255,255,.88);font-size:.8em;display:block;margin-top:3px}
+.tile.k0{background:var(--a)} .tile.k1{background:var(--b)}
+.tile.k2{background:var(--c)} .tile.k3{background:var(--d)}
+.tile[disabled]{cursor:default}
+.tiles.locked .tile{opacity:.4}
+.tiles.locked .tile.pick{opacity:1;outline:4px solid var(--ink);outline-offset:2px}
+.tiles.locked .tile.right{opacity:1}
+.tiles.locked .tile.right::after{content:"✓";margin-left:auto;font-size:26px}
+
+/* order + match */
+.steps{display:grid;gap:10px}
+.step{
+  display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;min-height:72px;
+  border-radius:14px;background:var(--surface);border:2px solid var(--line);font-weight:600;font-size:16.5px
+}
+.step .nu{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--sunk);color:var(--ink3);font-weight:900;font-size:15px}
+.step[aria-pressed=true]{border-color:var(--brand);background:var(--sunk)}
+.step[aria-pressed=true] .nu{background:var(--brand);color:var(--brand-ink)}
+.step.ok{border-color:var(--good);background:var(--good-bg)}
+.step.no{border-color:var(--bad);background:var(--bad-bg)}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;align-items:start}
+.pairs .col{display:grid;gap:10px}
+.pairs h3{margin:0 0 2px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.pc{
+  display:flex;align-items:center;gap:10px;text-align:left;padding:13px 14px;min-height:68px;
+  border-radius:14px;background:var(--surface);border:2px solid var(--line);font-weight:600;font-size:16px
+}
+.pc .dot{flex:0 0 auto;width:14px;height:14px;border-radius:50%;background:var(--sunk);border:1px solid var(--line)}
+.pc[aria-pressed=true]{border-color:var(--brand)}
+.pc.p0 .dot{background:var(--a)} .pc.p1 .dot{background:var(--b)} .pc.p2 .dot{background:var(--c)} .pc.p3 .dot{background:var(--d)}
+.pc.p0,.pc.p1,.pc.p2,.pc.p3{border-style:dashed}
+.pc.ok{border-color:var(--good);background:var(--good-bg);border-style:solid}
+.pc.no{border-color:var(--bad);background:var(--bad-bg);border-style:solid}
+/* answer cards follow the same language order as the question stem */
+.tile .tx,.step .tx,.pc .tx{display:flex;flex-direction:column;min-width:0}
+.tile .tx .zh{font-size:18px;font-weight:700;color:#fff}
+.tile .tx .en{font-size:14.4px;font-weight:400;color:rgba(255,255,255,.88);margin-top:3px}
+body.en-first .tile .tx .zh{order:2;font-size:14.4px;font-weight:400;color:rgba(255,255,255,.88);margin-top:3px}
+body.en-first .tile .tx .en{order:1;font-size:18px;font-weight:700;color:#fff;margin-top:0}
+.step .tx .zh,.pc .tx .zh{font-weight:700}
+body.en-first .step .tx .zh,body.en-first .pc .tx .zh{order:2;font-weight:400;font-size:.86em;color:var(--ink2);margin-top:3px}
+body.en-first .step .tx .en,body.en-first .pc .tx .en{order:1;font-weight:700;font-size:1em;color:var(--ink)}
+
+/* 字音字形：答案是單一個字、注音或短詞時，用大字楷書，看得清楚筆畫 */
+.tiles.glyph .tile{justify-content:flex-start;min-height:96px}
+.tiles.glyph .tile .tx .zh,
+body.en-first .tiles.glyph .tile .tx .zh{
+  order:0;font-family:var(--kai);font-weight:700;font-size:clamp(34px,8vw,44px);
+  line-height:1.15;color:#fff;margin-top:0;letter-spacing:.04em}
+.tiles.glyph .tile .tx .zh.zy,
+body.en-first .tiles.glyph .tile .tx .zh.zy{font-size:clamp(28px,6.4vw,36px);letter-spacing:.08em}
+.tiles.glyph .tile .tx .zh.wd,
+body.en-first .tiles.glyph .tile .tx .zh.wd{font-size:clamp(28px,6.4vw,36px);letter-spacing:.12em}
+.pairs.glyph .col:last-child .pc .tx .zh,
+body.en-first .pairs.glyph .col:last-child .pc .tx .zh{
+  order:0;font-family:var(--kai);font-weight:700;font-size:34px;line-height:1.1;color:var(--ink);margin-top:0}
+.pairs.glyph .col:first-child .pc .tx .zh,
+body.en-first .pairs.glyph .col:first-child .pc .tx .zh{font-family:var(--kai);font-size:22px;letter-spacing:.06em}
+
+.helper{margin:14px 0 10px;font-size:14.5px;color:var(--ink2);text-align:center}
+.submit{margin-top:14px}
+
+/* ---------- feedback ---------- */
+.fb{margin-top:18px;padding:20px;border-radius:18px;border:2px solid;box-shadow:var(--shadow)}
+.fb.good{background:var(--good-bg);border-color:var(--good-line)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad-line)}
+.fbtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fbmark{font-size:34px;line-height:1}
+.fbver{font-family:"Noto Serif TC",Georgia,serif;font-weight:900;font-size:24px}
+.fb.good .fbver{color:var(--good)} .fb.bad .fbver{color:var(--bad)}
+.fbpts{margin-left:auto;font-weight:900;font-size:20px;font-variant-numeric:tabular-nums}
+.fbans{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.fbans b{font-size:17px}
+.fbwhy{margin-top:10px;font-size:15.5px;line-height:1.6}
+.fbwhy .en{display:block;margin-top:4px}
+.srcref{margin-top:10px;font-size:13px;color:var(--ink3);font-weight:600}
+
+/* ---------- done ---------- */
+.big{font-family:"Noto Serif TC",Georgia,serif;font-weight:900;font-size:clamp(44px,13vw,74px);line-height:1;color:var(--brand);font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:18px}
+.stat{padding:14px;border-radius:14px;background:var(--sunk);text-align:center}
+.stat b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--ink2)}
+.rbars{display:grid;gap:9px;margin-top:8px}
+.rb{display:flex;align-items:center;gap:10px;font-size:14px}
+.rb .nm{flex:0 0 40%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.rb .ln{flex:1;height:10px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.rb .ln i{display:block;height:100%;background:var(--d);border-radius:99px}
+.rb .vl{flex:0 0 auto;font-variant-numeric:tabular-nums;color:var(--ink2);font-weight:600}
+.review{display:grid;gap:10px;margin-top:8px}
+.rv{padding:14px;border-radius:14px;background:var(--sunk);border-left:4px solid var(--bad)}
+.rv.ok{border-left-color:var(--good)}
+.rv .q{font-weight:700;font-size:15.5px}
+.rv .q .en{display:block;font-weight:400;margin-top:2px}
+.rv .aa{margin-top:6px;font-size:14.5px}
+.rv .aa .yours{color:var(--bad)}
+.rv .aa .right{color:var(--good);font-weight:700}
+.lb{display:grid;gap:8px;margin-top:8px}
+.lbi{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:var(--sunk);font-size:15px}
+.lbi .rk{width:26px;font-weight:900;color:var(--ink3);font-variant-numeric:tabular-nums}
+.lbi .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.lbi .sc{font-weight:900;font-variant-numeric:tabular-nums}
+.lbi.me{background:var(--surface);border:1.5px solid var(--brand)}
+@media print{ .bar,.btn,.tg{display:none !important} body{background:#fff} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===================== HOME ===================== -->
+<section class="screen on" id="s-home">
+  <div class="hero">
+    <div class="boba" aria-hidden="true">🦊🐯</div>
+    <div class="lesson">第八課 · Lesson 8 · 狐假虎威</div>
+    <h1>字音字形大挑戰<span class="sub">Sounds &amp; Shapes Quiz</span></h1>
+  </div>
+  <p class="roomchip hide" id="roomchip"></p>
+
+  <div class="block">
+    <h2>你是誰？<span class="en">Who's playing?</span></h2>
+    <label class="fld">
+      <span>暱稱 Nickname <span class="en" style="font-weight:400">（可以用綽號 · any nickname is fine）</span></span>
+      <input type="text" id="nick" maxlength="14" autocomplete="off" placeholder="例 e.g. 阿明 / Rina" enterkeyhint="done">
+    </label>
+    <div class="fld"><span style="display:block;font-size:14px;font-weight:600;margin-bottom:6px">選一個頭像 Pick an avatar</span>
+      <div class="avatars" id="avatars" role="group" aria-label="頭像 Avatar"></div>
+    </div>
+    <div class="toggles">
+      <button class="tg" id="tg-lang" aria-pressed="false">🔤 <span>英語在前 English first</span></button>
+      <button class="tg" id="tg-ba" aria-pressed="true">💬 <span>母語提示 First-language hint</span></button>
+      <button class="tg" id="tg-snd" aria-pressed="true">🔊 <span>音效 Sound</span></button>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>選一關開始 <span class="en">Pick a round</span></h2>
+    <div class="rounds" id="rounds"></div>
+  </div>
+
+  <p class="foot">
+    七組字對照課本「字音字形」的 ①～⑦，最後一關是綜合挑戰。<br>
+    <span class="en">Rounds 1–7 follow the seven groups in the textbook; round 8 mixes them all.</span><br>
+    每題答對得分，答得越快分數越高，連續答對還有連勝加分。<br>
+    <span class="en">Faster correct answers score more. Answer streaks earn a bonus.</span><br>
+    <a href="host.html">👩‍🏫 老師投影頁（QR code）Teacher screen</a>
+  </p>
+</section>
+
+<!-- ===================== PLAY ===================== -->
+<section class="screen" id="s-play">
+  <div class="bar">
+    <div class="barrow">
+      <span class="who" id="p-who">🦊 玩家</span>
+      <span class="sp"></span>
+      <button class="mini" id="mini-lang" aria-pressed="false" title="英語在前 English first">中／EN</button>
+      <button class="mini" id="mini-snd" aria-pressed="true" title="音效 Sound">🔊</button>
+      <span class="pill hide" id="p-rank"></span>
+      <span class="pill" id="p-count">1 / 34</span>
+      <span class="score" id="p-score">0</span>
+    </div>
+    <div class="track"><i id="p-track" style="width:0%"></i></div>
+    <div class="timer" id="p-timerwrap">
+      <div class="tbar" id="p-tbar"><i style="width:100%"></i></div>
+      <div class="tnum" id="p-tnum">20</div>
+    </div>
+  </div>
+
+  <div class="qhead">
+    <div class="qtag" id="q-tag"></div>
+    <p class="qzh" id="q-zh"></p>
+    <p class="qen" id="q-en"></p>
+    <p class="qba hide" id="q-ba"></p>
+  </div>
+
+  <div id="q-body"></div>
+  <div id="q-fb"></div>
+  <div class="submit hide" id="q-next"><button class="btn wide" id="btn-next">下一題 Next →</button></div>
+</section>
+
+<!-- ===================== DONE ===================== -->
+<section class="screen" id="s-done">
+  <div class="hero">
+    <div class="boba" id="d-emoji" aria-hidden="true">🎉</div>
+    <div class="lesson" id="d-round"></div>
+    <div class="big" id="d-score">0</div>
+    <h1 style="font-size:clamp(20px,5vw,28px);margin-top:8px" id="d-rank"></h1>
+  </div>
+
+  <div class="stats" id="d-stats"></div>
+
+  <div class="block">
+    <h2>每一關表現 <span class="en">How each round went</span></h2>
+    <div class="rbars" id="d-rbars"></div>
+  </div>
+
+  <div class="block">
+    <h2>複習：題目與答案 <span class="en">Review: questions and answers</span></h2>
+    <div class="review" id="d-review"></div>
+  </div>
+
+  <div class="block hide" id="d-liveblock">
+    <h2>全班即時排行榜 <span class="en">Live class leaderboard</span></h2>
+    <div class="lb" id="d-live"></div>
+  </div>
+
+  <div class="block">
+    <h2>這台平板的排行榜 <span class="en">Best scores on this tablet</span></h2>
+    <div class="lb" id="d-lb"></div>
+  </div>
+
+  <div class="row" style="margin-top:20px">
+    <button class="btn" id="btn-again">🔁 再玩一次 Play again</button>
+    <button class="btn ghost" id="btn-home">🏠 換一關 Pick another round</button>
+  </div>
+</section>
+
+</div>
+<script src="firebase-config.js"></script>
+<script src="sync.js"></script>
+<script>
+"use strict";
+/* ============================================================
+   第八課〈狐假虎威〉字音字形搶答 · Lesson 8 sounds & shapes quiz
+   題目出自課本「字音字形」的七組字（①～⑦）；src 欄位標出是哪一組，
+   方便老師對照課本。
+   ============================================================ */
+
+/* ===== 課程內容開始 · LESSON CONTENT START =====
+   換一課時，只要改到「LESSON CONTENT END」為止的這一段：
+   ROUNDS（關卡）、QS（題庫）、AVATARS（頭像）、GRADES（等級稱號）、TIME（作答秒數）。
+   下面的遊戲引擎、QR 產生器與即時排行榜都不必動。
+
+   字音字形題的寫法：
+   - 選項可以只寫字串，例如 o:['寓','遇','喻','預']（第一個是答案，畫面上會打散）。
+   - big:'zi' 選項是單一個字，用大字楷書顯示；big:'zy' 選項是注音；big:'wd' 選項是詞語。
+   - 題幹裡用注音代替要寫的字，例如「ㄩˋ言」；考讀音就寫「恐嚇」的「嚇」。 */
+var ROUNDS = [
+  { id: 1, zh: '寓・遇',         en: 'Fable or meet?',              emoji: '📜' },
+  { id: 2, zh: '赫・嚇',         en: 'Glory or fright?',            emoji: '😱' },
+  { id: 3, zh: '遂・逐',         en: 'Smoothly or chase?',          emoji: '🏃' },
+  { id: 4, zh: '諷・楓',         en: 'Mock or maple?',              emoji: '🍁' },
+  { id: 5, zh: '蔽・幣・弊',     en: 'Cover, coin or wrongdoing?',  emoji: '🪙' },
+  { id: 6, zh: '妨・仿・彷・訪', en: 'Hinder, copy, seem or visit?', emoji: '🔍' },
+  { id: 7, zh: '誘・透',         en: 'Lure or pass through?',       emoji: '🪟' },
+  { id: 8, zh: '綜合挑戰',       en: 'Mixed challenge',             emoji: '🐯' }
+];
+
+var QS = [
+/* ---------- 第一關 ① 寓・遇（都唸 ㄩˋ） ---------- */
+{ r:1, t:'mc', big:'zi', src:'① 寓・遇 · 字形',
+  zh:'「ㄩˋ言」是用小故事說出大道理的文章。「ㄩˋ」要寫哪一個字？',
+  en:'A yùyán is a short story that teaches a lesson (a fable). Which character is yù?',
+  o:['寓','遇','喻','預'],
+  why:['寓有「寄託」的意思，寓言就是把道理寄託在故事裡。〈狐假虎威〉就是一則寓言。',
+       '寓 means "to put something inside". A fable (寓言) puts a lesson inside a story — just like 狐假虎威.'] },
+
+{ r:1, t:'mc', big:'zi', src:'① 寓・遇 · 字形',
+  zh:'「待ㄩˋ」是對待人的方式，例如薪水和福利。「ㄩˋ」要寫哪一個字？',
+  en:'dàiyù is how someone is treated, such as their pay and benefits. Which character is yù?',
+  o:['遇','寓','育','玉'],
+  why:['遇是「辵（辶）」部，和走路、碰到人有關：相遇、待遇、禮遇。',
+       '遇 has the walking radical 辶 — it is about meeting and treating people: 待遇, 禮遇.'] },
+
+{ r:1, t:'mc', big:'zi', src:'① 寓・遇 · 字形',
+  zh:'讀完〈狐假虎威〉，想一想故事的「ㄩˋ意」：它想告訴我們什麼道理？「ㄩˋ」要寫哪一個字？',
+  en:'After reading 狐假虎威, think about its yùyì — the lesson the story is telling us. Which character is yù?',
+  o:['寓','遇','預','玉'],
+  why:['寓意＝寄託在故事裡的意思，和「寓言」是同一個「寓」。',
+       '寓意 is the meaning put inside a story — the same 寓 as in 寓言.'] },
+
+{ r:1, t:'tf', src:'① 寓・遇 · 字形', ans:false,
+  zh:'「禮遇」是很有禮貌地對待別人，所以要寫成「禮寓」。',
+  en:'lǐyù means treating someone with great courtesy, so it is written 禮寓.',
+  why:['錯。對待別人要用「遇」（辵部）：禮遇、待遇。「寓」是寄託，用在寓言、寓意。',
+       'False. Treating people uses 遇 (walking radical 辶): 禮遇, 待遇. 寓 means "to put inside" — 寓言, 寓意.'] },
+
+/* ---------- 第二關 ② 赫・嚇（嚇有兩種讀音） ---------- */
+{ r:2, t:'mc', big:'zi', src:'② 赫・嚇 · 字形',
+  zh:'「顯ㄏㄜˋ」是名聲、地位很高很響亮。「ㄏㄜˋ」要寫哪一個字？',
+  en:'xiǎnhè means famous and powerful. Which character is hè?',
+  o:['赫','嚇','賀','鶴'],
+  why:['赫是兩個「赤」並排，赤是火紅色，所以赫有光明、盛大的意思：顯赫、赫赫有名。',
+       '赫 is two 赤 (fiery red) side by side, so it means bright and grand: 顯赫, 赫赫有名 (very famous).'] },
+
+{ r:2, t:'mc', big:'zy', src:'② 赫・嚇 · 字音',
+  zh:'「驚嚇」的「嚇」，要怎麼唸？',
+  en:'How is 嚇 read in 驚嚇 (to give someone a fright)?',
+  o:['ㄒㄧㄚˋ','ㄏㄜˋ','ㄒㄧㄚˊ','ㄏㄜˊ'],
+  why:['讓人害怕、嚇一跳，唸 ㄒㄧㄚˋ：驚嚇、嚇人。',
+       'When it means to scare someone, 嚇 is read ㄒㄧㄚˋ: 驚嚇, 嚇人.'] },
+
+{ r:2, t:'mc', big:'zy', src:'② 赫・嚇 · 字音',
+  zh:'「恐嚇」的「嚇」，要怎麼唸？',
+  en:'How is 嚇 read in 恐嚇 (to threaten)?',
+  o:['ㄏㄜˋ','ㄒㄧㄚˋ','ㄏㄜˊ','ㄒㄧㄚˊ'],
+  why:['用威脅的手段讓人害怕、不敢做，唸 ㄏㄜˋ：恐嚇、嚇阻。',
+       'When it means to threaten or warn someone off, 嚇 is read ㄏㄜˋ: 恐嚇, 嚇阻.'] },
+
+{ r:2, t:'mc', big:'zi', src:'② 赫・嚇 · 字形',
+  zh:'百獸看見老虎跟在狐狸後面，都被ㄒㄧㄚˋ得趕快逃走。「ㄒㄧㄚˋ」要寫哪一個字？',
+  en:'Seeing the tiger behind the fox, the animals were so xià (frightened) that they ran away. Which character is xià?',
+  o:['嚇','赫','下','夏'],
+  why:['嚇有「口」，大聲吼叫會讓人害怕；赫是兩個「赤」，是盛大、顯明，沒有害怕的意思。',
+       '嚇 has a mouth 口 — a loud roar is frightening. 赫 (two 赤) means grand and bright, not afraid.'] },
+
+/* ---------- 第三關 ③ 遂・逐 ---------- */
+{ r:3, t:'mc', big:'zy', src:'③ 遂・逐 · 字音',
+  zh:'「順遂」的「遂」，要怎麼唸？',
+  en:'How is 遂 read in 順遂 (going smoothly)?',
+  o:['ㄙㄨㄟˋ','ㄓㄨˊ','ㄙㄨㄟˊ','ㄉㄨㄟˋ'],
+  why:['遂唸 ㄙㄨㄟˋ，有順利、如願的意思：順遂、未遂。不要看成「逐」唸成 ㄓㄨˊ。',
+       '遂 is read ㄙㄨㄟˋ and means "as one wishes": 順遂, 未遂. Don’t mix it up with 逐 (ㄓㄨˊ).'] },
+
+{ r:3, t:'mc', big:'zi', src:'③ 遂・逐 · 字形',
+  zh:'「競ㄓㄨˊ」是大家互相比賽、爭著得到。「ㄓㄨˊ」要寫哪一個字？',
+  en:'jìngzhú means to compete for something. Which character is zhú?',
+  o:['逐','遂','竹','燭'],
+  why:['逐裡面是「豕」（豬），辶＋豕＝追著野豬跑，所以是追趕：追逐、競逐。「遂」的豕上面還多了兩點。',
+       'Inside 逐 is 豕 (a pig): 辶 + 豕 = chasing a wild pig, so it means to chase: 追逐, 競逐. 遂 has two extra dots on top.'] },
+
+{ r:3, t:'mc', src:'③ 遂・逐 · 課文',
+  zh:'《戰國策》原文「虎以為然，故遂與之行」，這裡的「遂」是什麼意思？',
+  en:'In the original classical text "虎以為然，故遂與之行", what does 遂 mean?',
+  o:[['於是、就','then, so'],['追趕','to chase'],['順利','smoothly'],['沒有成功','failed']],
+  why:['老虎認為狐狸說得對，「於是」就跟著牠走。文言文裡的「遂」常常當「於是、就」用。',
+       'The tiger believed the fox, so it went along with it. In classical Chinese 遂 often means "then" or "so".'] },
+
+{ r:3, t:'tf', src:'③ 遂・逐 · 語詞', ans:true,
+  zh:'「未遂」的意思是沒有達成、沒有成功，例如「心願未遂」。',
+  en:'未遂 means "not achieved", as in a wish that has not come true (心願未遂).',
+  why:['對。遂是順利、如願；「未遂」就是還沒有達成。',
+       'True. 遂 means to succeed or come true, so 未遂 means not yet achieved.'] },
+
+/* ---------- 第四關 ④ 諷・楓 ---------- */
+{ r:4, t:'mc', big:'zy', src:'④ 諷・楓 · 字音',
+  zh:'「諷刺」的「諷」，要怎麼唸？',
+  en:'How is 諷 read in 諷刺 (to mock)?',
+  o:['ㄈㄥˋ','ㄈㄥ','ㄈㄥˊ','ㄈㄥˇ'],
+  why:['諷唸第四聲 ㄈㄥˋ：諷刺、嘲諷。楓才是第一聲 ㄈㄥ。',
+       '諷 is fourth tone, ㄈㄥˋ: 諷刺, 嘲諷. It is 楓 (maple) that is first tone, ㄈㄥ.'] },
+
+{ r:4, t:'mc', big:'zy', src:'④ 諷・楓 · 字音',
+  zh:'「楓葉」的「楓」，要怎麼唸？',
+  en:'How is 楓 read in 楓葉 (maple leaf)?',
+  o:['ㄈㄥ','ㄈㄥˋ','ㄈㄥˊ','ㄈㄥˇ'],
+  why:['楓唸第一聲 ㄈㄥ，和「風」同音：楓樹、楓葉。',
+       '楓 is first tone, ㄈㄥ — the same sound as 風 (wind): 楓樹, 楓葉.'] },
+
+{ r:4, t:'mc', big:'zi', src:'④ 諷・楓 · 字形',
+  zh:'秋天到了，山上的ㄈㄥ葉都變紅了。「ㄈㄥ」要寫哪一個字？',
+  en:'In autumn the fēng leaves on the mountain turn red. Which character is fēng?',
+  o:['楓','諷','風','瘋'],
+  why:['楓是一種樹，所以是「木」部；諷是用話說，所以是「言」部。',
+       '楓 (maple) is a tree, so it has the tree radical 木. 諷 is about words, so it has the speech radical 言.'] },
+
+{ r:4, t:'mc', big:'zi', src:'④ 諷・楓 · 字形',
+  zh:'〈狐假虎威〉這則寓言，是在ㄈㄥˋ刺仗著別人勢力欺負人的人。「ㄈㄥˋ」要寫哪一個字？',
+  en:'The fable 狐假虎威 fèngcì (mocks) people who bully others with borrowed power. Which character is fèng?',
+  o:['諷','楓','鳳','奉'],
+  why:['諷刺是用話語拐個彎批評人，所以是「言」部。寓言常常用來諷刺人性的缺點。',
+       '諷刺 is criticizing with words in a roundabout way, so it has the speech radical 言. Fables often mock human faults.'] },
+
+/* ---------- 第五關 ⑤ 蔽・幣・弊（都唸 ㄅㄧˋ） ---------- */
+{ r:5, t:'match', big:'zi', src:'⑤ 蔽・幣・弊 · 字形',
+  zh:'這三個字都唸 ㄅㄧˋ。把詞語和正確的字配成一對。',
+  en:'All three are read ㄅㄧˋ. Match each word to the right character.',
+  pr:[[['蒙＿','to fool, to hide the truth'],'蔽'],
+      [['硬＿','a coin'],'幣'],
+      [['利＿','pros and cons'],'弊']],
+  why:['蔽有草字頭「艹」，草把東西遮住：蒙蔽、掩蔽。幣有「巾」，古代用布帛當錢：錢幣、硬幣。弊下面是「廾」，可以記成兩隻手做壞事：利弊、弊案。',
+       '蔽 has grass 艹 — grass covers things: 蒙蔽, 掩蔽. 幣 has cloth 巾 — long ago cloth was used as money: 錢幣, 硬幣. 弊 has 廾 (two hands) at the bottom — think "hands doing wrong": 利弊, 弊案.'] },
+
+{ r:5, t:'mc', big:'zi', src:'⑤ 蔽・幣・弊 · 字形',
+  zh:'狐狸說謊蒙ㄅㄧˋ了老虎，讓老虎以為百獸怕的是狐狸。「ㄅㄧˋ」要寫哪一個字？',
+  en:'The fox lied and méngbì (fooled) the tiger, so the tiger thought the animals feared the fox. Which character is bì?',
+  o:['蔽','弊','幣','閉'],
+  why:['蒙蔽就是遮住別人的眼睛，讓他看不清真相，所以用有草字頭「艹」的「蔽」。',
+       '蒙蔽 means covering someone’s eyes so they can’t see the truth — 蔽, with the grass radical 艹 that covers.'] },
+
+{ r:5, t:'mc', big:'zi', src:'⑤ 蔽・幣・弊 · 字形',
+  zh:'撲滿裡裝滿了一元硬ㄅㄧˋ。「ㄅㄧˋ」要寫哪一個字？',
+  en:'The piggy bank is full of one-dollar yìngbì (coins). Which character is bì?',
+  o:['幣','弊','蔽','斃'],
+  why:['和錢有關的用「幣」，下面是「巾」：錢幣、硬幣、紙幣。',
+       'Anything about money uses 幣, with cloth 巾 at the bottom: 錢幣, 硬幣, 紙幣.'] },
+
+{ r:5, t:'mc', big:'zi', src:'⑤ 蔽・幣・弊 · 字形',
+  zh:'這件貪汙ㄅㄧˋ案，終於調查清楚了。「ㄅㄧˋ」要寫哪一個字？',
+  en:'A corruption bì’àn (scandal) has finally been cleared up. Which character is bì?',
+  o:['弊','幣','蔽','必'],
+  why:['弊案是做壞事、違法的案件，用「弊」（下面是廾）。作弊、利弊也是這個字。',
+       '弊案 is a case of wrongdoing, so it uses 弊 (with 廾 at the bottom) — the same 弊 as in 作弊 (cheating) and 利弊.'] },
+
+/* ---------- 第六關 ⑥ 妨・仿・彷・訪 ---------- */
+{ r:6, t:'match', big:'zi', src:'⑥ 妨・仿・彷・訪 · 字形',
+  zh:'這四個字長得很像。把詞語和正確的字配成一對。',
+  en:'These four characters look alike. Match each word to the right character.',
+  pr:[[['不＿','might as well'],'妨'],
+      [['模＿','to imitate'],'仿'],
+      [['＿彿','as if'],'彷'],
+      [['拜＿','to pay a visit'],'訪']],
+  why:['妨是「女」部：不妨、妨害。仿是「人」部，人學人：模仿、仿造。彷是「彳」部，和「彿」是一對：彷彿。訪是「言」部，要開口說話：拜訪、訪問。',
+       '妨 has 女: 不妨, 妨害. 仿 has 人 — a person copying a person: 模仿, 仿造. 彷 has 彳 and pairs with 彿: 彷彿 (as if). 訪 has 言 — visiting means talking: 拜訪, 訪問.'] },
+
+{ r:6, t:'mc', big:'zi', src:'⑥ 妨・仿・彷・訪 · 字音',
+  zh:'哪一個字的讀音和其他三個「不一樣」？',
+  en:'Which character is read differently from the other three?',
+  o:['妨','仿','彷','訪'],
+  why:['妨唸第二聲 ㄈㄤˊ；仿、彷、訪都唸第三聲 ㄈㄤˇ。',
+       '妨 is second tone, ㄈㄤˊ. 仿, 彷 and 訪 are all third tone, ㄈㄤˇ.'] },
+
+{ r:6, t:'mc', big:'zi', src:'⑥ 妨・仿・彷・訪 · 字形',
+  zh:'你不ㄈㄤˊ先試試看，說不定會成功。「ㄈㄤˊ」要寫哪一個字？',
+  en:'You bùfáng (might as well) give it a try — it might work. Which character is fáng?',
+  o:['妨','防','房','仿'],
+  why:['妨是阻礙的意思（妨害）；「不妨」就是沒有妨礙、可以試試看。',
+       '妨 means to get in the way (妨害), so 不妨 means "no harm in trying".'] },
+
+{ r:6, t:'mc', big:'zi', src:'⑥ 妨・仿・彷・訪 · 字形',
+  zh:'這幅畫是ㄈㄤˇ造的，不是真品。「ㄈㄤˇ」要寫哪一個字？',
+  en:'This painting is fǎngzào (a copy), not the real thing. Which character is fǎng?',
+  o:['仿','彷','訪','紡'],
+  why:['仿是「人」部，照著別人的樣子做：模仿、仿造。「彷」只用在「彷彿」。',
+       '仿 has the person radical 人 — doing it the way someone else did: 模仿, 仿造. 彷 is only used in 彷彿.'] },
+
+{ r:6, t:'mc', big:'zi', src:'⑥ 妨・仿・彷・訪 · 字形',
+  zh:'記者到學校ㄈㄤˇ問校長。「ㄈㄤˇ」要寫哪一個字？',
+  en:'A reporter came to the school to fǎngwèn (interview) the principal. Which character is fǎng?',
+  o:['訪','仿','彷','紡'],
+  why:['訪是「言」部，拜訪、訪問都要開口和人說話。',
+       '訪 has the speech radical 言 — visiting and interviewing both mean talking with people.'] },
+
+/* ---------- 第七關 ⑦ 誘・透 ---------- */
+{ r:7, t:'mc', big:'zy', src:'⑦ 誘・透 · 字音',
+  zh:'「引誘」的「誘」，要怎麼唸？',
+  en:'How is 誘 read in 引誘 (to lure)?',
+  o:['ㄧㄡˋ','ㄒㄧㄡˋ','ㄊㄡˋ','ㄧㄡˇ'],
+  why:['誘唸 ㄧㄡˋ。右邊雖然是「秀」，但不唸 ㄒㄧㄡˋ。',
+       '誘 is read ㄧㄡˋ. It has 秀 on the right, but it is not read ㄒㄧㄡˋ.'] },
+
+{ r:7, t:'mc', big:'zi', src:'⑦ 誘・透 · 字形',
+  zh:'這件衣服很ㄊㄡˋ氣，穿起來很涼快。「ㄊㄡˋ」要寫哪一個字？',
+  en:'This shirt is very tòuqì (breathable) and cool to wear. Which character is tòu?',
+  o:['透','誘','秀','投'],
+  why:['透是「辵（辶）」部，有穿過去的意思：光穿過去是透明，空氣穿過去是透氣。',
+       '透 has the walking radical 辶 — to pass through: light passes through (透明), air passes through (透氣).'] },
+
+{ r:7, t:'mc', big:'zi', src:'⑦ 誘・透 · 字形',
+  zh:'老師很有耐心，一步一步ㄧㄡˋ導我們想出答案。「ㄧㄡˋ」要寫哪一個字？',
+  en:'Our patient teacher yòudǎo (guided) us step by step to the answer. Which character is yòu?',
+  o:['誘','透','幼','右'],
+  why:['誘是「言」部，用話語一步步引導、吸引人：誘導、引誘。',
+       '誘 has the speech radical 言 — leading someone on with words: 誘導, 引誘.'] },
+
+{ r:7, t:'tf', src:'⑦ 誘・透 · 字音', ans:false,
+  zh:'「誘」和「透」裡面都有「秀」，所以兩個字讀音一樣。',
+  en:'誘 and 透 both contain 秀, so they are read the same way.',
+  why:['錯。誘唸 ㄧㄡˋ，透唸 ㄊㄡˋ，兩個都不唸「秀」的 ㄒㄧㄡˋ。',
+       'False. 誘 is ㄧㄡˋ and 透 is ㄊㄡˋ — and neither is read like 秀 (ㄒㄧㄡˋ).'] },
+
+/* ---------- 第八關 綜合挑戰（①～⑦ 混合） ---------- */
+{ r:8, t:'mc', big:'wd', src:'綜合 · 找錯字 ⑤',
+  zh:'下面哪一個詞語有「錯字」？',
+  en:'Which word has a wrong character in it?',
+  o:['蒙弊','錢幣','待遇','透明'],
+  why:['「蒙蔽」是遮住真相，要用有草字頭「艹」的「蔽」，寫成「蒙弊」就錯了。',
+       '蒙蔽 (to fool) is about covering the truth, so it needs 蔽 with the grass radical 艹. 蒙弊 is wrong.'] },
+
+{ r:8, t:'mc', big:'wd', src:'綜合 · 找錯字 ⑥',
+  zh:'下面哪一個詞語有「錯字」？',
+  en:'Which word has a wrong character in it?',
+  o:['拜仿','模仿','彷彿','楓葉'],
+  why:['「拜訪」要開口說話，用「言」部的「訪」。「仿」是模仿的仿。',
+       '拜訪 (to visit) uses 訪 with 言. 仿 is the 仿 of 模仿 (to copy).'] },
+
+{ r:8, t:'mc', big:'wd', src:'綜合 · 找錯字 ②⑦',
+  zh:'下面哪一個詞語有「錯字」？',
+  en:'Which word has a wrong character in it?',
+  o:['顯嚇','誘導','嘲諷','追逐'],
+  why:['「顯赫」是名聲盛大，要用兩個「赤」的「赫」；「嚇」是害怕或威脅。',
+       '顯赫 (famous and powerful) uses 赫, made of two 赤. 嚇 is about fear or threats.'] },
+
+{ r:8, t:'mc', big:'wd', src:'綜合 · 字音 ②',
+  zh:'「嚇」有兩種唸法。哪一組的「嚇」都唸 ㄏㄜˋ？',
+  en:'嚇 has two readings. In which pair is 嚇 read ㄏㄜˋ both times?',
+  o:['恐嚇、嚇阻','驚嚇、嚇人','驚嚇、恐嚇','嚇人、嚇阻'],
+  why:['恐嚇、嚇阻是威脅，唸 ㄏㄜˋ；驚嚇、嚇人是讓人害怕，唸 ㄒㄧㄚˋ。',
+       '恐嚇 and 嚇阻 (threaten, deter) are ㄏㄜˋ; 驚嚇 and 嚇人 (scare) are ㄒㄧㄚˋ.'] },
+
+{ r:8, t:'mc', big:'wd', src:'綜合 · 字音 ①～⑦',
+  zh:'下面哪一組字，讀音「完全相同」？',
+  en:'In which group are all the characters read exactly the same?',
+  o:['蔽、幣、弊','妨、仿、訪','遂、逐','誘、透'],
+  why:['蔽、幣、弊都唸 ㄅㄧˋ。妨（ㄈㄤˊ）和仿、訪（ㄈㄤˇ）聲調不同；遂（ㄙㄨㄟˋ）和逐（ㄓㄨˊ）、誘（ㄧㄡˋ）和透（ㄊㄡˋ）都不同音。',
+       '蔽, 幣 and 弊 are all ㄅㄧˋ. 妨 (ㄈㄤˊ) has a different tone from 仿 and 訪 (ㄈㄤˇ); 遂/逐 and 誘/透 do not sound alike.'] }
+];
+
+var AVATARS = ['🦊', '🐯', '🐼', '🐻', '🐰', '🐒', '🦌', '🐗', '🐘', '🦁', '🐸', '🐢'];
+
+/* 結算時的等級稱號：[最低正確率, emoji, 中文, English]，由高到低 */
+var GRADES = [
+  [100, '🐯', '百獸之王',       'King of the beasts'],
+  [80,  '🦊', '火眼金睛',       'Sharp eyes for every stroke'],
+  [60,  '🦌', '漸入佳境',       'Getting there'],
+  [40,  '🐰', '再練一次',       'Practice once more'],
+  [0,   '📖', '回課本再看一次', 'Back to the textbook']
+];
+
+/* 每種題型的作答秒數 */
+var TIME = { mc: 20, tf: 15, order: 45, match: 45 };
+/* ===== 課程內容結束 · LESSON CONTENT END ===== */
+
+var SHAPES = ['▲', '◆', '●', '■'];
+var KEY = 'fx8';   // localStorage 前綴：同一台平板上不同課的遊戲各記各的
+
+/* 選項可以只寫字串（例如 '寓'），統一整理成 [中文, English] */
+function asPair(x) { return typeof x === 'string' ? [x, ''] : x; }
+QS.forEach(function (q) {
+  if (q.o) q.o = q.o.map(asPair);
+  if (q.it) q.it = q.it.map(asPair);
+  if (q.pr) q.pr = q.pr.map(function (p) { return [asPair(p[0]), asPair(p[1])]; });
+});
+/* 配對題的答案：「蒙＿」配「蔽」就顯示成「蒙蔽」 */
+function joinPair(l, r) { return l.indexOf('＿') >= 0 ? l.replace('＿', r) : l + ' ＋ ' + r; }
+function enSpan(en) { return en ? '<span class="en">' + esc(en) + '</span>' : ''; }
+
+/* ---------------- helpers ---------------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+function shuffle(a) {
+  a = a.slice();
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function store(key, val) {
+  try {
+    if (val === undefined) { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : null; }
+    localStorage.setItem(key, JSON.stringify(val));
+  } catch (e) { /* private mode / blocked storage — the game still works */ }
+  return null;
+}
+
+/* ---------------- sound ---------------- */
+var AC = null;
+function beep(freqs, dur, vol) {
+  if (!S.snd) return;
+  try {
+    if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)();
+    var t = AC.currentTime;
+    freqs.forEach(function (f, i) {
+      var o = AC.createOscillator(), g = AC.createGain();
+      o.type = 'triangle'; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t + i * dur);
+      g.gain.linearRampToValueAtTime(vol, t + i * dur + .015);
+      g.gain.exponentialRampToValueAtTime(.0001, t + i * dur + dur);
+      o.connect(g); g.connect(AC.destination);
+      o.start(t + i * dur); o.stop(t + i * dur + dur + .02);
+    });
+  } catch (e) { /* no audio available */ }
+}
+var sndRight = function () { beep([660, 880, 1170], .11, .16); };
+var sndWrong = function () { beep([210, 160], .16, .16); };
+var sndTick  = function () { beep([1000], .05, .06); };
+
+/* ---------------- state ---------------- */
+var S = {
+  name: '', av: AVATARS[0], enFirst: false, ba: true, snd: true,
+  sel: 'all', queue: [], i: 0, score: 0, streak: 0, bestStreak: 0,
+  log: [], locked: true, dur: 0, t0: 0, raf: 0, lastSec: 99, view: null
+};
+
+/* ---------------- live room (optional) ----------------
+   有設定 firebase-config.js 而且網址帶 ?room=XXXX 時才會連線。
+   連不上就靜靜退回單機模式，遊戲完全不受影響。 */
+var ROOM = (new URLSearchParams(location.search).get('room') || '')
+             .toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+var ONLINE = false, PID = null, liveTimer = 0;
+
+function playerId(room) {
+  var k = KEY + '.pid.' + room, v = store(k);
+  if (!v) { v = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4); store(k, v); }
+  return v;
+}
+
+function roomChip(state) {
+  var el = $('roomchip');
+  if (state === 'off') { el.classList.add('hide'); return; }
+  var icon = { connecting: '🟡', on: '🟢', error: '⚪️' }[state];
+  var text = { connecting: '連線中… connecting', on: '已加入 joined', error: '單機模式 offline' }[state];
+  el.classList.remove('hide');
+  el.innerHTML = '<span>' + icon + ' ' + esc(text) + ' · 房號 <b>' + esc(ROOM) + '</b></span>';
+}
+
+function roomInit() {
+  if (!(window.BTSync && BTSync.ready() && ROOM)) { roomChip('off'); return; }
+  PID = playerId(ROOM);
+  roomChip('connecting');
+  BTSync.join(ROOM).then(function () { ONLINE = true; roomChip('on'); })
+                   .catch(function () { ONLINE = false; roomChip('error'); });
+}
+
+function pushScore(finished) {
+  if (!ONLINE) return Promise.resolve();
+  var right = S.log.filter(function (l) { return l.ok; }).length;
+  return BTSync.save(PID, { n: S.name, a: S.av, s: S.score, c: right,
+                            t: S.queue.length, d: !!finished, u: Date.now() })
+    .catch(function () { ONLINE = false; roomChip('error'); });
+}
+
+function refreshRank() {
+  if (!ONLINE) return;
+  BTSync.list().then(function (rows) {
+    var k = -1;
+    rows.forEach(function (r, i) { if (r.id === PID) k = i; });
+    if (k < 0) return;
+    $('p-rank').classList.remove('hide');
+    $('p-rank').textContent = '第 ' + (k + 1) + ' / ' + rows.length + ' 名';
+  }).catch(function () {});
+}
+
+function renderLive(rows) {
+  $('d-liveblock').classList.remove('hide');
+  $('d-live').innerHTML = rows.length ? rows.slice(0, 12).map(function (r, k) {
+    return '<div class="lbi' + (r.id === PID ? ' me' : '') + '"><span class="rk">' + (k + 1) + '</span>' +
+      '<span class="nm">' + esc(r.a + ' ' + r.n) + (r.d ? ' ✓' : '') + '</span>' +
+      '<span class="sc">' + r.s + '</span></div>';
+  }).join('') : '<p class="en">還沒有其他人完成 Nobody else has finished yet.</p>';
+}
+
+function startLiveBoard() {
+  if (!ONLINE) return;
+  var tick = function () { BTSync.list().then(renderLive).catch(function () {}); };
+  tick();
+  liveTimer = setInterval(tick, 5000);
+}
+function stopLiveBoard() { if (liveTimer) { clearInterval(liveTimer); liveTimer = 0; } }
+
+/* ---------------- home ---------------- */
+function buildAvatars() {
+  var box = $('avatars');
+  box.innerHTML = '';
+  AVATARS.forEach(function (a) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'av'; b.textContent = a;
+    b.setAttribute('aria-pressed', a === S.av ? 'true' : 'false');
+    b.setAttribute('aria-label', '頭像 ' + a);
+    b.onclick = function () {
+      S.av = a; savePrefs();
+      [].forEach.call(box.children, function (c) { c.setAttribute('aria-pressed', c.textContent === a ? 'true' : 'false'); });
+    };
+    box.appendChild(b);
+  });
+}
+
+/* 關卡序號：十關以內用國字，超過就直接用數字 */
+function cnRound(id) {
+  var cn = '一二三四五六七八九十';
+  return '第' + (cn[id - 1] || id) + '關';
+}
+
+function roundBtn(sel, no, zh, en, count, primary) {
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'rd' + (primary ? ' all' : '');
+  b.innerHTML = '<span class="no">' + esc(no) + '</span>' +
+    '<span class="tx"><b>' + esc(zh) + '</b><span class="en">' + esc(en) + '</span></span>' +
+    '<span class="ct">' + count + ' 題</span>';
+  b.onclick = function () { startRound(sel); };
+  return b;
+}
+
+function buildRounds() {
+  var box = $('rounds');
+  box.innerHTML = '';
+  var param = new URLSearchParams(location.search).get('round');
+  var pre = null;
+  ROUNDS.forEach(function (r) { if (String(r.id) === param) pre = r; });
+
+  if (pre) {
+    box.appendChild(roundBtn(pre.id, pre.emoji, '開始：' + cnRound(pre.id) + ' ' + pre.zh,
+      'Start round ' + pre.id + ' · ' + pre.en, QS.filter(function (q) { return q.r === pre.id; }).length, true));
+  }
+  box.appendChild(roundBtn('all', AVATARS[0], '全部 ' + QS.length + ' 題', 'The whole lesson', QS.length, !pre));
+  ROUNDS.forEach(function (r) {
+    if (pre && pre.id === r.id) return;
+    box.appendChild(roundBtn(r.id, r.emoji, cnRound(r.id) + ' ' + r.zh, r.en,
+      QS.filter(function (q) { return q.r === r.id; }).length, false));
+  });
+  box.appendChild(roundBtn('quick', '⚡️', '快速挑戰 10 題', 'Quick 10 · random questions', 10, false));
+}
+
+function savePrefs() {
+  store(KEY + '.prefs', { name: $('nick').value.trim(), av: S.av, enFirst: S.enFirst, ba: S.ba, snd: S.snd });
+}
+function loadPrefs() {
+  var p = store(KEY + '.prefs');
+  if (!p) return;
+  if (p.name) $('nick').value = p.name;
+  if (p.av && AVATARS.indexOf(p.av) >= 0) S.av = p.av;
+  S.enFirst = !!p.enFirst; S.ba = p.ba !== false; S.snd = p.snd !== false;
+}
+function applyPrefs() {
+  document.body.classList.toggle('en-first', S.enFirst);
+  $('tg-lang').setAttribute('aria-pressed', S.enFirst ? 'true' : 'false');
+  $('tg-ba').setAttribute('aria-pressed', S.ba ? 'true' : 'false');
+  $('tg-snd').setAttribute('aria-pressed', S.snd ? 'true' : 'false');
+  // the same two switches stay reachable while playing
+  $('mini-lang').setAttribute('aria-pressed', S.enFirst ? 'true' : 'false');
+  $('mini-snd').setAttribute('aria-pressed', S.snd ? 'true' : 'false');
+  $('mini-snd').textContent = S.snd ? '🔊' : '🔇';
+}
+
+function show(id) {
+  ['s-home', 's-play', 's-done'].forEach(function (s) { $(s).classList.toggle('on', s === id); });
+  window.scrollTo(0, 0);
+}
+
+/* ---------------- round flow ---------------- */
+function startRound(sel) {
+  S.name = ($('nick').value || '').trim().slice(0, 14) || '玩家 Player';
+  savePrefs();
+  S.sel = sel;
+  if (sel === 'all') S.queue = QS.slice();
+  else if (sel === 'quick') {
+    var idx = shuffle(QS.map(function (_, i) { return i; })).slice(0, 10).sort(function (a, b) { return a - b; });
+    S.queue = idx.map(function (i) { return QS[i]; });
+  } else S.queue = QS.filter(function (q) { return q.r === sel; });
+  S.i = 0; S.score = 0; S.streak = 0; S.bestStreak = 0; S.log = [];
+  $('p-who').textContent = S.av + ' ' + S.name;
+  $('p-rank').classList.add('hide');
+  stopLiveBoard();
+  show('s-play');
+  pushScore(false);
+  renderQ();
+}
+
+function stopTimer() { S.locked = true; if (S.raf) cancelAnimationFrame(S.raf); S.raf = 0; }
+
+function startTimer(sec) {
+  S.dur = sec * 1000; S.t0 = performance.now(); S.locked = false; S.lastSec = 99;
+  $('p-tbar').classList.remove('warn');
+  tick();
+}
+function tick() {
+  var left = Math.max(0, S.dur - (performance.now() - S.t0));
+  var frac = left / S.dur;
+  $('p-tbar').querySelector('i').style.width = (frac * 100) + '%';
+  var sec = Math.ceil(left / 1000);
+  if (sec !== S.lastSec) {
+    $('p-tnum').textContent = sec;
+    if (sec <= 5 && sec > 0) { $('p-tbar').classList.add('warn'); sndTick(); }
+    S.lastSec = sec;
+  }
+  if (left <= 0) { stopTimer(); finishQ(null, true); return; }
+  S.raf = requestAnimationFrame(tick);
+}
+function timeFrac() { return Math.max(0, Math.min(1, (S.dur - (performance.now() - S.t0)) / S.dur)); }
+
+/* ---------------- render one question ---------------- */
+function renderQ() {
+  var q = S.queue[S.i];
+  var rd = ROUNDS[q.r - 1];
+  $('p-count').textContent = (S.i + 1) + ' / ' + S.queue.length;
+  $('p-score').textContent = S.score;
+  $('p-track').style.width = (S.i / S.queue.length * 100) + '%';
+  $('q-tag').innerHTML = rd.emoji + ' ' + esc(rd.zh) + ' · ' + esc(rd.en) + ' · ' + esc(q.src);
+  $('q-zh').textContent = q.zh;
+  $('q-en').textContent = q.en;
+  $('q-ba').textContent = q.ba ? '💬 ' + q.ba : '';
+  $('q-ba').classList.toggle('hide', !(q.ba && S.ba));
+  $('q-fb').innerHTML = '';
+  $('q-next').classList.add('hide');
+
+  var body = $('q-body');
+  body.innerHTML = '';
+  if (q.t === 'mc') renderMC(q, body);
+  else if (q.t === 'tf') renderTF(q, body);
+  else if (q.t === 'order') renderOrder(q, body);
+  else if (q.t === 'match') renderMatch(q, body);
+
+  window.scrollTo(0, 0);
+  startTimer(TIME[q.t]);
+}
+
+function tileEl(k, zh, en, onTap, big) {
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'tile k' + k;
+  var cls = big === 'zy' ? ' zy' : big === 'wd' ? ' wd' : '';
+  b.innerHTML = '<span class="sh" aria-hidden="true">' + SHAPES[k] + '</span>' +
+    '<span class="tx"><span class="zh' + cls + '">' + esc(zh) + '</span>' + enSpan(en) + '</span>';
+  b.onclick = onTap;
+  return b;
+}
+
+function renderMC(q, body) {
+  var order = shuffle(q.o.map(function (_, i) { return i; }));
+  S.view = { kind: 'mc', order: order };
+  var grid = document.createElement('div');
+  grid.className = 'tiles' + (q.big ? ' glyph' : '');
+  order.forEach(function (oi, k) {
+    grid.appendChild(tileEl(k, q.o[oi][0], q.o[oi][1], function () {
+      if (S.locked) return;
+      finishQ({ pick: k }, false);
+    }, q.big));
+  });
+  body.appendChild(grid);
+}
+
+function renderTF(q, body) {
+  S.view = { kind: 'tf' };
+  var grid = document.createElement('div');
+  grid.className = 'tiles two';
+  [[true, '對', 'True', 3], [false, '錯', 'False', 0]].forEach(function (opt) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tile k' + opt[3];
+    b.innerHTML = '<span class="sh" aria-hidden="true">' + (opt[0] ? '✓' : '✗') + '</span>' +
+      '<span class="tx"><span class="zh">' + opt[1] + '</span><span class="en">' + opt[2] + '</span></span>';
+    b.onclick = function () { if (!S.locked) finishQ({ pick: opt[0] }, false); };
+    grid.appendChild(b);
+  });
+  body.appendChild(grid);
+}
+
+function renderOrder(q, body) {
+  S.view = { kind: 'order', shown: shuffle(q.it.map(function (_, i) { return i; })), picked: [] };
+  var help = document.createElement('p');
+  help.className = 'helper';
+  help.innerHTML = '照順序點選（1 → 4）<span class="en">Tap them in order, 1 to 4. Tap again to undo.</span>';
+  body.appendChild(help);
+  var list = document.createElement('div');
+  list.className = 'steps'; list.id = 'orderList';
+  body.appendChild(list);
+  var sub = document.createElement('button');
+  sub.type = 'button'; sub.className = 'btn wide submit'; sub.id = 'orderSubmit'; sub.disabled = true;
+  sub.style.opacity = '.45';
+  sub.textContent = '送出 Submit';
+  sub.onclick = function () { if (!S.locked && S.view.picked.length === q.it.length) finishQ({ order: S.view.picked.slice() }, false); };
+  body.appendChild(sub);
+  paintOrder(q);
+}
+
+function paintOrder(q) {
+  var list = $('orderList'), v = S.view;
+  list.innerHTML = '';
+  v.shown.forEach(function (ii) {
+    var pos = v.picked.indexOf(ii);
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'step';
+    b.setAttribute('aria-pressed', pos >= 0 ? 'true' : 'false');
+    b.innerHTML = '<span class="nu">' + (pos >= 0 ? (pos + 1) : '·') + '</span>' +
+      '<span class="tx"><span class="zh">' + esc(q.it[ii][0]) + '</span>' + enSpan(q.it[ii][1]) + '</span>';
+    b.onclick = function () {
+      if (S.locked) return;
+      if (pos >= 0) v.picked.splice(pos, 1);
+      else v.picked.push(ii);
+      paintOrder(q);
+    };
+    list.appendChild(b);
+  });
+  var sub = $('orderSubmit');
+  var ready = v.picked.length === q.it.length;
+  sub.disabled = !ready; sub.style.opacity = ready ? '1' : '.45';
+}
+
+function renderMatch(q, body) {
+  S.view = { kind: 'match', right: shuffle(q.pr.map(function (_, i) { return i; })), pairs: {}, sel: null };
+  var help = document.createElement('p');
+  help.className = 'helper';
+  help.innerHTML = '先點左邊，再點右邊，把兩樣配成一對。<span class="en">Tap one on the left, then its partner on the right.</span>';
+  body.appendChild(help);
+  var grid = document.createElement('div');
+  grid.className = 'pairs' + (q.big ? ' glyph' : ''); grid.id = 'matchGrid';
+  body.appendChild(grid);
+  var sub = document.createElement('button');
+  sub.type = 'button'; sub.className = 'btn wide submit'; sub.id = 'matchSubmit'; sub.disabled = true;
+  sub.style.opacity = '.45';
+  sub.textContent = '送出 Submit';
+  sub.onclick = function () {
+    if (!S.locked && Object.keys(S.view.pairs).length === q.pr.length) finishQ({ pairs: S.view.pairs }, false);
+  };
+  body.appendChild(sub);
+  paintMatch(q);
+}
+
+function paintMatch(q) {
+  var v = S.view, grid = $('matchGrid');
+  grid.innerHTML = '';
+  var L = document.createElement('div'), R = document.createElement('div');
+  L.className = 'col'; R.className = 'col';
+  L.innerHTML = q.big ? '<h3>詞語 Word</h3>' : '<h3>左 Left</h3>';
+  R.innerHTML = q.big ? '<h3>字 Character</h3>' : '<h3>右 Right</h3>';
+  function card(txt, cls, onTap, pressed) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'pc ' + cls;
+    b.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    b.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="tx"><span class="zh">' +
+      esc(txt[0]) + '</span>' + enSpan(txt[1]) + '</span>';
+    b.onclick = onTap;
+    return b;
+  }
+  // colour index for a pair, by the order pairs were made
+  var made = Object.keys(v.pairs);
+  function colourOf(li) { var k = made.indexOf(String(li)); return k >= 0 ? ' p' + (k % 4) : ''; }
+  q.pr.forEach(function (p, li) {
+    L.appendChild(card(p[0], 'l' + colourOf(li), function () {
+      if (S.locked) return;
+      if (v.pairs[li] !== undefined) { delete v.pairs[li]; v.sel = null; }
+      else v.sel = (v.sel === li ? null : li);
+      paintMatch(q);
+    }, v.sel === li));
+  });
+  v.right.forEach(function (ri) {
+    var ownerL = null;
+    Object.keys(v.pairs).forEach(function (k) { if (v.pairs[k] === ri) ownerL = Number(k); });
+    R.appendChild(card(q.pr[ri][1], 'r' + (ownerL !== null ? colourOf(ownerL) : ''), function () {
+      if (S.locked) return;
+      if (ownerL !== null) { delete v.pairs[ownerL]; paintMatch(q); return; }
+      if (v.sel === null) return;
+      v.pairs[v.sel] = ri; v.sel = null;
+      paintMatch(q);
+    }, false));
+  });
+  grid.appendChild(L); grid.appendChild(R);
+  var sub = $('matchSubmit');
+  var ready = Object.keys(v.pairs).length === q.pr.length;
+  sub.disabled = !ready; sub.style.opacity = ready ? '1' : '.45';
+}
+
+/* ---------------- grade one question ---------------- */
+function markTiles(correctIdx, pickIdx) {
+  var grid = $('q-body').querySelector('.tiles');
+  if (!grid) return;
+  grid.classList.add('locked');
+  [].forEach.call(grid.children, function (c, k) {
+    c.disabled = true;
+    if (k === correctIdx) c.classList.add('right');
+    if (k === pickIdx) c.classList.add('pick');
+  });
+}
+
+function finishQ(payload, timedOut) {
+  if (S.locked && !timedOut) return;
+  var frac = timedOut ? 0 : timeFrac();
+  stopTimer();
+  var q = S.queue[S.i], v = S.view, ok = false, your = '（沒作答 no answer）', right = '';
+
+  if (q.t === 'mc') {
+    right = q.o[0][0] + (q.o[0][1] ? ' · ' + q.o[0][1] : '');
+    var ck = v.order.indexOf(0);
+    if (payload) { your = q.o[v.order[payload.pick]][0]; ok = payload.pick === ck; }
+    markTiles(ck, payload ? payload.pick : -1);
+
+  } else if (q.t === 'tf') {
+    right = q.ans ? '對 True' : '錯 False';
+    if (payload) { your = payload.pick ? '對 True' : '錯 False'; ok = payload.pick === q.ans; }
+    markTiles(q.ans ? 0 : 1, payload ? (payload.pick ? 0 : 1) : -1);
+
+  } else if (q.t === 'order') {
+    right = q.it.map(function (x) { return x[0]; }).join(' → ');
+    var pk = payload ? payload.order : v.picked;
+    ok = pk.length === q.it.length && pk.every(function (x, i) { return x === i; });
+    your = pk.length ? pk.map(function (ii) { return q.it[ii][0]; }).join(' → ') : your;
+    S.locked = true;
+    var list = $('orderList');
+    if (list) [].forEach.call(list.children, function (c, k) {
+      var ii = v.shown[k];
+      c.disabled = true;
+      c.classList.add(pk.indexOf(ii) === ii ? 'ok' : 'no');
+      c.querySelector('.nu').textContent = ii + 1;
+    });
+    var os = $('orderSubmit'); if (os) os.classList.add('hide');
+
+  } else if (q.t === 'match') {
+    right = q.pr.map(function (p) { return joinPair(p[0][0], p[1][0]); }).join('、');
+    var pr = payload ? payload.pairs : v.pairs;
+    var keys = Object.keys(pr);
+    ok = keys.length === q.pr.length && keys.every(function (k) { return pr[k] === Number(k); });
+    your = keys.length ? keys.map(function (k) { return joinPair(q.pr[k][0][0], q.pr[pr[k]][1][0]); }).join('、') : your;
+    S.locked = true;
+    var grid = $('matchGrid');
+    if (grid) [].forEach.call(grid.querySelectorAll('.pc'), function (c) { c.disabled = true; });
+    // colour left cards by whether their pairing was right
+    var lcards = grid ? grid.querySelectorAll('.col:first-child .pc') : [];
+    [].forEach.call(lcards, function (c, li) { c.classList.add(pr[li] === li ? 'ok' : 'no'); });
+    var ms = $('matchSubmit'); if (ms) ms.classList.add('hide');
+  }
+
+  var pts = 0, bonus = 0;
+  if (ok) {
+    pts = Math.round(1000 * (0.6 + 0.4 * frac));
+    S.streak++;
+    S.bestStreak = Math.max(S.bestStreak, S.streak);
+    bonus = Math.min(S.streak - 1, 5) * 100;
+    sndRight();
+  } else { S.streak = 0; sndWrong(); }
+  S.score += pts + bonus;
+  $('p-score').textContent = S.score;
+
+  S.log.push({ q: q, ok: ok, pts: pts + bonus, your: your, right: right, timedOut: timedOut && !payload });
+
+  var fb = document.createElement('div');
+  fb.className = 'fb ' + (ok ? 'good' : 'bad');
+  fb.innerHTML =
+    '<div class="fbtop"><span class="fbmark" aria-hidden="true">' + (ok ? '🎉' : '💧') + '</span>' +
+    '<span class="fbver">' + (ok ? '答對了！Correct!' : (timedOut && !payload ? '時間到 Time’s up' : '再想想 Not quite')) + '</span>' +
+    '<span class="fbpts">' + (pts + bonus > 0 ? '+' + (pts + bonus) : '+0') + '</span></div>' +
+    (bonus ? '<div class="srcref">🔥 連勝 ' + S.streak + ' 題，加 ' + bonus + ' 分 · streak bonus</div>' : '') +
+    '<div class="fbans"><b>正確答案 Answer：' + esc(right) + '</b>' +
+      (ok ? '' : '<div class="en">你的答案 Your answer：' + esc(your) + '</div>') + '</div>' +
+    '<div class="fbwhy">' + esc(q.why[0]) + '<span class="en">' + esc(q.why[1]) + '</span></div>' +
+    '<div class="srcref">📖 ' + esc(q.src) + '</div>';
+  $('q-fb').appendChild(fb);
+  $('q-next').classList.remove('hide');
+  $('btn-next').textContent = (S.i + 1 >= S.queue.length) ? '看成績 See my score →' : '下一題 Next →';
+  $('p-track').style.width = ((S.i + 1) / S.queue.length * 100) + '%';
+  $('btn-next').focus({ preventScroll: true });
+  pushScore(false).then(refreshRank);
+}
+
+function nextQ() {
+  S.i++;
+  if (S.i >= S.queue.length) done();
+  else renderQ();
+}
+
+/* ---------------- results ---------------- */
+function done() {
+  var total = S.log.length;
+  var right = S.log.filter(function (l) { return l.ok; }).length;
+  var pct = total ? Math.round(right / total * 100) : 0;
+  var rd = (S.sel === 'all') ? { zh: '全部題目', en: 'The whole lesson' }
+        : (S.sel === 'quick') ? { zh: '快速挑戰', en: 'Quick challenge' }
+        : ROUNDS[S.sel - 1];
+  var g = GRADES.filter(function (x) { return pct >= x[0]; })[0];
+  $('d-emoji').textContent = g[1];
+  $('d-round').textContent = rd.zh + ' · ' + rd.en;
+  $('d-score').textContent = S.score;
+  $('d-rank').innerHTML = esc(g[2]) + '<span class="sub">' + esc(g[3]) + '</span>';
+
+  $('d-stats').innerHTML =
+    stat(right + ' / ' + total, '答對題數 Correct') +
+    stat(pct + '%', '正確率 Accuracy') +
+    stat(S.bestStreak, '最長連勝 Best streak') +
+    stat(S.score, '總分 Score');
+
+  // per-round bars
+  var bars = '';
+  ROUNDS.forEach(function (r) {
+    var items = S.log.filter(function (l) { return l.q.r === r.id; });
+    if (!items.length) return;
+    var okn = items.filter(function (l) { return l.ok; }).length;
+    bars += '<div class="rb"><span class="nm">' + r.emoji + ' ' + esc(r.zh) + '</span>' +
+      '<span class="ln"><i style="width:' + (okn / items.length * 100) + '%"></i></span>' +
+      '<span class="vl">' + okn + '/' + items.length + '</span></div>';
+  });
+  $('d-rbars').innerHTML = bars;
+
+  // review — wrong answers first
+  var sorted = S.log.slice().sort(function (a, b) { return (a.ok ? 1 : 0) - (b.ok ? 1 : 0); });
+  $('d-review').innerHTML = sorted.map(function (l) {
+    return '<div class="rv' + (l.ok ? ' ok' : '') + '">' +
+      '<div class="q">' + (l.ok ? '✓' : '✗') + ' ' + esc(l.q.zh) + '<span class="en">' + esc(l.q.en) + '</span></div>' +
+      '<div class="aa"><span class="right">✔ ' + esc(l.right) + '</span>' +
+      (l.ok ? '' : '<br><span class="yours">✘ ' + esc(l.your) + '</span>') + '</div>' +
+      '<div class="aa en">' + esc(l.q.why[0]) + '<br>' + esc(l.q.why[1]) + '</div></div>';
+  }).join('');
+
+  // leaderboard on this tablet
+  var ts = Date.now();
+  var board = store(KEY + '.scores') || [];
+  board.push({ n: S.name, a: S.av, s: S.score, r: right, t: total, ts: ts });
+  board.sort(function (x, y) { return y.s - x.s; });
+  board = board.slice(0, 20);
+  store(KEY + '.scores', board);
+  $('d-lb').innerHTML = board.slice(0, 8).map(function (b, k) {
+    return '<div class="lbi' + (b.ts === ts ? ' me' : '') + '"><span class="rk">' + (k + 1) + '</span>' +
+      '<span class="nm">' + esc(b.a + ' ' + b.n) + '</span>' +
+      '<span class="sc">' + b.s + '</span></div>';
+  }).join('') || '<p class="en">還沒有紀錄 No scores yet.</p>';
+
+  $('d-liveblock').classList.add('hide');
+  pushScore(true).then(startLiveBoard);
+
+  show('s-done');
+  beep(pct >= 60 ? [660, 880, 1320] : [520, 440], .14, .15);
+}
+function stat(v, label) {
+  return '<div class="stat"><b>' + esc(v) + '</b><span>' + esc(label) + '</span></div>';
+}
+
+/* ---------------- wiring ---------------- */
+$('btn-next').onclick = nextQ;
+$('btn-again').onclick = function () { startRound(S.sel); };
+$('btn-home').onclick = function () { stopLiveBoard(); show('s-home'); };
+function toggleLang() { S.enFirst = !S.enFirst; applyPrefs(); savePrefs(); }
+function toggleSnd() { S.snd = !S.snd; applyPrefs(); savePrefs(); if (S.snd) sndTick(); }
+$('tg-lang').onclick = toggleLang;
+$('mini-lang').onclick = toggleLang;
+$('tg-snd').onclick = toggleSnd;
+$('mini-snd').onclick = toggleSnd;
+$('tg-ba').onclick = function () {
+  S.ba = !S.ba; applyPrefs(); savePrefs();
+  var q = S.queue[S.i];
+  if (q) $('q-ba').classList.toggle('hide', !(q.ba && S.ba));
+};
+
+document.addEventListener('keydown', function (e) {
+  if (!$('s-play').classList.contains('on')) return;
+  if (!$('q-next').classList.contains('hide') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); nextQ(); return; }
+  if (S.locked) return;
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 4) {
+    var grid = $('q-body').querySelector('.tiles');
+    if (grid && grid.children[n - 1]) { e.preventDefault(); grid.children[n - 1].click(); }
+  }
+});
+
+if (!QS.some(function (q) { return q.ba; })) $('tg-ba').classList.add('hide');
+loadPrefs();
+applyPrefs();
+buildAvatars();
+buildRounds();
+roomInit();
+</script>
+</body>
+</html>
